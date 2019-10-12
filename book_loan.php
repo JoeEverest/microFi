@@ -1,12 +1,13 @@
 <?php
-$customerName ='';
-$businessTitle ='';
-$phoneNumber ='';
-$cycleNumber ='';
-$age ='';
-$amount ='';
-$date ='';
-$disbarsmentDate ='';
+session_start();
+
+if (isset($_SESSION['operator_name'])) {
+    $userLoggedIn = $_SESSION['operator_name'];   
+}
+else{
+	header("Location: login.php");
+}
+
 if (isset($_POST['submit'])) {
     if (!$_POST['name'] | !$_POST['businessTitle'] | !$_POST['phone'] | !$_POST['numberOfCycle'] | !$_POST['age'] | !$_POST['amount'] | !$_POST['date'] | !$_POST['disbarsmentDate']) {
         echo 'Some fields are empty';
