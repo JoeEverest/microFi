@@ -28,24 +28,20 @@ if (isset($_POST['submit'])) {
         $disbarsmentDate = str_replace("-", "", "$disbarsmentDate", $i);
 
         $branch_values = $_POST['branchName'];
-        echo $branch_values;
+            $last_space = strrpos($branch_values, ' ');
+            $last_word = substr($branch_values, $last_space);
+            $first_chunk = substr($branch_values, 0, $last_space);
 
-        $last_space = strrpos($branch_values, ' ');
-        $last_word = substr($branch_values, $last_space);
-        $first_chunk = substr($branch_values, 0, $last_space);
-
-        $branchId = $last_word;
-        $branchName = $first_chunk;
+            $branchId = $last_word;
+            $branchName = $first_chunk;
 
         $center_values = $_POST['centerName'];
-        echo $center_values;
+            $lastspace = strrpos($center_values, ' ');
+            $lastword = substr($center_values, $lastspace);
+            $firstchunk = substr($center_values, 0, $lastspace);
 
-        $lastspace = strrpos($center_values, ' ');
-        $lastword = substr($center_values, $lastspace);
-        $firstchunk = substr($center_values, 0, $lastspace);
-
-        $centerid = $lastword;
-        $centerName = $firstchunk;
+            $centerid = $lastword;
+            $centerName = $firstchunk;
 
         //define ID
         //$id = $branchId.$centerid.$groupId.$customerId

@@ -14,9 +14,11 @@ else{
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Dashboard</title>
 </head>
 <body>
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex, alias! Temporibus dicta ad vel dolorum earum fuga minus vero accusantium veniam recusandae, dolorem necessitatibus, accusamus eos culpa excepturi ex praesentium.
+    <h3><?php echo $userLoggedIn; ?></h3>
+    <a href="branches.php">Branches</a>
+    <a href="active_loans.php">Active Loans</a>
 </body>
 </html>
