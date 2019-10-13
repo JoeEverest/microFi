@@ -35,9 +35,9 @@ else{
     <table>
         <thead>
             <td>ID</td>
-            <td>Center Name</td>
-            <td>Center ID</td>
-            <td>Number of Groups</td>
+            <td>Group Name</td>
+            <td>Group ID</td>
+            <td>Number of Members</td>
             <td>Action</td>
         </thead>
         <tbody>
@@ -46,13 +46,15 @@ else{
                 $execute = mysqli_query($connect, $extract);
                 while ($dataRows = mysqli_fetch_array($execute)) {
                     $id = $dataRows["id"];
+                    $groupname = $dataRows["group_name"];
                     $centername = $dataRows["center_name"];
-        
+                    $groupId = $dataRows["group_id"];
+
         ?>
             <tr>
                 <td><?php echo $id; ?></td>
-                <td><?php echo $centername; ?></td>
-                <td><?php echo $centerId; ?></td>
+                <td><?php echo $groupname; ?></td>
+                <td><?php echo $groupId; ?></td>
                 <td></td>
                 <td><a href="group.php?id=<?php echo $id; ?>"><button>View</button></a></td>
             </tr>
