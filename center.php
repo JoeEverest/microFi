@@ -21,15 +21,16 @@ else{
 <body>
     <?php
     $id = $_GET['id'];
-    $extract = "SELECT * FROM branches WHERE id = '$id' ORDER BY id DESC";
+    $extract = "SELECT * FROM centers WHERE id = '$id' ORDER BY id DESC";
             $execute = mysqli_query($connect, $extract);
             while ($dataRows = mysqli_fetch_array($execute)) {
-                $id = $dataRows["id"];
-                $name = $dataRows["branch_name"];
-                $uniqueId = $dataRows["branch_id"];
+                $id = $dataRows['id'];
+                $branchname = $dataRows['branch_name'];
+                $centername = $dataRows['center_name'];
+                $centerId = $dataRows['center_id'];
     
     ?>
-    <p><?php echo $name; ?></p>
+    <p><?php echo $centername; ?></p>
     <?php } ?>
     <table>
         <thead>
@@ -41,20 +42,19 @@ else{
         </thead>
         <tbody>
         <?php
-        $extract = "SELECT * FROM centers WHERE branch_name = '$name' ORDER BY id DESC";
-        $execute = mysqli_query($connect, $extract);
+        $extract = "SELECT * FROM groups WHERE center_name = '$centername' ORDER BY id DESC";
+                $execute = mysqli_query($connect, $extract);
                 while ($dataRows = mysqli_fetch_array($execute)) {
                     $id = $dataRows["id"];
-                    $branchName = $dataRows["branch_name"];
                     $centername = $dataRows["center_name"];
-                    $centerId = $dataRows["center_id"];
+        
         ?>
             <tr>
                 <td><?php echo $id; ?></td>
                 <td><?php echo $centername; ?></td>
                 <td><?php echo $centerId; ?></td>
                 <td></td>
-                <td><a href="center.php?id=<?php echo $id; ?>"><button>View</button></a></td>
+                <td><a href="group.php?id=<?php echo $id; ?>"><button>View</button></a></td>
             </tr>
             <?php } ?>
         </tbody>
