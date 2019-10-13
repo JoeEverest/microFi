@@ -1,5 +1,6 @@
 <?php
 include('../config/config.php');
+include('session.php');
 
 $id = '';
 $password = '';
