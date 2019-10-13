@@ -23,5 +23,33 @@ include('config/config.php');
     ?>
     <p><?php echo $name; ?></p>
     <?php } ?>
+    <table>
+        <thead>
+            <td>ID</td>
+            <td>Center Name</td>
+            <td>Center ID</td>
+            <td>Number of Groups</td>
+            <td>Action</td>
+        </thead>
+        <tbody>
+        <?php
+        $extract = "SELECT * FROM centers WHERE branch_name = '$name' ORDER BY id DESC";
+                $execute = mysqli_query($connect, $extract);
+                while ($dataRows = mysqli_fetch_array($execute)) {
+                    $id = $dataRows["id"];
+                    $centername = $dataRows["center_name"];
+                    $centerId = $dataRows["center_id"];
+        
+        ?>
+            <tr>
+                <td><?php echo $id; ?></td>
+                <td><?php echo $centername; ?></td>
+                <td><?php echo $centerId; ?></td>
+                <td></td>
+                <td><a href="center.php?id<?php echo $id; ?>"><button>View</button></a></td>
+            </tr>
+            <?php } ?>
+        </tbody>
+    </table>
 </body>
 </html>
