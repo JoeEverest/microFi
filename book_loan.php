@@ -10,7 +10,7 @@ else{
 }
 
 if (isset($_POST['submit'])) {
-    if (!$_POST['name'] | !$_POST['businessTitle'] | !$_POST['phone'] | !$_POST['numberOfCycle'] | !$_POST['age'] | !$_POST['amount'] | !$_POST['date'] | !$_POST['disbarsmentDate']) {
+    if (!$_POST['name'] | !$_POST['businessTitle'] | !$_POST['phone'] | !$_POST['numberOfCycle'] | !$_POST['age'] | !$_POST['amount'] | !$_POST['disbarsmentDate']) {
         echo 'Some fields are empty';
     }
     else{
@@ -20,12 +20,12 @@ if (isset($_POST['submit'])) {
         $cycleNumber = $_POST['numberOfCycle'];
         $age = $_POST['age'];
         $amount = $_POST['amount'];
-        $date = $_POST['date'];
+        $date = date('y-m-d');
         $disbarsmentDate = $_POST['disbarsmentDate'];
 
         $i = 2;
-        $date = str_replace("-", "", "$date", $i);
-        $disbarsmentDate = str_replace("-", "", "$disbarsmentDate", $i);
+        //$date = str_replace("-", "", "$date", $i);
+        //$disbarsmentDate = str_replace("-", "", "$disbarsmentDate", $i);
 
         $branch_values = $_POST['branchName'];
             $last_space = strrpos($branch_values, ' ');
@@ -59,13 +59,23 @@ if (isset($_POST['submit'])) {
                 $centerid = implode(",",$row);
                 $centerid = substr($centerid, 0, strpos($centerid, ","));
             
+        $check_database_query = mysqli_query($connect, "SELECT * FROM customers ORDER BY id DESC");
+        $check_login_query = mysqli_num_rows($check_database_query);
 
-
+        $customerId = $check_login_query + 1;
         //define ID
         $id = $branchId.'/'.$centerid.'/'.$groupId.'/'.$customerId;
         //add to database
-        //$due_date = 20200101;
-        //$query = "INSERT INTO customers VALUES ('', '$customerName', '$businessTitle', '$group_name', '$cycleNumber', '$uniqueId', '$age', '$amount', '$date', '$disbarsmentDate'. '$due_date', '$phoneNumber')";
+        $due_date = date('y-m-d');
+
+        $query = "INSERT INTO customers VALUES ('', '$customerName', '$businessTitle', '$group_name', '$cycleNumber', '$id', '$age', '$amount', '$date', '$disbarsmentDate', '$due_date', '$phoneNumber')";
+        
+        if (mysqli_query($connect, $query)) {
+            echo 'Customer added to database';
+        }else {
+            $error = mysqli_error($connect);
+            echo 'There was an error '.$error;
+        }
 
     }
 }
@@ -123,8 +133,6 @@ $retrieve = mysqli_query($connect, $retrieve);
         </select><br>
         <label for="amount">Loan Amount:</label><br>
         <input required type="number" name="amount" placeholder="Loan Amount"><br>
-        <label for="date">Date:</label><br>
-        <input required type="date" name="date" placeholder=""><br>
         <label for="disbarsmentDate">Disembursment Date:</label><br>
         <input required type="date" name="disbarsmentDate" placeholder=""><br>
         <button type="submit" name="submit">Submit</button>
