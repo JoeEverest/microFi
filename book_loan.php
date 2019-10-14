@@ -46,7 +46,8 @@ if (isset($_POST['submit'])) {
         //define ID
         //$id = $branchId.$centerid.$groupId.$customerId
         //add to database
-        //$query = "INSERT INTO movies VALUES ('', '$name', '$year', '$dlink', '$imdb', '$tlink', '$description', '$category', '$image')";
+        //$due_date = 20200101;
+        //$query = "INSERT INTO customers VALUES ('', '$customerName', '$businessTitle', '$group_name', '$cycleNumber', '$uniqueId', '$age', '$amount', '$date', '$disbarsmentDate'. '$due_date', '$phoneNumber')";
 
     }
 }
