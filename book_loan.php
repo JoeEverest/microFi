@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
             $n = 1;
             $groupName = $lw;
             $centerName = $fc;
-            $lw = str_replace("-", "", "$lw", $n);
+            $lw = str_replace(" ", "", "$lw", $n);
             echo $lw;
             //$group_name = $branchName.'_'.$centerName.'_'.$groupName;
             $group_name = $groupName;
