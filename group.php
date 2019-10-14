@@ -71,7 +71,7 @@ else{
                 <td><?php echo $phone; ?></td>
                 <td><?php echo $amount; ?></td>
                 <td><?php echo $cycles; ?></td>
-                <td><a href="center.php?id=<?php echo $id; ?>"><button>View Payment History</button></a></td>
+                <td><a href="payment_history.php?id=<?php echo $id; ?>"><button>View Payment History</button></a></td>
             </tr>
             <?php } ?>
         </tbody>
