@@ -4,5 +4,3 @@ Admin should be able to
 
 Operator
     create groups
-
-id	customer_name	business_title  group    numberof_cycles	unique_id	age	loan_amount	date	disbursement_date	due_date	phone_number

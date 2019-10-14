@@ -35,16 +35,39 @@ if (isset($_POST['submit'])) {
             $branchId = $last_word;
             $branchName = $first_chunk;
 
-        $center_values = $_POST['centerName'];
+        $center_values = $_POST['group_name'];
             $lastspace = strrpos($center_values, ' ');
             $lastword = substr($center_values, $lastspace);
             $firstchunk = substr($center_values, 0, $lastspace);
 
-            $centerid = $lastword;
+            $groupId = $lastword;
             $centerName = $firstchunk;
 
+            $ls = strrpos($centerName, ' ');
+            $lw = substr($centerName, $ls);
+            $fc = substr($centerName, 0, $ls);
+            
+
+
+
+            $n = 2;
+            $groupName = $lw;
+            $group_name = $branchName.'_'.$centerName.'_'.$groupName;
+
+            $centerName = $fc;
+
+            $centerid = "SELECT center_id FROM centers WHERE center_name = '$centerName'";
+            $centerid = mysqli_query($connect, $centerid);
+
+            $row = mysqli_fetch_array($centerid);
+                $centerid = implode(",",$row);
+                $centerid = substr($centerid, 0, strpos($centerid, ","));
+            
+
+
         //define ID
-        //$id = $branchId.$centerid.$groupId.$customerId
+        $id = $branchId.'/'.$centerid.'/'.$groupId.'/'.$customerId;
+        echo $id;
         //add to database
         //$due_date = 20200101;
         //$query = "INSERT INTO customers VALUES ('', '$customerName', '$businessTitle', '$group_name', '$cycleNumber', '$uniqueId', '$age', '$amount', '$date', '$disbarsmentDate'. '$due_date', '$phoneNumber')";
@@ -54,8 +77,8 @@ if (isset($_POST['submit'])) {
 $retrieve = 'SELECT * FROM branches ORDER BY id DESC';
 $retrieve = mysqli_query($connect, $retrieve);
 
-    $getCenter = 'SELECT * FROM centers ORDER BY id DESC';
-    $getCenter = mysqli_query($connect, $getCenter);
+    $getGroup = 'SELECT * FROM groups ORDER BY id DESC';
+    $getGroup = mysqli_query($connect, $getGroup);
 
 ?>
 <!DOCTYPE html>
@@ -90,18 +113,18 @@ $retrieve = mysqli_query($connect, $retrieve);
             <option value="<?php echo $name.' '.$uniqueId; ?>"><?php echo $name; ?></option>
             <?php } ?>
         </select><br>
-        Center Name:
-        <select required name="centerName">
-            <?php
-            while ($row = mysqli_fetch_array($getCenter)) {
+        Group Name:
+        <select name="group_name">
+        <?php
+            while ($row = mysqli_fetch_array($getGroup)) {
                 $id = $row['id'];
-                $branchname = $row['branch_name'];
+                $groupname = $row['group_name'];
                 $centername = $row['center_name'];
-                $centerId = $row['center_id'];
-            
-            ?>
-            <option value="<?php echo $centername.' '.$centerId; ?>"><?php echo $centername; ?></option>
-            <?php } ?>
+                $groupId = $row['group_id'];
+               
+        ?>
+            <option value="<?php echo $centername.' '.$groupname.' '.$groupId; ?>"><?php echo $centername.'-'.$groupname; ?></option>
+        <?php } ?>
         </select><br>
         <label for="amount">Loan Amount:</label><br>
         <input required type="number" name="amount" placeholder="Loan Amount"><br>
