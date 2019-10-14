@@ -45,16 +45,12 @@ if (isset($_POST['submit'])) {
 
             $ls = strrpos($centerName, ' ');
             $lw = substr($centerName, $ls);
-            $fc = substr($centerName, 0, $ls);
-            
-
-
+            $fc = substr($centerName, 0, $ls);        
 
             $n = 2;
             $groupName = $lw;
-            $group_name = $branchName.'_'.$centerName.'_'.$groupName;
-
             $centerName = $fc;
+            $group_name = $branchName.'_'.$centerName.'_'.$groupName;
 
             $centerid = "SELECT center_id FROM centers WHERE center_name = '$centerName'";
             $centerid = mysqli_query($connect, $centerid);
@@ -67,7 +63,6 @@ if (isset($_POST['submit'])) {
 
         //define ID
         $id = $branchId.'/'.$centerid.'/'.$groupId.'/'.$customerId;
-        echo $id;
         //add to database
         //$due_date = 20200101;
         //$query = "INSERT INTO customers VALUES ('', '$customerName', '$businessTitle', '$group_name', '$cycleNumber', '$uniqueId', '$age', '$amount', '$date', '$disbarsmentDate'. '$due_date', '$phoneNumber')";
