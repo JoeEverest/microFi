@@ -47,10 +47,13 @@ if (isset($_POST['submit'])) {
             $lw = substr($centerName, $ls);
             $fc = substr($centerName, 0, $ls);        
 
-            $n = 2;
+            $n = 1;
             $groupName = $lw;
             $centerName = $fc;
-            $group_name = $branchName.'_'.$centerName.'_'.$groupName;
+            $lw = str_replace("-", "", "$lw", $n);
+            echo $lw;
+            //$group_name = $branchName.'_'.$centerName.'_'.$groupName;
+            $group_name = $groupName;
 
             $centerid = "SELECT center_id FROM centers WHERE center_name = '$centerName'";
             $centerid = mysqli_query($connect, $centerid);
@@ -71,12 +74,17 @@ if (isset($_POST['submit'])) {
         $query = "INSERT INTO customers VALUES ('', '$customerName', '$businessTitle', '$group_name', '$cycleNumber', '$id', '$age', '$amount', '$date', '$disbarsmentDate', '$due_date', '$phoneNumber')";
         
         if (mysqli_query($connect, $query)) {
-            echo 'Customer added to database';
         }else {
             $error = mysqli_error($connect);
             echo 'There was an error '.$error;
         }
-
+        $query = "INSERT INTO active_loans VALUES ('', '$customerName','$id', '$businessTitle', '$amount', '$disbarsmentDate', '$due_date')";
+        
+        if (mysqli_query($connect, $query)) {
+        }else {
+            $error = mysqli_error($connect);
+            echo 'There was an error '.$error;
+        }
     }
 }
 $retrieve = 'SELECT * FROM branches ORDER BY id DESC';

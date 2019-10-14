@@ -32,7 +32,7 @@ $retrieve = mysqli_query($connect, $retrieve);
         <tr>
             <td><?php echo $name; ?></td>
             <td><?php echo $uniqueId; ?></td>
-            <td><a href="branch.php?id=<?php echo $id; ?>"><button>View</button></a></td>
+            <td><a href="branch.php?id=<?php echo $id; ?>"><button>View Branch</button></a></td>
         </tr>
         <?php } ?>
     </table>

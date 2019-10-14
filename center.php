@@ -37,7 +37,6 @@ else{
             <td>ID</td>
             <td>Group Name</td>
             <td>Group ID</td>
-            <td>Number of Members</td>
             <td>Action</td>
         </thead>
         <tbody>
@@ -49,14 +48,16 @@ else{
                     $groupname = $dataRows["group_name"];
                     $centername = $dataRows["center_name"];
                     $groupId = $dataRows["group_id"];
+        $check_database_query = mysqli_query($connect, "SELECT * FROM customers WHERE group_name = '$groupname'");
+        $check_login_query = mysqli_num_rows($check_database_query);
+        $numberOfMembers = $check_login_query;
 
         ?>
             <tr>
                 <td><?php echo $id; ?></td>
                 <td><?php echo $groupname; ?></td>
                 <td><?php echo $groupId; ?></td>
-                <td></td>
-                <td><a href="group.php?id=<?php echo $id; ?>"><button>View</button></a></td>
+                <td><a href="group.php?id=<?php echo $id; ?>"><button>View Group</button></a></td>
             </tr>
             <?php } ?>
         </tbody>
