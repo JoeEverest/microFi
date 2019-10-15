@@ -1,6 +1,12 @@
 Questions For Edo
     How is the maturity date calculated?
+        30 repayments 6 days a week for 5 weeks
 
 Notes
     create a "active_loans" table
         use name, uniqueID, loan amount, disbursment date, maturity date
+
+in active loans
+    check if maturity date is reached. and if loan left = 0
+    if true issue new loan
+    else "PREPAYMENT"

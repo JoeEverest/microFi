@@ -44,6 +44,7 @@ else{
         </thead>
         <tbody>
         <?php
+        $name = ' '.$name;
         $extract = "SELECT * FROM customers WHERE group_name = '$name' ORDER BY id DESC";
         $execute = mysqli_query($connect, $extract);
                 while ($dataRows = mysqli_fetch_array($execute)) {
