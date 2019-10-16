@@ -35,13 +35,13 @@ if (isset($_POST['submit'])) {
             $maturity_date = $row['maturity_date'];
             $cycleNumber = $row['number_ofcycle'];
         }
-        $updateLoan = "UPDATE active_loans WHERE customer_id='$customerId' SET loan_amount='$loanAmount', disbursment_date = '$disbursementDate', maturity_date = '$maturityDate'";
-        //cycleNumber = existing+1;
-        if (mysqli_query($connect, $updateLoan)) {
-            echo "Record updated successfully";
-        } else {
-            echo "Error updating record: " . mysqli_error($connect);
-        }
+        // $updateLoan = "UPDATE active_loans WHERE customer_id='$customerId' SET loan_amount='$loanAmount', disbursment_date = '$disbursementDate', maturity_date = '$maturityDate'";
+        // //cycleNumber = existing+1;
+        // if (mysqli_query($connect, $updateLoan)) {
+        //     echo "Record updated successfully";
+        // } else {
+        //     echo "Error updating record: " . mysqli_error($connect);
+        // }
             
     }
 }
