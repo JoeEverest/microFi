@@ -9,4 +9,4 @@ Notes
 in active loans
     check if maturity date is reached. and if loan left = 0
     if true issue new loan
-    else "PREPAYMENT"
+    else "PREPAYMENT" amount > 0

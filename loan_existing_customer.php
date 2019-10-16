@@ -13,28 +13,34 @@ if (isset($_POST['submit'])) {
         echo "All input fileds are required";
     }else {
         $customerName = $_POST['customer_name'];
+            $last_space = strrpos($customerName, ' ');
+            $last_word = substr($customerName, $last_space);
+            $first_chunk = substr($customerName, 0, $last_space);
+            $customerId = $last_word;
+            $customerName = $first_chunk;
         $loanAmount = $_POST['loan_amount'];
         $disbursementDate = $_POST['disbursement_date'];
 
-        $maturityDate
+        $maturityDate = date('y-m-d');
 
-        $customerDetails = 'SELECT * FROM active_loans WHERE customer_name = "$customerName" ORDER BY id DESC';
+        $customerDetails = "SELECT * FROM active_loans WHERE customer_name = '$customerName' ORDER BY id DESC";
         $customerDetails = mysqli_query($connect, $customerDetails);
 
-        while ($row = mysqli_fetch_array($retrieve)) {
+        while ($row = mysqli_fetch_array($customerDetails)) {
             $id = $row['id'];
             $name = $row['customer_name'];
-            $customerId = $row['customer_id'];
+            //$customerId = $row['customer_id'];
             $loan_amount = $row['loan_amount'];
             $disbursement_date = $row['disbursment_date'];
             $maturity_date = $row['maturity_date'];
+            $cycleNumber = $row['number_ofcycle'];
         }
-        $sql = "UPDATE active_loans SET loan_amount='$loanAmount', disbursment_date = '$disbursementDate', maturity_date = '$maturityDate' WHERE customer_id='customerId'";
+        $updateLoan = "UPDATE active_loans WHERE customer_id='$customerId' SET loan_amount='$loanAmount', disbursment_date = '$disbursementDate', maturity_date = '$maturityDate'";
         //cycleNumber = existing+1;
-        if (mysqli_query($connect, $sql)) {
+        if (mysqli_query($connect, $updateLoan)) {
             echo "Record updated successfully";
         } else {
-            echo "Error updating record: " . mysqli_error($conn);
+            echo "Error updating record: " . mysqli_error($connect);
         }
             
     }
