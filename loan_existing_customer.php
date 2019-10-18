@@ -35,13 +35,10 @@ if (isset($_POST['submit'])) {
             $maturity_date = $row['maturity_date'];
             $cycleNumber = $row['number_ofcycle'];
         }
-        // $updateLoan = "UPDATE active_loans WHERE customer_id='$customerId' SET loan_amount='$loanAmount', disbursment_date = '$disbursementDate', maturity_date = '$maturityDate'";
-        // //cycleNumber = existing+1;
-        // if (mysqli_query($connect, $updateLoan)) {
-        //     echo "Record updated successfully";
-        // } else {
-        //     echo "Error updating record: " . mysqli_error($connect);
-        // }
+        //cycleNumber = existing+1;
+        // $updateLoan= "UPDATE loans SET loanstatus_id = '$loan_status', loan_issued = '1', loan_dateout = '$loan_dateout', loan_principalapproved = '$loan_princp_approved', loan_fee = '$loan_fee', loan_fee_receipt = '$loan_fee_receipt', loan_insurance = '$loan_insurance', loan_insurance_receipt = '$loan_fee_receipt' WHERE loan_id = '$_SESSION[loan_id]'";
+		// $query_issue = mysqli_query($connect, $updateLoan);
+		// checkSQL($connect, $query_issue);
             
     }
 }
