@@ -1,8 +1,6 @@
 <?php
 session_start();
 include('config/config.php');
-include('header.php');
-
 if (isset($_SESSION['operator_name'])) {
     $userLoggedIn = $_SESSION['operator_name'];   
 }
@@ -15,6 +13,15 @@ $retrieve = mysqli_query($connect, $retrieve);
     $getGroup = 'SELECT * FROM groups ORDER BY id DESC';
     $getGroup = mysqli_query($connect, $getGroup);
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
     <form method="post">
         <label for="name">Full Name:</label><br>
         <input required type="text" name="name" placeholder="John Alex Doe"><br>

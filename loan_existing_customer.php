@@ -1,7 +1,6 @@
 <?php
 session_start();
 include('config/config.php');
-include('header.php');
 
 if (isset($_SESSION['operator_name'])) {
     $userLoggedIn = $_SESSION['operator_name'];   
@@ -47,6 +46,15 @@ $retrieve = 'SELECT * FROM customers ORDER BY id DESC';
 $retrieve = mysqli_query($connect, $retrieve);
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
     <p>Loan for existing customer</p>
     <form method="post">
     Customer Name:
