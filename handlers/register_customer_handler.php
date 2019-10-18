@@ -13,14 +13,7 @@ if (isset($_POST['submit'])) {
         $date = date('y-m-d');
         $disbarsmentDate = $_POST['disbarsmentDate'];
         $i = 2;
-        //$date = str_replace("-", "", "$date", $i);
-        //$disbarsmentDate = str_replace("-", "", "$disbarsmentDate", $i);
-        $branch_values = $_POST['branchName'];
-            $last_space = strrpos($branch_values, ' ');
-            $last_word = substr($branch_values, $last_space);
-            $first_chunk = substr($branch_values, 0, $last_space);
-            $branchId = $last_word;
-            $branchName = $first_chunk;
+        
         $center_values = $_POST['group_name'];
             $lastspace = strrpos($center_values, ' ');
             $lastword = substr($center_values, $lastspace);
@@ -42,6 +35,18 @@ if (isset($_POST['submit'])) {
             $row = mysqli_fetch_array($centerid);
                 $centerid = implode(",",$row);
                 $centerid = substr($centerid, 0, strpos($centerid, ","));
+                
+                $getBranchName = "SELECT branch_name FROM centers WHERE center_name = '$centerName'";
+                $getBranchName = mysqli_query($connect, $getBranchName);
+                $branchName = mysqli_fetch_array($getBranchName);
+                $branchName = implode(', ', $branchName);
+                $branchName = substr($branchName, 0, strpos($branchName, ','));
+                
+                $getBranchId = "SELECT branch_id FROM branches WHERE branch_name = '$branchName'";
+                $getBranchId = mysqli_query($connect, $getBranchId);
+                $branchId = mysqli_fetch_array($getBranchId);
+                $branchId = implode(', ', $branchId);
+                $branchId = substr($branchId, 0, strpos($branchId, ','));
             
         $check_database_query = mysqli_query($connect, "SELECT * FROM customers ORDER BY id DESC");
         $check_login_query = mysqli_num_rows($check_database_query);
@@ -67,7 +72,7 @@ if (isset($_POST['submit'])) {
         $query = "INSERT INTO active_loans VALUES ('', '$customerName','$id', '$businessTitle', '$amount', '$disbarsmentDate', '$due_date', '$cycleNumber')";
         
         if (mysqli_query($connect, $query)) {
-            header('customer_profile.php?id=$customerId');
+            header('Location: customer_profile.php?id='.$customerId);
         }else {
             $error = mysqli_error($connect);
             echo 'There was an error '.$error;

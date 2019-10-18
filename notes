@@ -9,4 +9,6 @@ Notes
 in active loans
     check if maturity date is reached. and if loan left = 0
     if true issue new loan
-    else "PREPAYMENT" amount > 0
+    else "PREPAYMENT" if amount > 0
+
+deliquence skip sundays and public holidays

@@ -33,18 +33,6 @@ $retrieve = mysqli_query($connect, $retrieve);
         <input required type="number" name="numberOfCycle" placeholder="Number Of Cycle"><br>
         <label for="age">Age:</label><br>
         <input required type="number" name="age" placeholder="Age"><br>
-        Branch Name:
-        <select required name="branchName">
-            <?php
-            while ($row = mysqli_fetch_array($retrieve)) {
-                $id = $row['id'];
-                $name = $row['branch_name'];
-                $uniqueId = $row['branch_id'];
-            
-            ?>
-            <option value="<?php echo $name.' '.$uniqueId; ?>"><?php echo $name; ?></option>
-            <?php } ?>
-        </select><br>
         Group Name:
         <select name="group_name">
         <?php
