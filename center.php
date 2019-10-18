@@ -37,7 +37,7 @@ else{
     ?>
     <p><?php echo $centername; ?></p>
     <?php } ?>
-    <table>
+    <table class="table table-striped">
         <thead>
             <td>ID</td>
             <td>Group Name</td>

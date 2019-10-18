@@ -22,7 +22,7 @@ $retrieve = mysqli_query($connect, $retrieve);
     <title>Document</title>
 </head>
 <body><div class="container">
-    <table>
+    <table class="table table-striped">
         <thead>
             <td>ID</td>
             <td>Branch Name</td>

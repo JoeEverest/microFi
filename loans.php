@@ -18,7 +18,7 @@ include('config/config.php');
     <title>Document</title>
 </head>
 <body><div class="container">
-    <table>
+    <table class="table table-striped">
         <thead>
             <th>ID</th>
             <th>Customer Name</th>
