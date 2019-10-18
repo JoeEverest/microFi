@@ -30,12 +30,12 @@ if (isset($_POST['createBranch'])) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>New Branch</title>
 </head>
-<body>
+<body><div class="container">
     <p>Create new branch</p>
     <form action="" method="post">
-        <input required type="text" name="branchName" placeholder="Branch Name">
-        <input required type="number" name="branchId" placeholder="Branch ID">
-        <button type="submit" name="createBranch">Create Branch</button>
+        <input class="form-control" required type="text" name="branchName" placeholder="Branch Name">
+        <input class="form-control" required type="number" name="branchId" placeholder="Branch ID">
+        <button class="btn btn-primary" type="submit" name="createBranch">Create Branch</button>
     </form>
-</body>
+</div></body>
 </html>

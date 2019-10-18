@@ -23,22 +23,23 @@ $retrieve = mysqli_query($connect, $retrieve);
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/main.css">
     <title>Document</title>
 </head>
-<body>
+<body><div class="container">
     <form method="post">
         <label for="name">Full Name:</label><br>
-        <input required type="text" name="name" placeholder="John Alex Doe"><br>
+        <input class="form-control" required type="text" name="name" placeholder="John Alex Doe"><br>
         <label for="businessTitle">Business Title:</label><br>
-        <input required type="text" name="businessTitle" placeholder="Business Title"><br>
+        <input class="form-control" required type="text" name="businessTitle" placeholder="Business Title"><br>
         <label for="phone">Phone Number:</label><br>
-        <input required type="number" name="phone" placeholder="Phone Number"><br>
+        <input class="form-control" required type="number" name="phone" placeholder="Phone Number"><br>
         <label for="numberOfCycle">Number Of Cycle:</label><br>
-        <input required type="number" name="numberOfCycle" placeholder="Number Of Cycle"><br>
+        <input class="form-control" required type="number" name="numberOfCycle" placeholder="Number Of Cycle"><br>
         <label for="age">Age:</label><br>
-        <input required type="number" name="age" placeholder="Age"><br>
+        <input class="form-control" required type="number" name="age" placeholder="Age"><br>
         Group Name:
-        <select name="group_name">
+        <select class="form-control" name="group_name">
         <?php
             while ($row = mysqli_fetch_array($getGroup)) {
                 $id = $row['id'];
@@ -51,10 +52,10 @@ $retrieve = mysqli_query($connect, $retrieve);
         <?php } ?>
         </select><br>
         <label for="amount">Loan Amount:</label><br>
-        <input required type="number" name="amount" placeholder="Loan Amount"><br>
+        <input class="form-control" required type="number" name="amount" placeholder="Loan Amount"><br>
         <label for="disbarsmentDate">Disembursment Date:</label><br>
-        <input required type="date" name="disbarsmentDate" placeholder=""><br>
-        <button type="submit" name="submit">Submit</button>
+        <input class="form-control" required type="date" name="disbarsmentDate" placeholder=""><br>
+        <button class="btn btn-primary" type="submit" name="submit">Submit</button>
     </form>
-</body>
+</div></body>
 </html>

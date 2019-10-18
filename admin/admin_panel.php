@@ -11,10 +11,10 @@ include('../config/config.php');
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Admin Panel</title>
 </head>
-<body>
+<body><div class="container">
     <div class="links">
         <a href="create_branch.php">Create new Branch</a>
         <a href="../create_center.php">Create new Center</a>
     </div>
-</body>
+</div></body>
 </html>

@@ -20,9 +20,10 @@ else{
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/main.css">
     <title>Document</title>
 </head>
-<body>
+<body><div class="container">
     <?php
     $id = $_GET['id'];
     $extract = "SELECT * FROM groups WHERE id = '$id' ORDER BY id DESC";
@@ -76,10 +77,10 @@ else{
                 <td><?php echo $phone; ?></td>
                 <td><?php echo $amount; ?></td>
                 <td><?php echo $cycles; ?></td>
-                <td><a href="payment_history.php?id=<?php echo $id; ?>"><button>View Payment History</button></a></td>
+                <td><a href="payment_history.php?id=<?php echo $id; ?>"><button class="btn btn-primary">View Payment History</button></a></td>
             </tr>
             <?php } ?>
         </tbody>
     </table>
-</body>
+</div></body>
 </html>

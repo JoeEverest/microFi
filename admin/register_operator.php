@@ -52,9 +52,10 @@ $retrieve = mysqli_query($connect, $retrieve);
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/main.css">
     <title>Document</title>
 </head>
-<body>
+<body><div class="container">
     <?php
     if (!$errors) {    
     }else{
@@ -62,9 +63,9 @@ $retrieve = mysqli_query($connect, $retrieve);
     }
     ?>
     <form method="post">
-        <input placeholder='Username' type="text" name="loginId">
+        <input class="form-control" placeholder='Username' type="text" name="loginId">
         Center Name:
-        <select required name="centerName">
+        <select class="form-control" required name="centerName">
             <?php
             while ($row = mysqli_fetch_array($retrieve)) {
                 $id = $row['id'];
@@ -75,9 +76,9 @@ $retrieve = mysqli_query($connect, $retrieve);
             <option value="<?php echo $centername.'_'.$branchname; ?>"><?php echo $centername; ?></option>
             <?php } ?>
         </select>
-        <input placeholder='Password' type="password" name="password">
-        <input placeholder='Confirm Password' type="password" name="password2">
-        <button type="submit" name="register">Register Operator</button>
+        <input class="form-control" placeholder='Password' type="password" name="password">
+        <input class="form-control" placeholder='Confirm Password' type="password" name="password2">
+        <button class="btn btn-primary" type="submit" name="register">Register Operator</button>
     </form>
-</body>
+</div></body>
 </html>

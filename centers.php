@@ -18,9 +18,10 @@ $retrieve = mysqli_query($connect, $retrieve);
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/main.css">
     <title>Document</title>
 </head>
-<body>
+<body><div class="container">
     <table>
         <thead>
             <td>ID</td>
@@ -41,9 +42,9 @@ $retrieve = mysqli_query($connect, $retrieve);
             <td><?php echo $branchname; ?></td>
             <td><?php echo $centername; ?></td>
             <td><?php echo $centerId; ?></td>
-            <td><a href="center.php?id=<?php echo $id; ?>"><button>View</button></a></td>
+            <td><a href="center.php?id=<?php echo $id; ?>"><button class="btn btn-primary">View</button></a></td>
         </tr>
         <?php } ?>
     </table>
-</body>
+</div></body>
 </html>

@@ -42,9 +42,10 @@ if (isset($_POST['logIn'])) {
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/main.css">
     <title>Document</title>
 </head>
-<body>
+<body><div class="container">
     <?php
     if (!$errors) {    
     }else{
@@ -52,9 +53,9 @@ if (isset($_POST['logIn'])) {
     }
     ?>
     <form method="post">
-        <input placeholder='Username' type="text" name="loginId">
-        <input placeholder='Password' type="password" name="password">
-        <button type="submit" name="logIn">Login</button>
+        <input class="form-control" placeholder='Username' type="text" name="loginId">
+        <input class="form-control" placeholder='Password' type="password" name="password">
+        <button class="btn btn-primary" type="submit" name="logIn">Login</button>
     </form>
-</body>
+</div></body>
 </html>

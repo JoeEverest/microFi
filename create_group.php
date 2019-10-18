@@ -32,13 +32,14 @@ $retrieve = mysqli_query($connect, $retrieve);
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/main.css">
     <title>Document</title>
 </head>
-<body>
+<body><div class="container">
     <form method="POST">
-        <input type="text" name="groupName" placeholder="Group Name">
+        <input class="form-control" type="text" name="groupName" placeholder="Group Name">
         Center Name:
-        <select required name="centerName">
+        <select class="form-control" required name="centerName">
             <?php
             while ($row = mysqli_fetch_array($retrieve)) {
                 $id = $row['id'];
@@ -50,8 +51,8 @@ $retrieve = mysqli_query($connect, $retrieve);
             <option value="<?php echo $centername; ?>"><?php echo $centername; ?></option>
             <?php } ?>
         </select>
-        <input type="number" name="groupId" placeholder="Group ID">
-        <button type="submit" name="createGroup">Create Group</button>
+        <input class="form-control" type="number" name="groupId" placeholder="Group ID">
+        <button class="btn btn-primary" type="submit" name="createGroup">Create Group</button>
     </form>
-</body>
+</div></body>
 </html>

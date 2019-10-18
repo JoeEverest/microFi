@@ -20,9 +20,10 @@ else{
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/main.css">
     <title>Document</title>
 </head>
-<body>
+<body><div class="container">
     <?php
     $id = $_GET['id'];
     $extract = "SELECT * FROM branches WHERE id = '$id' ORDER BY id DESC";
@@ -60,10 +61,10 @@ else{
                 <td><?php echo $centername; ?></td>
                 <td><?php echo $centerId; ?></td>
                 <td><?php echo $numberOfGroups; ?></td>
-                <td><a href="center.php?id=<?php echo $id; ?>"><button>View Center</button></a></td>
+                <td><a href="center.php?id=<?php echo $id; ?>"><button class="btn btn-primary">View Center</button></a></td>
             </tr>
             <?php } ?>
         </tbody>
     </table>
-</body>
+</div></body>
 </html>

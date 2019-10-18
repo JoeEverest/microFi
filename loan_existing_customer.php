@@ -56,13 +56,14 @@ $retrieve = mysqli_query($connect, $retrieve);
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/main.css">
     <title>Document</title>
 </head>
-<body>
+<body><div class="container">
     <p>Loan for existing customer</p>
     <form method="post">
     Customer Name:
-        <select required name="customer_name">
+        <select class="form-control" required name="customer_name">
             <?php
             while ($row = mysqli_fetch_array($retrieve)) {
                 $id = $row['id'];
@@ -72,9 +73,9 @@ $retrieve = mysqli_query($connect, $retrieve);
             <option value="<?php echo $name.' '.$id; ?>"><?php echo $name; ?></option>
             <?php } ?>
         </select><br>
-        <input type="number" name="loan_amount" placeholder="Loan Amount"><br>
-        Disbursement Date: <input type="date" name="disbursement_date"><br>
-        <button type="submit" name="submit">Submit</button>
+        <input class="form-control" type="number" name="loan_amount" placeholder="Loan Amount"><br>
+        Disbursement Date: <input class="form-control" type="date" name="disbursement_date"><br>
+        <button class="btn btn-primary" type="submit" name="submit">Submit</button>
     </form>
-</body>
+</div></body>
 </html>

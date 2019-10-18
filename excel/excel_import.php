@@ -8,9 +8,10 @@
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/main.css">
     <title>Document</title>
 </head>
-<body>
+<body><div class="container">
     <h2>Import Excel File into MySQL Database using PHP</h2>
     
     <div class="outer-container">
@@ -18,9 +19,9 @@
             name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data">
             <div>
                 <label>Choose Excel
-                    File</label> <input type="file" name="file"
+                    File</label> <input class="form-control" type="file" name="file"
                     id="file" accept=".xls,.xlsx">
-                <button type="submit" id="submit" name="import"
+                <button class="btn btn-primary" type="submit" id="submit" name="import"
                     class="btn-submit">Import</button>
         
             </div>
@@ -64,7 +65,7 @@ if (mysqli_num_rows($result) > 0)
 <?php 
 } 
 ?>
-</body>
+</div></body>
 </html>
 
 <?php

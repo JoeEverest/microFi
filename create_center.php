@@ -32,13 +32,14 @@ $retrieve = mysqli_query($connect, $retrieve);
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/main.css">
     <title>Document</title>
 </head>
-<body>
+<body><div class="container">
     <p>Create New Center</p>
     <form method="post">
         Branch Name:
-        <select required name="branchName">
+        <select class="form-control" required name="branchName">
             <?php
             while ($row = mysqli_fetch_array($retrieve)) {
                 $id = $row['id'];
@@ -49,9 +50,9 @@ $retrieve = mysqli_query($connect, $retrieve);
             <option value="<?php echo $name; ?>"><?php echo $name; ?></option>
             <?php } ?>
         </select>
-        <input required type="text" name="centerName" placeholder="Center Name">
-        <input required type="number" name="centerId" placeholder="Center ID">
-        <button type="submit" name="createCenter">Create Center</button>
+        <input class="form-control" required type="text" name="centerName" placeholder="Center Name">
+        <input class="form-control" required type="number" name="centerId" placeholder="Center ID">
+        <button class="btn btn-primary" type="submit" name="createCenter">Create Center</button>
     </form>
-</body>
+</div></body>
 </html>

@@ -27,9 +27,10 @@ if (isset($_GET['id'])) {
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/main.css">
     <title>Document</title>
 </head>
-<body>
+<body><div class="container">
     <?php
         while ($row = mysqli_fetch_array($retrieve)) {
             $id = $row['id'];
@@ -68,6 +69,6 @@ if (isset($_GET['id'])) {
     <p>Age: <?php echo $age; ?></p>
     <p>Registration Date: <?php echo $registrationDate; ?></p>
     <?php } ?>
-</body>
+</div></body>
 </html>
 
