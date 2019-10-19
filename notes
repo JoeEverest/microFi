@@ -2,10 +2,6 @@ Questions For Edo
     How is the maturity date calculated?
         30 repayments 6 days a week for 5 weeks
 
-Notes
-    create a "active_loans" table
-        use name, uniqueID, loan amount, disbursment date, maturity date
-
 in active loans
     check if maturity date is reached. and if loan left = 0
     if true issue new loan
@@ -26,3 +22,15 @@ Deliquence
             check for those who amount_left > 0
                 add their details to deliquence table
                 echo their details
+
+        $results = !empty(array_intersect($yesterday, $today));
+
+        if(array_intersect($yesterday, $today)){
+            if(amountLeft > 0){
+                add their details to deliquence table
+                add empty payment for yesterday and new payment day to be today
+                add number of deliquence days
+                echo their details
+            }
+        }
+        alternative copied to clipboard on phone
