@@ -29,6 +29,7 @@ $retrieve = mysqli_query($connect, $retrieve);
             <th>Business Title</th>
             <th>Loan Amount</th>
             <th>Amount To Pay</th>
+            <th>Installemnt Amount</th>
             <th>Disbursement Date</th>
             <th>Maturity Date</th>
             <th>Action</th>
@@ -41,6 +42,7 @@ $retrieve = mysqli_query($connect, $retrieve);
             $businessTitle = $row['business_title'];
             $loanAmount = $row['loan_amount'];
             $totalAmount = $row['amount_toPay'];
+            $installAmount = $row['installment_amount'];
             $disbursementDate = $row['disbursment_date'];
             $maturityDate = $row['maturity_date'];
         ?>
@@ -50,9 +52,10 @@ $retrieve = mysqli_query($connect, $retrieve);
             <td><?php echo $businessTitle; ?></td>
             <td><?php echo $loanAmount; ?></td>
             <td><?php echo $totalAmount; ?></td>
+            <td><?php echo $installAmount; ?></td>
             <td><?php echo $disbursementDate; ?></td>
             <td><?php echo $maturityDate; ?></td>
-            <td><a href="payment_history.php?id=<?php echo $id; ?>"><button class="btn btn-primary">View Payment History</button></a></td>
+            <td><a href="make_payment.php?id=<?php echo $id; ?>"><button class="btn btn-success">Make Payment</button></a></td>
         </tr>
         <?php } ?>
     </table>

@@ -15,6 +15,8 @@ if (isset($_POST['submit'])) {
         $i = 2;
         $amountToPay = $amount + ($amount * 0.2);
         
+        $installmentAmount = $amountToPay/30;
+
         $center_values = $_POST['group_name'];
             $lastspace = strrpos($center_values, ' ');
             $lastword = substr($center_values, $lastspace);
@@ -71,7 +73,7 @@ if (isset($_POST['submit'])) {
             $error = mysqli_error($connect);
             echo 'There was an error '.$error;
         }
-        $query = "INSERT INTO active_loans VALUES ('', '$customerName','$id', '$businessTitle', '$amount', '$amountToPay', '$disbarsmentDate', '$due_date', '$cycleNumber')";
+        $query = "INSERT INTO active_loans VALUES ('', '$customerName','$id', '$businessTitle', '$amount', '$amountToPay', '$installmentAmount', '$disbarsmentDate', '$due_date', '$cycleNumber')";
         
         if (mysqli_query($connect, $query)) {
             header('Location: customer_profile.php?id='.$customerId);

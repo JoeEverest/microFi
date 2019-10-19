@@ -11,4 +11,18 @@ in active loans
     if true issue new loan
     else "PREPAYMENT" if amount > 0
 
+UPDATE `active_loans` SET `business_title` = 'Bussy Bee' WHERE `active_loans`.`id` = 2;
+
 deliquence skip sundays and public holidays
+
+Deliquence
+    if today is not sunday or public holidays
+        get * from payments where next payment = yesterday
+            loop for customer id
+        get * from payments where next payment = today
+            loop for customer id
+
+        check for customer id that are in yesterday but not today.
+            check for those who amount_left > 0
+                add their details to deliquence table
+                echo their details
