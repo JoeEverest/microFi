@@ -25,7 +25,11 @@ else{
 </head>
 <body><div class="container">
     <?php
-    $id = $_GET['id'];
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+    }else {
+        header('Location: branches.php');
+    }
     $extract = "SELECT * FROM branches WHERE id = '$id' ORDER BY id DESC";
             $execute = mysqli_query($connect, $extract);
             while ($dataRows = mysqli_fetch_array($execute)) {
@@ -33,7 +37,7 @@ else{
                 $name = $dataRows["branch_name"];
                 $uniqueId = $dataRows["branch_id"];    
     ?>
-    <p><?php echo $name; ?></p>
+    <p>Branch Name: <?php echo $name; ?></p>
     <?php } ?>
     <table class="table table-striped">
         <thead>

@@ -26,7 +26,7 @@ $retrieve = mysqli_query($connect, $retrieve);
     <title>Document</title>
 </head>
 <body><div class="container">
-    <table border='1'>
+    <table class="table table-striped">
         <thead>
             <th>Customer ID</th>
             <th>Customer Name</th>

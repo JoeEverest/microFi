@@ -13,6 +13,7 @@ if (isset($_POST['submit'])) {
         $date = date('y-m-d');
         $disbarsmentDate = $_POST['disbarsmentDate'];
         $i = 2;
+        $amountToPay = $amount + ($amount * 0.2);
         
         $center_values = $_POST['group_name'];
             $lastspace = strrpos($center_values, ' ');
@@ -54,7 +55,8 @@ if (isset($_POST['submit'])) {
         //define ID
         $id = $branchId.'/'.$centerid.'/'.$groupId.'/'.$customerId;
         //add to database
-        $due_date = date('y-m-d');
+        $due_date = date('Y-m-d', strtotime($disbarsmentDate.'+35 Days'));
+
         $phone_check = mysqli_query($connect, "SELECT phone_number FROM customers WHERE phone_number='$phoneNumber'");
         $num_rows = mysqli_num_rows($phone_check);
 
@@ -69,7 +71,7 @@ if (isset($_POST['submit'])) {
             $error = mysqli_error($connect);
             echo 'There was an error '.$error;
         }
-        $query = "INSERT INTO active_loans VALUES ('', '$customerName','$id', '$businessTitle', '$amount', '$disbarsmentDate', '$due_date', '$cycleNumber')";
+        $query = "INSERT INTO active_loans VALUES ('', '$customerName','$id', '$businessTitle', '$amount', '$amountToPay', '$disbarsmentDate', '$due_date', '$cycleNumber')";
         
         if (mysqli_query($connect, $query)) {
             header('Location: customer_profile.php?id='.$customerId);

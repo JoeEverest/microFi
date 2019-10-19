@@ -34,18 +34,17 @@ else{
                 $centername = $dataRows["center_name"];
                 $groupId = $dataRows["group_id"];    
     ?>
-    <p><?php echo $name; ?></p>
+    <p>Group Name: <?php echo $name; ?></p>
     <?php } ?>
-    <table border='1'>
+    <table class="table table-striped">
         <thead>
-            <td>ID</td>
-            <td>Customer Name</td>
-            <td>Business Name</td>
-            <td>Customer ID</td>
-            <td>Phone Number</td>
-            <td>Loan Amount</td>
-            <td>Cycle Number</td>
-            <td>Action</td>
+            <th>ID</th>
+            <th>Customer Name</th>
+            <th>Business Name</th>
+            <th>Customer ID</th>
+            <th>Registration Date</th>
+            <th>Phone Number</th>
+            <th>Action</th>
         </thead>
         <tbody>
         <?php
@@ -57,13 +56,9 @@ else{
                     $customerName = $dataRows["customer_name"];
                     $businessTitle = $dataRows["business_title"];
                     $groupName = $dataRows["group_name"];
-                    $cycles = $dataRows["numberof_cycles"];
                     $customer_id = $dataRows["unique_id"];
                     $age = $dataRows["age"];
-                    $amount = $dataRows["loan_amount"];
-                    $date = $dataRows["date"];
-                    $disbursementDate = $dataRows["disbursement_date"];
-                    $maturityDate = $dataRows["due_date"];
+                    $date = $dataRows["registration_date"];
                     $phone = $dataRows["phone_number"];
         $check_database_query = mysqli_query($connect, "SELECT * FROM groups WHERE center_name = '$centername'");
         $check_login_query = mysqli_num_rows($check_database_query);
@@ -74,9 +69,8 @@ else{
                 <td><?php echo $customerName; ?></td>
                 <td><?php echo $businessTitle; ?></td>
                 <td><?php echo $customer_id; ?></td>
-                <td><?php echo $phone; ?></td>
-                <td><?php echo $amount; ?></td>
-                <td><?php echo $cycles; ?></td>
+                <td><?php echo $date; ?></td>
+                <td><?php echo '+255'.$phone; ?></td>
                 <td><a href="payment_history.php?id=<?php echo $id; ?>"><button class="btn btn-primary">View Payment History</button></a></td>
             </tr>
             <?php } ?>
