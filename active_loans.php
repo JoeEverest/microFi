@@ -55,7 +55,7 @@ $retrieve = mysqli_query($connect, $retrieve);
             <td><?php echo $installAmount; ?></td>
             <td><?php echo $disbursementDate; ?></td>
             <td><?php echo $maturityDate; ?></td>
-            <td><a href="make_payment.php?id="><button class="btn btn-success">Make Payment</button></a></td>
+            <td><a href="make_payment.php?id=<?php echo $id; ?>"><button class="btn btn-success">Make Payment</button></a></td>
         </tr>
         <?php } ?>
     </table>

@@ -41,35 +41,22 @@ $yesterday = date('Y-m-d', strtotime('Yesterday'));
 <?php
 // if today is not sunday or public holidays
 if ($today != $sunday) {
-    $getPaymentsYesterday = "SELECT * FROM payments WHERE next_payment = '$yesterday' AND amount_left > 0 ORDER BY id DESC";
+    
+    $getPaymentsYesterday = "SELECT customer_id FROM payments WHERE next_payment = '$yesterday' AND payments_left != 0 ORDER BY id DESC";
     $getPaymentsYesterday = mysqli_query($connect, $getPaymentsYesterday);
+    $getPaymentsYesterday = mysqli_fetch_array($getPaymentsYesterday);
 
-    while ($row = mysqli_fetch_array($getPaymentsYesterday)) {
-        $idYesterday = $row['customer_id'];
-        // $name = $row['customer_name'];
-        // $amountLeft = $row['amount_left'];
-        // $paymentsLeft = $row['payments_left'];
+    $getPaymentsToday = "SELECT customer_id FROM payments WHERE next_payment = '$today' ORDER BY id DESC";
+    $getPaymentsToday = mysqli_query($connect, $getPaymentsToday);
+    $getPaymentsToday = mysqli_fetch_array($getPaymentsToday);
 
-        $getPaymentsToday = "SELECT * FROM payments WHERE next_payment = '$today' AND customer_id != '$idYesterday' ORDER BY id DESC";
-        $getPaymentsToday = mysqli_query($connect, $getPaymentsToday);
-
-        while ($data = mysqli_fetch_array($getPaymentsToday)) {
-            $idToday = $data['customer_id'];
-            $name = $data['customer_name'];
-            $amountLeft = $data['amount_left'];
-            $paymentsLeft = $data['payments_left'];
-
-            ?>
-            <td><?php echo $name; ?></td>
-            <td><a href="customer_profile.php?id=<?php echo $idToday; ?>"><?php echo $idToday; ?></a></td>
-            <td><?php //echo paymentsMissed ?></td>
-            <td><?php echo $amountLeft; ?></td>
-            <td><?php echo $paymentsLeft; ?></td>
-            <td><a href="#"><button class="btn btn-success">Action</button></a></td>
-            <?php
-        }
-    }
-
+    $deliquenceIDs = array_diff($getPaymentsYesterday, $getPaymentsToday);
+    
+    //$i = count($deliquenceIDs);
+    print_r($deliquenceIDs);
+    //loop through the array and get all customer ids
+    //insert to db
+    
 }
 ?>
             </tbody>
