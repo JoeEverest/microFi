@@ -71,27 +71,6 @@ if ($today != $sunday) {
     }
 
 }
-//         get * from payments where next payment = yesterday
-//             loop for customer id
-//         get * from payments where next payment = today
-//             loop for customer id
-
-//         check for customer id that are in yesterday but not today.
-//             check for those who amount_left > 0
-//                 add their details to deliquence table
-//                 echo their details
-
-//         $results = !empty(array_intersect($yesterday, $today));
-
-//         if(array_intersect($yesterday, $today)){
-//             if(amountLeft > 0){
-//                 add their details to deliquence table
-//                 add empty payment for yesterday and new payment day to be today
-//                 add number of deliquence days
-//                 echo their details
-//             }
-//         }
-
 ?>
             </tbody>
         </table>
