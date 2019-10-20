@@ -48,14 +48,14 @@ $retrieve = mysqli_query($connect, $retrieve);
         ?>
         <tr>
             <td><?php echo $name; ?></td>
-            <td><?php echo $uniqueId; ?></td>
+            <td><a href="customer_profile.php?id=<?php echo $id; ?>"><?php echo $uniqueId; ?></a></td>
             <td><?php echo $businessTitle; ?></td>
             <td><?php echo $loanAmount; ?></td>
             <td><?php echo $totalAmount; ?></td>
             <td><?php echo $installAmount; ?></td>
             <td><?php echo $disbursementDate; ?></td>
             <td><?php echo $maturityDate; ?></td>
-            <td><a href="make_payment.php?id=<?php echo $id; ?>"><button class="btn btn-success">Make Payment</button></a></td>
+            <td><a href="make_payment.php?id="><button class="btn btn-success">Make Payment</button></a></td>
         </tr>
         <?php } ?>
     </table>

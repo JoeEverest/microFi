@@ -23,9 +23,11 @@ else{
     <title>Dashboard</title>
 </head>
 <body><div class="container">
-    <h3><?php echo $userLoggedIn; ?></h3>
-    <a href="branches.php">Branches</a>
-    <a href="active_loans.php">Active Loans</a>
-    <a href="new_loan.php">New Loan</a>
+<h2>Operator Dashboard</h2>
+    <h4>Operator Name: <?php echo $userLoggedIn; ?></h4>
+    <a href="branches.php">Branches</a><br>
+    <a href="active_loans.php">Active Loans</a><br>
+    <a href="new_loan.php">New Loan</a><br>
+    <a href="deliquence.php">View Deliquence</a><br>
 </div></body>
 </html>

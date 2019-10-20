@@ -53,8 +53,12 @@ if (isset($_POST['logIn'])) {
     }
     ?>
     <form method="post">
+    <h3>Operator Login</h3>
+        <label for="loginId">Username</label>
         <input class="form-control" placeholder='Username' type="text" name="loginId">
-        <input class="form-control" placeholder='Password' type="password" name="password">
+        <label for="password">Password</label>
+        <input class="form-control" placeholder='Enter Your Password' type="password" name="password">
+        <br>
         <button class="btn btn-primary" type="submit" name="logIn">Login</button>
     </form>
 </div></body>
