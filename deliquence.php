@@ -12,7 +12,33 @@ else{
 $today = date('Y-m-d');
 $sunday = date('Y-m-d', strtotime('Sunday'));
 $yesterday = date('Y-m-d', strtotime('Yesterday'));
-
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="assets/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <th>Customer Name</th>
+                <th>Customer ID</th>
+                <th>Payments Missed</th>
+                <th>Amount Due</th>
+                <th>Payments Left</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+<?php
 // if today is not sunday or public holidays
 if ($today != $sunday) {
     $getPaymentsYesterday = "SELECT * FROM payments WHERE next_payment = '$yesterday' AND amount_left > 0 ORDER BY id DESC";
@@ -33,7 +59,14 @@ if ($today != $sunday) {
             $amountLeft = $data['amount_left'];
             $paymentsLeft = $data['payments_left'];
 
-            echo $idToday.'<br>';
+            ?>
+            <td><?php echo $name; ?></td>
+            <td><a href="customer_profile.php?id=<?php echo $idToday; ?>"><?php echo $idToday; ?></a></td>
+            <td><?php //echo paymentsMissed ?></td>
+            <td><?php echo $amountLeft; ?></td>
+            <td><?php echo $paymentsLeft; ?></td>
+            <td><a href="#"><button class="btn btn-success">Action</button></a></td>
+            <?php
         }
     }
 
@@ -60,3 +93,8 @@ if ($today != $sunday) {
 //         }
 
 ?>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
