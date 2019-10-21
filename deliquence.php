@@ -29,7 +29,7 @@ if ($today != $sunday) {
     if (count($deliquenceIDs) == 0) {
     }else {
         //print_r($deliquenceIDs);
-
+        //theres a problem
         foreach ($deliquenceIDs as $key => $customerID) {
 
             $getDetails = "SELECT * FROM customers WHERE unique_id = '$deliquenceIDs[customer_id]' ORDER BY id DESC";
