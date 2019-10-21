@@ -34,3 +34,6 @@ Deliquence
             }
         }
         alternative copied to clipboard on phone
+
+        fix the problem with the getpayemnts yesterday and today array
+            loop through them and add their elements to another array and array_diff that
