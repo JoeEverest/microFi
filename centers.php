@@ -4,7 +4,7 @@ session_start();
 include('alt_session.php');
 include('config/config.php');
 
-$retrieve = 'SELECT * FROM centers ORDER BY id DESC';
+$retrieve = 'SELECT * FROM centers ORDER BY id ASC';
 $retrieve = mysqli_query($connect, $retrieve);
 
 ?>
@@ -19,7 +19,7 @@ $retrieve = mysqli_query($connect, $retrieve);
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/main.css">
-    <title>Document</title>
+    <title>Centers</title>
 </head>
 <body>
     <?php include('sidebar.php'); ?>
@@ -27,8 +27,8 @@ $retrieve = mysqli_query($connect, $retrieve);
     <table class="table table-striped">
         <thead>
             <th>ID</th>
-            <th>Branch Name</th>
             <th>Center Name</th>
+            <th>Branch Name</th>
             <th>Center ID</th>
             <th>Action</th>
         </thead>
@@ -41,10 +41,10 @@ $retrieve = mysqli_query($connect, $retrieve);
         ?>
         <tr>
             <td><?php echo $id; ?></td>
-            <td><?php echo $branchname; ?></td>
             <td><?php echo $centername; ?></td>
+            <td><?php echo $branchname; ?></td>
             <td><?php echo $centerId; ?></td>
-            <td><a href="center.php?id=<?php echo $id; ?>"><button class="btn btn-primary">View</button></a></td>
+            <td><a href="center.php?id=<?php echo $id; ?>"><button class="btn btn-success">View</button></a></td>
         </tr>
         <?php } ?>
     </table>

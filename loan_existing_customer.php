@@ -57,7 +57,7 @@ $retrieve = mysqli_query($connect, $retrieve);
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/main.css">
-    <title>Document</title>
+    <title>New Loan: Existing Customer</title>
 </head>
 <body>
     <?php include('sidebar.php'); ?>
@@ -77,7 +77,7 @@ $retrieve = mysqli_query($connect, $retrieve);
         </select><br>
         <input class="form-control" type="number" name="loan_amount" placeholder="Loan Amount"><br>
         Disbursement Date: <input class="form-control" type="date" name="disbursement_date"><br>
-        <button class="btn btn-primary" type="submit" name="submit">Submit</button>
+        <button class="btn btn-success" type="submit" name="submit">Submit</button>
     </form>
 </div></body>
 </html>

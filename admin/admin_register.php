@@ -47,15 +47,14 @@ if (isset($_POST['register'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="assets/js/jquery-3.3.1.slim.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/main.css">
-    <title>Document</title>
+    <script src="../assets/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="../assets/js/popper.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/css/login.css">
+    <title>Admin Register</title>
 </head>
 <body>
-    <?php include('sidebar.php'); ?>
     <div class="container">
     <?php
     if (!$errors) {    
@@ -67,7 +66,7 @@ if (isset($_POST['register'])) {
         <input class="form-control" placeholder='Username' type="text" name="loginId">
         <input class="form-control" placeholder='Password' type="password" name="password">
         <input class="form-control" placeholder='Confirm Password' type="password" name="password2">
-        <button class="btn btn-primary" type="submit" name="register">Register Admin</button>
+        <button class="btn btn-success" type="submit" name="register">Register Admin</button>
     </form>
 </div></body>
 </html>

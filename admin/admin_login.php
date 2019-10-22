@@ -38,15 +38,14 @@ if (isset($_POST['logIn'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="assets/js/jquery-3.3.1.slim.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/main.css">
-    <title>Document</title>
+    <script src="../assets/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="../assets/js/popper.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/css/login.css">
+    <title>Admin Login</title>
 </head>
 <body>
-    <?php include('sidebar.php'); ?>
     <div class="container">
     <?php
     if (!$errors) {    
@@ -54,10 +53,15 @@ if (isset($_POST['logIn'])) {
         echo $errors;
     }
     ?>
+    <div class="formHolder">
     <form method="post">
+        <h3>Admin Login</h3>
+        <label for="loginId">Username</label>
         <input class="form-control" placeholder='Username' type="text" name="loginId">
+        <label for="password">Password</label>
         <input class="form-control" placeholder='Password' type="password" name="password">
-        <button class="btn btn-primary" type="submit" name="logIn">Login</button>
+        <button class="btn btn-success" type="submit" name="logIn">Login</button>
     </form>
+    </div>
 </div></body>
 </html>

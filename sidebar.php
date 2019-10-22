@@ -1,5 +1,8 @@
 <div class="sidebar">
         <div class="section">
+        <div class="item">
+                <a href="index.php">Home</a>
+            </div>
             <div class="item">
                 <a href="branches.php">Branches</a>
             </div>

@@ -21,26 +21,28 @@ else{
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/main.css">
-    <title>Document</title>
-</head>
-<body>
-    <?php include('sidebar.php'); ?>
-    <div class="container">
     <?php
+    
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
     }else {
         header('Location: branches.php');
-    }
+    }   
+    
     $extract = "SELECT * FROM branches WHERE id = '$id' ORDER BY id DESC";
-            $execute = mysqli_query($connect, $extract);
-            while ($dataRows = mysqli_fetch_array($execute)) {
-                $id = $dataRows["id"];
-                $name = $dataRows["branch_name"];
-                $uniqueId = $dataRows["branch_id"];    
+    $execute = mysqli_query($connect, $extract);
+    while ($dataRows = mysqli_fetch_array($execute)) {
+        $id = $dataRows["id"];
+        $name = $dataRows["branch_name"];
+        $uniqueId = $dataRows["branch_id"];
+    }
     ?>
-    <p>Branch Name: <?php echo $name; ?></p>
-    <?php } ?>
+    <title><?php echo $name; ?></title>
+</head>
+<body>
+    <?php include('sidebar.php'); ?>
+    <div class="container">
+    <h3>Branch Name: <?php echo $name; ?></h3>
     <table class="table table-striped">
         <thead>
             <th>Center Name</th>
@@ -65,7 +67,7 @@ else{
                 <td><?php echo $centername; ?></td>
                 <td><?php echo $centerId; ?></td>
                 <td><?php echo $numberOfGroups; ?></td>
-                <td><a href="center.php?id=<?php echo $id; ?>"><button class="btn btn-primary">View Center</button></a></td>
+                <td><a href="center.php?id=<?php echo $id; ?>"><button class="btn btn-success">View Center</button></a></td>
             </tr>
             <?php } ?>
         </tbody>

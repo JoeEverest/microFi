@@ -21,11 +21,6 @@ else{
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/main.css">
-    <title>Document</title>
-</head>
-<body>
-    <?php include('sidebar.php'); ?>
-    <div class="container">
     <?php
     $id = $_GET['id'];
     $extract = "SELECT * FROM groups WHERE id = '$id' ORDER BY id DESC";
@@ -35,9 +30,14 @@ else{
                 $name = $dataRows["group_name"];
                 $centername = $dataRows["center_name"];
                 $groupId = $dataRows["group_id"];    
+            }
     ?>
+    <title><?php echo $name; ?></title>
+</head>
+<body>
+    <?php include('sidebar.php'); ?>
+    <div class="container">
     <p>Group Name: <?php echo $name; ?></p>
-    <?php } ?>
     <table class="table table-striped">
         <thead>
             <th>Customer Name</th>
@@ -71,7 +71,7 @@ else{
                 <td><a href="customer_profile.php?id=<?php echo $id; ?>"><?php echo $customer_id; ?></a></td>
                 <td><?php echo $date; ?></td>
                 <td><?php echo '+255'.$phone; ?></td>
-                <td><a href="payment_history.php?id=<?php echo $customer_id; ?>"><button class="btn btn-primary">View Payment History</button></a></td>
+                <td><a href="payment_history.php?id=<?php echo $customer_id; ?>"><button class="btn btn-success">View Payment History</button></a></td>
             </tr>
             <?php } ?>
         </tbody>

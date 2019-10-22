@@ -33,14 +33,16 @@ $retrieve = mysqli_query($connect, $retrieve);
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/main.css">
-    <title>Document</title>
+    <title>Create Group</title>
 </head>
 <body>
     <?php include('sidebar.php'); ?>
     <div class="container">
     <form method="POST">
+        <h3>Create Group</h3>
+        <label for="groupName">Group Name</label>
         <input class="form-control" type="text" name="groupName" placeholder="Group Name">
-        Center Name:
+        <label for="centerName">Center Name</label>        
         <select class="form-control" required name="centerName">
             <?php
             while ($row = mysqli_fetch_array($retrieve)) {
@@ -53,8 +55,9 @@ $retrieve = mysqli_query($connect, $retrieve);
             <option value="<?php echo $centername; ?>"><?php echo $centername; ?></option>
             <?php } ?>
         </select>
-        <input class="form-control" type="number" name="groupId" placeholder="Group ID">
-        <button class="btn btn-primary" type="submit" name="createGroup">Create Group</button>
+        <label for="groupId">Group ID</label>
+        <input class="form-control" type="number" name="groupId" placeholder="Group ID"><br>
+        <button class="btn btn-success" type="submit" name="createGroup">Create Group</button>
     </form>
 </div></body>
 </html>

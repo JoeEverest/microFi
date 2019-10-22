@@ -10,15 +10,6 @@ if (isset($_POST['createBranch'])) {
         $branchId = $_POST['branchId'];
 
         $registerBranch = mysqli_query($connect, "INSERT INTO branches VALUES ('', '$branchName', '$branchId')");
-
-
-        // $query = "INSERT INTO movies VALUES ('', $branchName, $branchId)";
-        
-        // if (mysqli_query($connect, $query)) {
-        //     echo '<script>alert("Branch added into database");</script>';
-        // }else {
-        //     echo '<script>alert("Something went wrong");</script>';            
-        // }
     }
 }
 ?>
@@ -28,16 +19,21 @@ if (isset($_POST['createBranch'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>New Branch</title>
+    <script src="../assets/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="../assets/js/popper.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
+    <title>Create New Branch</title>
 </head>
 <body>
-    <?php include('sidebar.php'); ?>
     <div class="container">
-    <p>Create new branch</p>
     <form action="" method="post">
+        <h3>Create new Branch</h3>
+        <label for="branchName">Branch Name</label>
         <input class="form-control" required type="text" name="branchName" placeholder="Branch Name">
-        <input class="form-control" required type="number" name="branchId" placeholder="Branch ID">
-        <button class="btn btn-primary" type="submit" name="createBranch">Create Branch</button>
+        <label for="branchid">Branch ID</label>
+        <input class="form-control" required type="number" name="branchId" placeholder="Branch ID"><br>
+        <button class="btn btn-success" type="submit" name="createBranch">Create Branch</button>
     </form>
 </div></body>
 </html>

@@ -21,11 +21,6 @@ else{
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/main.css">
-    <title>Document</title>
-</head>
-<body>
-    <?php include('sidebar.php'); ?>
-    <div class="container">
     <?php
     $id = $_GET['id'];
     $extract = "SELECT * FROM centers WHERE id = '$id' ORDER BY id DESC";
@@ -35,10 +30,15 @@ else{
                 $branchname = $dataRows['branch_name'];
                 $centername = $dataRows['center_name'];
                 $centerId = $dataRows['center_id'];
-    
+            }
     ?>
+    <title><?php echo $centername; ?></title>
+</head>
+<body>
+    <?php include('sidebar.php'); ?>
+    <div class="container">
+    
     <p><?php echo $centername; ?></p>
-    <?php } ?>
     <table class="table table-striped">
         <thead>
             <th>Group Name</th>
@@ -62,7 +62,7 @@ else{
             <tr>
                 <td><?php echo $groupname; ?></td>
                 <td><?php echo $groupId; ?></td>
-                <td><a href="group.php?id=<?php echo $id; ?>"><button class="btn btn-primary">View Group</button></a></td>
+                <td><a href="group.php?id=<?php echo $id; ?>"><button class="btn btn-success">View Group</button></a></td>
             </tr>
             <?php } ?>
         </tbody>

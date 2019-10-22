@@ -22,19 +22,19 @@ else{
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/main.css">
-    <title>Document</title>
+    <title>Deliquence</title>
 </head>
 <body>
     <?php include('sidebar.php'); ?>
     <div class="container">
     <table class="table table-striped">
         <thead>
-            <td>Customer Name</td>
-            <td>Customer ID</td>
-            <td>Amount Left</td>
-            <td>Payments Skipped</td>
-            <td>Phone Number</td>
-            <td>Action</td>
+            <th>Customer Name</th>
+            <th>Customer ID</th>
+            <th>Amount Left</th>
+            <th>Payments Skipped</th>
+            <th>Phone Number</th>
+            <th>Action</th>
         </thead>
         <?php
         while ($row = mysqli_fetch_array($retrieve)) {
@@ -50,7 +50,7 @@ else{
             <td><?php echo $amountLeft; ?></td>
             <td><?php echo $paymentsSkipped; ?></td>
             <td><?php echo '+255'.$phoneNumber; ?></td>
-            <td><a href="payment_history.php?id=<?php echo $customerId; ?>"><button class="btn btn-primary">View Payment History</button></a></td>
+            <td><a href="payment_history.php?id=<?php echo $customerId; ?>"><button class="btn btn-success">View Payment History</button></a></td>
         </tr>
         <?php } ?>
     </table>

@@ -23,7 +23,7 @@
                 <label>Choose Excel
                     File</label> <input class="form-control" type="file" name="file"
                     id="file" accept=".xls,.xlsx">
-                <button class="btn btn-primary" type="submit" id="submit" name="import"
+                <button class="btn btn-success" type="submit" id="submit" name="import"
                     class="btn-submit">Import</button>
         
             </div>

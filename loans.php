@@ -15,7 +15,7 @@ include('config/config.php');
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/main.css">
-    <title>Document</title>
+    <title>Loans</title>
 </head>
 <body>
     <?php include('sidebar.php'); ?>
@@ -53,7 +53,7 @@ include('config/config.php');
                 <td><?php echo $amount; ?></td>
                 <td><?php echo $maturityDate; ?></td>
                 <td><?php echo $phone; ?></td>
-                <td><a href="center.php?id=<?php echo $id; ?>"><button class="btn btn-primary">View</button></a></td>
+                <td><a href="center.php?id=<?php echo $id; ?>"><button class="btn btn-success">View</button></a></td>
             </tr>
             <?php } echo mysqli_error($connect); ?>
         </tbody>
