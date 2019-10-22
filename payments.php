@@ -28,7 +28,8 @@ $retrieve = mysqli_query($connect, $retrieve);
     <title>Document</title>
 </head>
 <body>
-<div class="container">
+    <?php include('sidebar.php'); ?>
+    <div class="container">
     <h3>Payments for <?php echo $today; ?></h3>
 <table class="table table-striped">
     <thead>

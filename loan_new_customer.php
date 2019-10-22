@@ -26,7 +26,9 @@ $retrieve = mysqli_query($connect, $retrieve);
     <link rel="stylesheet" href="assets/css/main.css">
     <title>Document</title>
 </head>
-<body><div class="container">
+<body>
+    <?php include('sidebar.php'); ?>
+    <div class="container">
     <form method="post">
         <label for="name">Full Name:</label><br>
         <input class="form-control" required type="text" name="name" placeholder="John Alex Doe"><br>

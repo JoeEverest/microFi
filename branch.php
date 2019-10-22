@@ -23,7 +23,9 @@ else{
     <link rel="stylesheet" href="assets/css/main.css">
     <title>Document</title>
 </head>
-<body><div class="container">
+<body>
+    <?php include('sidebar.php'); ?>
+    <div class="container">
     <?php
     if (isset($_GET['id'])) {
         $id = $_GET['id'];

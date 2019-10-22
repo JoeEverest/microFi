@@ -1,6 +1,39 @@
 *{
     font-family: Lato;
 }
-div.container{
-    margin-top: 10px;
-}
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+        body{
+            margin: 0;
+            font-family: 'Raleway', sans-serif;
+        }
+        .sidebar{
+            height: 100vh;
+            width: 15vw;
+            background: #28a745; 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            position: fixed;
+        }
+        .item{
+            font-size: 20px;
+            padding: 10px;
+        }
+        .item:hover{
+            background-color: #165d26;
+        }
+        .item a{
+            color: white;
+            text-decoration: none;
+        }
+        .container{
+            margin-left: 15vw;
+            color: black;
+        }
+        nav{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 5px;
+        }

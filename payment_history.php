@@ -31,7 +31,8 @@ if (isset($_GET['id'])) {
     <title>Document</title>
 </head>
 <body>
-<div class="container">
+    <?php include('sidebar.php'); ?>
+    <div class="container">
 <table class="table table-striped">
     <thead>
         <th>Customer Name</th>

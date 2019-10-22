@@ -23,7 +23,9 @@ else{
     <link rel="stylesheet" href="assets/css/main.css">
     <title>Document</title>
 </head>
-<body><div class="container">
+<body>
+    <?php include('sidebar.php'); ?>
+    <div class="container">
     <p>New Loan</p>
     <a href="loan_new_customer.php">New Customer</a>
     <a href="loan_existing_customer.php">Existing Customer</a>

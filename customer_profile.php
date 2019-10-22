@@ -31,6 +31,7 @@ if (isset($_GET['id'])) {
     <title>Document</title>
 </head>
 <body>
+    <?php include('sidebar.php'); ?>
     <div class="container">
     <?php
         while ($row = mysqli_fetch_array($retrieve)) {

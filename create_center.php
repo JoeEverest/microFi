@@ -35,7 +35,9 @@ $retrieve = mysqli_query($connect, $retrieve);
     <link rel="stylesheet" href="assets/css/main.css">
     <title>Document</title>
 </head>
-<body><div class="container">
+<body>
+    <?php include('sidebar.php'); ?>
+    <div class="container">
     <p>Create New Center</p>
     <form method="post">
         Branch Name:

@@ -109,7 +109,9 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="assets/css/main.css">
     <title>Document</title>
 </head>
-<body><div class="container">
+<body>
+    <?php include('sidebar.php'); ?>
+    <div class="container">
     <h3>Make a Payment</h3>
     <form method="post">
     <?php

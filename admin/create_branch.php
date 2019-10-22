@@ -30,7 +30,9 @@ if (isset($_POST['createBranch'])) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>New Branch</title>
 </head>
-<body><div class="container">
+<body>
+    <?php include('sidebar.php'); ?>
+    <div class="container">
     <p>Create new branch</p>
     <form action="" method="post">
         <input class="form-control" required type="text" name="branchName" placeholder="Branch Name">

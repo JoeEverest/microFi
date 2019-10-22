@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <title>Document</title>
 </head>
-<body><div class="container">
+<body>
+    <?php include('sidebar.php'); ?>
+    <div class="container">
     <h2>Import Excel File into MySQL Database using PHP</h2>
     
     <div class="outer-container">
