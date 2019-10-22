@@ -4,6 +4,13 @@ session_start();
 include('alt_session.php');
 include('config/config.php');
 
+if (isset($_SESSION['operator_name'])) {
+    $userLoggedIn = $_SESSION['operator_name'];   
+}
+else{
+	header("Location: login.php");
+}
+
 $retrieve = 'SELECT * FROM branches ORDER BY id DESC';
 $retrieve = mysqli_query($connect, $retrieve);
 
