@@ -1,7 +1,4 @@
 <?php
-session_start();
-include('config/config.php');
-
 if (isset($_SESSION['operator_name'])) {
     $userLoggedIn = $_SESSION['operator_name'];   
 }
@@ -12,6 +9,7 @@ else{
 $today = date('Y-m-d');
 $sunday = date('Y-m-d', strtotime('Sunday'));
 $yesterday = date('Y-m-d', strtotime('Yesterday'));
+$tomorrow = date('Y-m-d', strtotime('Tomorrow'));
 
 $paymentsYesterday = array();
 $paymentsToday = array();
@@ -40,10 +38,8 @@ if ($today != $sunday) {
         //print_r($deliquenceIDs);
         if (count($deliquenceIDs) == 0) {
         }else {
-            print_r($deliquenceIDs);
             $n = count($deliquenceIDs);
             $n = $n + 1;
-            echo $n;
             //theres a problem
             for ($i=1; $i < $n; $i++) { 
                 
@@ -66,11 +62,12 @@ if ($today != $sunday) {
                 $disbursementDate = mysqli_fetch_array($disbursementDate);
                 $disbursementDate = $disbursementDate['disbursment_date'];
     
-                $amountLeft = "SELECT amount_left FROM payments WHERE customer_id = '$customerId' ORDER BY id DESC LIMIT 1";
-                $amountLeft = mysqli_query($connect, $amountLeft);
-                $amountLeft = mysqli_fetch_array($amountLeft);
-                $amountLeft = $amountLeft['amount_left'];
-    
+                $getAmountLeft = "SELECT * FROM payments WHERE customer_id = '$customerId' ORDER BY id DESC LIMIT 1";
+                $getAmountLeft = mysqli_query($connect, $getAmountLeft);
+                while($aL = mysqli_fetch_array($getAmountLeft)){
+                    $amountLeft = $aL['amount_left'];
+                    $paymentsLeft = $aL['payments_left'];
+                }
                 $maturityDate = "SELECT maturity_date FROM active_loans WHERE customer_id = '$customerId' ORDER BY id DESC LIMIT 1";
                 $maturityDate = mysqli_query($connect, $maturityDate);
                 $maturityDate = mysqli_fetch_array($maturityDate);
@@ -83,8 +80,26 @@ if ($today != $sunday) {
                 $paymentsSkipped = $paymentsSkipped + 1;
                 // check if id already exists in deliquence if yes just update if no do below
                 //then after change payments to a new one with reciept DELIQUENT and next payment = today
-                $query = "INSERT INTO deliquence VALUES ('', '$name', '$customerId', '$amountLeft', '$disbursementDate', '$maturityDate', '$paymentsSkipped', '$phoneNumber')";
+                $q = "SELECT * FROM deliquence WHERE customer_id = '$customerId' ORDER BY id DESC LIMIT 1";
+                $q = mysqli_query($connect, $q);
+                $numDel = mysqli_fetch_array($q);
+                $numDel = $numDel['payments_skipped'];
+                $ID = $numDel[0];
+                $numDel = $numDel + 1;
+                $num_rows = mysqli_num_rows($q);
+                if ($num_rows > 0) {
+                    $query = "UPDATE `deliquence` SET `payments_skipped` = '$numDel' WHERE `deliquence`.`customer_id` = '$customerId'"; 
+                }else{
+                    $query = "INSERT INTO deliquence VALUES ('', '$name', '$customerId', '$amountLeft', '$disbursementDate', '$maturityDate', '$paymentsSkipped', '$phoneNumber')";
+                }
                 if (mysqli_query($connect, $query)) {
+                    $update = "INSERT INTO payments VALUES ('', '$name','$customerId', 0, 'DELIQUENCE', '$today', '0', '0', '$today', '$amountLeft', '$paymentsLeft', '$userLoggedIn')";
+        
+                    if (mysqli_query($connect, $update)) {
+                    }else {
+                        echo mysqli_error($connect);
+                        echo 'There was an error '.$error;
+                    }
                 }else {
                     $error = mysqli_error($connect);
                     echo 'There was an error '.$error;
