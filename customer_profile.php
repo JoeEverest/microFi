@@ -30,7 +30,8 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="assets/css/main.css">
     <title>Document</title>
 </head>
-<body><div class="container">
+<body>
+    <div class="container">
     <?php
         while ($row = mysqli_fetch_array($retrieve)) {
             $id = $row['id'];
@@ -68,6 +69,7 @@ if (isset($_GET['id'])) {
     <p>Group Name: <?php echo $groupName; ?></p>
     <p>Age: <?php echo $age; ?></p>
     <p>Registration Date: <?php echo $registrationDate; ?></p>
+    <p><a href="payment_history.php?id=<?php echo $row['unique_id'];; ?>"><button class="btn btn-success">View Payment History</button></a></p>
     <?php } ?>
 </div></body>
 </html>

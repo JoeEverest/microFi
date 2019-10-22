@@ -39,10 +39,9 @@ else{
     <?php } ?>
     <table class="table table-striped">
         <thead>
-            <td>ID</td>
-            <td>Group Name</td>
-            <td>Group ID</td>
-            <td>Action</td>
+            <th>Group Name</th>
+            <th>Group ID</th>
+            <th>Action</th>
         </thead>
         <tbody>
         <?php
@@ -59,7 +58,6 @@ else{
 
         ?>
             <tr>
-                <td><?php echo $id; ?></td>
                 <td><?php echo $groupname; ?></td>
                 <td><?php echo $groupId; ?></td>
                 <td><a href="group.php?id=<?php echo $id; ?>"><button class="btn btn-primary">View Group</button></a></td>

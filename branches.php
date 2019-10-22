@@ -31,9 +31,9 @@ $retrieve = mysqli_query($connect, $retrieve);
 <body><div class="container">
     <table class="table table-striped">
         <thead>
-            <td>Branch Name</td>
-            <td>Branch ID</td>
-            <td>Action</td>
+            <th>Branch Name</th>
+            <th>Branch ID</th>
+            <th>Action</th>
         </thead>
         <?php
         while ($row = mysqli_fetch_array($retrieve)) {

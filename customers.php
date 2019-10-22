@@ -68,7 +68,7 @@ $retrieve = mysqli_query($connect, $retrieve);
     $customerId = str_replace(' ', '', $customerId);
     ?>
     <tr>
-    <td><?php echo $customerId; ?></td>
+    <td><a href="customer_profile.php?id=<?php echo $id; ?>"><?php echo $customerId; ?></a></td>
     <td><?php echo $name; ?></td>
     <td><?php echo $businessTitle; ?></td>
     <td><?php echo '+255'.$phoneNumber; ?></td>

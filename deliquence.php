@@ -27,25 +27,28 @@ else{
 <body><div class="container">
     <table class="table table-striped">
         <thead>
-            <td>ID</td>
-            <td>Branch Name</td>
-            <td>Center Name</td>
-            <td>Center ID</td>
+            <td>Customer Name</td>
+            <td>Customer ID</td>
+            <td>Amount Left</td>
+            <td>Payments Skipped</td>
+            <td>Phone Number</td>
             <td>Action</td>
         </thead>
         <?php
         while ($row = mysqli_fetch_array($retrieve)) {
-            $id = $row['id'];
-            $branchname = $row['branch_name'];
-            $centername = $row['center_name'];
-            $centerId = $row['center_id'];
+            $name = $row['customer_name'];
+            $customerId = $row['customer_id'];
+            $amountLeft = $row['amount_left'];
+            $paymentsSkipped = $row['payments_skipped'];
+            $phoneNumber = $row['phone_number'];
         ?>
         <tr>
-            <td><?php echo $id; ?></td>
-            <td><?php echo $branchname; ?></td>
-            <td><?php echo $centername; ?></td>
-            <td><?php echo $centerId; ?></td>
-            <td><a href="center.php?id=<?php echo $id; ?>"><button class="btn btn-primary">View</button></a></td>
+            <td><?php echo $name; ?></td>
+            <td><?php echo $customerId; ?></td>
+            <td><?php echo $amountLeft; ?></td>
+            <td><?php echo $paymentsSkipped; ?></td>
+            <td><?php echo '+255'.$phoneNumber; ?></td>
+            <td><a href="payment_history.php?id=<?php echo $customerId; ?>"><button class="btn btn-primary">View Payment History</button></a></td>
         </tr>
         <?php } ?>
     </table>

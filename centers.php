@@ -24,11 +24,11 @@ $retrieve = mysqli_query($connect, $retrieve);
 <body><div class="container">
     <table class="table table-striped">
         <thead>
-            <td>ID</td>
-            <td>Branch Name</td>
-            <td>Center Name</td>
-            <td>Center ID</td>
-            <td>Action</td>
+            <th>ID</th>
+            <th>Branch Name</th>
+            <th>Center Name</th>
+            <th>Center ID</th>
+            <th>Action</th>
         </thead>
         <?php
         while ($row = mysqli_fetch_array($retrieve)) {

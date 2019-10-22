@@ -93,7 +93,12 @@ if ($today != $sunday) {
                     $query = "INSERT INTO deliquence VALUES ('', '$name', '$customerId', '$amountLeft', '$disbursementDate', '$maturityDate', '$paymentsSkipped', '$phoneNumber')";
                 }
                 if (mysqli_query($connect, $query)) {
-                    $update = "INSERT INTO payments VALUES ('', '$name','$customerId', 0, 'DELIQUENCE', '$today', '0', '0', '$today', '$amountLeft', '$paymentsLeft', '$userLoggedIn')";
+                    if ($yesterday == $sunday) {
+                        $lastDay = date('Y-m-d', 'last Saturday');
+                    }else{
+                        $lastDay = $yesterday;
+                    }
+                    $update = "INSERT INTO payments VALUES ('', '$name','$customerId', 0, 'DELIQUENCE', '$yesterday', '0', '0', '$today', '$amountLeft', '$paymentsLeft', '$userLoggedIn')";
         
                     if (mysqli_query($connect, $update)) {
                     }else {

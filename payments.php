@@ -9,4 +9,8 @@ else{
 	header("Location: login.php");
 }
 
+$today = date('Y-m-d', strtotime('Today'));
+
+$retrieve = "SELECT * FROM payments WHERE next_payment = '$today' ORDER BY id DESC";
+$retrieve = mysqli_query($connect, $retrieve);
 ?>

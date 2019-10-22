@@ -38,7 +38,6 @@ else{
     <?php } ?>
     <table class="table table-striped">
         <thead>
-            <th>ID</th>
             <th>Customer Name</th>
             <th>Business Name</th>
             <th>Customer ID</th>
@@ -65,13 +64,12 @@ else{
         $numberOfGroups = $check_login_query;
         ?>
             <tr>
-                <td><?php echo $id; ?></td>
                 <td><?php echo $customerName; ?></td>
                 <td><?php echo $businessTitle; ?></td>
-                <td><?php echo $customer_id; ?></td>
+                <td><a href="customer_profile.php?id=<?php echo $id; ?>"><?php echo $customer_id; ?></a></td>
                 <td><?php echo $date; ?></td>
                 <td><?php echo '+255'.$phone; ?></td>
-                <td><a href="payment_history.php?id=<?php echo $id; ?>"><button class="btn btn-primary">View Payment History</button></a></td>
+                <td><a href="payment_history.php?id=<?php echo $customer_id; ?>"><button class="btn btn-primary">View Payment History</button></a></td>
             </tr>
             <?php } ?>
         </tbody>

@@ -41,11 +41,10 @@ else{
     <?php } ?>
     <table class="table table-striped">
         <thead>
-            <td>ID</td>
-            <td>Center Name</td>
-            <td>Center ID</td>
-            <td>Number of Groups</td>
-            <td>Action</td>
+            <th>Center Name</th>
+            <th>Center ID</th>
+            <th>Number of Groups</th>
+            <th>Action</th>
         </thead>
         <tbody>
         <?php
@@ -61,7 +60,6 @@ else{
         $numberOfGroups = $check_login_query;
         ?>
             <tr>
-                <td><?php echo $id; ?></td>
                 <td><?php echo $centername; ?></td>
                 <td><?php echo $centerId; ?></td>
                 <td><?php echo $numberOfGroups; ?></td>

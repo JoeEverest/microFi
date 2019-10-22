@@ -29,7 +29,9 @@ else{
     <h4>Operator Name: <?php echo $userLoggedIn; ?></h4>
     <a href="branches.php">Branches</a><br>
     <a href="active_loans.php">Active Loans</a><br>
+    <a href="customers.php">Customers</a><br>
     <a href="new_loan.php">New Loan</a><br>
-    <a href="deliquence.php">View Deliquence</a><br>
+    <a href="deliquence.php">Deliquence</a><br>
+    <a href="logout.php">Log Out</a><br>
 </div></body>
 </html>

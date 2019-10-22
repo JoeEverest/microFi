@@ -20,7 +20,6 @@ include('config/config.php');
 <body><div class="container">
     <table class="table table-striped">
         <thead>
-            <th>ID</th>
             <th>Customer Name</th>
             <th>Customer ID</th>
             <th>Loan Amount</th>
@@ -47,7 +46,6 @@ include('config/config.php');
                     $phone = $dataRows["phone_number"];
         ?>
             <tr>
-                <td><?php echo $id; ?></td>
                 <td><?php echo $customerName; ?></td>
                 <td><?php echo $uniqueId; ?></td>
                 <td><?php echo $amount; ?></td>
