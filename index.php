@@ -34,6 +34,10 @@ else{
             <h4><?php echo $userLoggedIn; ?></h4>
         </span>
     </nav>
+    <div class="body">
+        <a href="create_center.php">Create new Center</a>
+        <a href="create_gropu.php">Create new Group</a>
+    </div>
 </div>
 </body>
 </html>

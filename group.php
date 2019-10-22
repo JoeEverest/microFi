@@ -22,7 +22,13 @@ else{
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/main.css">
     <?php
-    $id = $_GET['id'];
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $retrieve = "SELECT * FROM customers WHERE id = '$id' ORDER BY id DESC";
+        $retrieve = mysqli_query($connect, $retrieve);
+    }else{
+        header('Location: index.php');
+    }
     $extract = "SELECT * FROM groups WHERE id = '$id' ORDER BY id DESC";
             $execute = mysqli_query($connect, $extract);
             while ($dataRows = mysqli_fetch_array($execute)) {
