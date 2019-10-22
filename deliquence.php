@@ -12,33 +12,7 @@ else{
 $today = date('Y-m-d');
 $sunday = date('Y-m-d', strtotime('Sunday'));
 $yesterday = date('Y-m-d', strtotime('Yesterday'));
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="assets/js/jquery-3.3.1.slim.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/main.css">
-    <title>Document</title>
-</head>
-<body>
-    <div class="container">
-        <table class="table table-striped">
-            <thead>
-                <th>Customer Name</th>
-                <th>Customer ID</th>
-                <th>Payments Missed</th>
-                <th>Amount Due</th>
-                <th>Payments Left</th>
-                <th>Action</th>
-            </thead>
-            <tbody>
-<?php
+
 // if today is not sunday or public holidays
 if ($today != $sunday) {
     
@@ -52,15 +26,31 @@ if ($today != $sunday) {
 
     $deliquenceIDs = array_diff($getPaymentsYesterday, $getPaymentsToday);
     
-    //$i = count($deliquenceIDs);
-    print_r($deliquenceIDs);
-    //loop through the array and get all customer ids
-    //insert to db
-    
+    if (count($deliquenceIDs) == 0) {
+    }else {
+        foreach ($deliquenceIDs as $key => $customerID) {
+            //echo $customerID.'<br>';
+            $getDetails = "SELECT * FROM customers WHERE unique_id = '$customerID' ORDER BY id DESC";
+            $getDetails = mysqli_query($connect, $getDetails);
+
+            while ($row = mysqli_fetch_array($getDetails)) {
+                $id = $row['id'];
+                $name = $row['customer_name'];
+                $businessTitle = $row['business_title'];
+                $groupName = $row['group_name'];
+                $customerId = $row['unique_id'];
+                $age = $row['age'];
+                $registrationDate = $row['registration_date'];
+                $phoneNumber = $row['phone_number'];
+            }
+            $query = "INSERT INTO deliquence VALUES ('', '$name', '$customerId', '$amountLeft', '$disbursementDate', '$maturityDate', '$paymentsSkipped', '$phoneNumber')";
+        
+            if (mysqli_query($connect, $query)) {
+            }else {
+                $error = mysqli_error($connect);
+                echo 'There was an error '.$error;
+            }
+        }
+    }
 }
 ?>
-            </tbody>
-        </table>
-    </div>
-</body>
-</html>
