@@ -46,6 +46,7 @@ if (isset($_POST['logIn'])) {
     <title>Admin Login</title>
 </head>
 <body>
+<img src="../assets/images/yaniv_l.png">
     <div class="container">
     <?php
     if (!$errors) {    
@@ -59,7 +60,7 @@ if (isset($_POST['logIn'])) {
         <label for="loginId">Username</label>
         <input class="form-control" placeholder='Username' type="text" name="loginId">
         <label for="password">Password</label>
-        <input class="form-control" placeholder='Password' type="password" name="password">
+        <input class="form-control" placeholder='Password' type="password" name="password"><br>
         <button class="btn btn-success" type="submit" name="logIn">Login</button>
     </form>
     </div>

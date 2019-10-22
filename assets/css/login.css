@@ -1,5 +1,5 @@
 body{
-    background: #232323;
+    background: #173F5F; 
     color: white;
 }
 .container{
@@ -7,6 +7,11 @@ body{
     justify-content: center;
 }
 .formHolder{
-    margin-top: 25vh;
+    margin-top: 10vh;
     width: 35vw;
+}
+img{
+    display: flex;
+    margin: auto;
+    padding-top: 20px;
 }

@@ -1,15 +1,15 @@
 *{
     font-family: Lato;
 }
-@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
         body{
             margin: 0;
-            font-family: 'Raleway', sans-serif;
+            font-family: 'Open Sans', sans-serif;
         }
         .sidebar{
             height: 100vh;
             width: 15vw;
-            background: #28a745; 
+            background: #173F5F; 
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -21,7 +21,7 @@
             padding: 10px;
         }
         .item:hover{
-            background-color: #165d26;
+            background-color: #112e46;
         }
         .item a{
             color: white;
@@ -29,6 +29,7 @@
         }
         .container{
             margin-left: 15vw;
+            padding-top: 15px;
             color: black;
         }
         nav{
