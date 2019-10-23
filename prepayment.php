@@ -83,10 +83,16 @@ if (isset($_POST['submit'])) {
         }else {
             $paymentsLeft = 29;
         }
-        $query = "INSERT INTO payments VALUES ('', '$customerName','$customerId', '$amountPaid', '$reciept', '$date', '$principle', '$interest', '$nextPayment', '$amountLeft', '$paymentsLeft', '$userLoggedIn')";
+        $query = "INSERT INTO payments VALUES ('', '$customerName','$customerId', '$amountPaid', '$reciept', '$date', '$principle', '$interest', '0', '0', '0', '$userLoggedIn')";
         
         if (mysqli_query($connect, $query)) {
-            header('Location: customer_profile.php?id='.$getId);
+            $removeActive = "UPDATE `active_loans` SET `amount_toPay` = '0' WHERE `active_loans`.`id` = $getId";
+            if (mysqli_query($connect, $removeActive)) {
+                header('Location: customer_profile.php?id='.$getId);
+            }else{
+                echo mysqli_error($connect);
+                echo 'There was an error '.$error;
+            }
         }else {
             echo mysqli_error($connect);
             echo 'There was an error '.$error;
@@ -107,12 +113,12 @@ if (isset($_POST['submit'])) {
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/main.css">
-    <title>Make a Payment</title>
+    <title>Prepayment</title>
 </head>
 <body>
     <?php include('sidebar.php'); ?>
     <div class="container">
-    <h3>Make a Payment</h3>
+    <h3>Prepayment</h3>
     <form method="post">
     <?php
         while ($row = mysqli_fetch_array($retrieve)) {
@@ -131,14 +137,11 @@ if (isset($_POST['submit'])) {
     <label for="customer_id">Customer ID</label>
     <input readonly required type="text" class="form-control" name="customer_id" value="<?php echo $uniqueId; ?>" placeholder="Customer ID">
     <label for="amount_paid">Amount Paid</label>
-    <input required type="number" class="form-control" name="amount_paid" value="<?php echo $installAmount; ?>" placeholder="Amount Paid">
+    <input required type="number" class="form-control" name="amount_paid" value="<?php echo $totalAmount; ?>" placeholder="Amount Paid">
     <label for="reciept">Reciept Number</label>
     <input required type="text" class="form-control" name="reciept" placeholder="Reciept Number">
     <?php } ?><br>
     <button class="btn btn-success" type="submit" name="submit">Submit</button>
     </form>
-    <br>
-    <a href="prepayment.php?id= <?php echo $getId; ?>"><button class="btn btn-dark">Prepayment</button></a>
-
 </div></body>
 </html>

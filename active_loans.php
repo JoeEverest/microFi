@@ -4,7 +4,7 @@ session_start();
 include('alt_session.php');
 include('config/config.php');
 
-$retrieve = 'SELECT * FROM active_loans ORDER BY id DESC';
+$retrieve = 'SELECT * FROM active_loans WHERE amount_toPay != 0 ORDER BY id DESC';
 $retrieve = mysqli_query($connect, $retrieve);
 
 ?>

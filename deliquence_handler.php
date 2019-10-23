@@ -41,7 +41,7 @@ if ($today != $sunday) {
             $n = count($deliquenceIDs);
             $n = $n + 1;
             //theres a problem
-            for ($i=1; $i < $n; $i++) { 
+            for ($i=0; $i < $n; $i++) { 
                 
                 $getDetails = "SELECT * FROM customers WHERE unique_id = '$deliquenceIDs[$i]' ORDER BY id DESC";
                 $getDetails = mysqli_query($connect, $getDetails);
