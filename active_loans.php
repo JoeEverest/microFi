@@ -27,7 +27,7 @@ $retrieve = mysqli_query($connect, $retrieve);
     <table class="table table-striped">
         <thead>
             <th>Customer Name</th>
-            <th>Branch Name</th>
+            <th>Customer ID</th>
             <th>Business Title</th>
             <th>Loan Amount</th>
             <th>Amount To Pay</th>

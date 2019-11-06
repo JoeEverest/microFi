@@ -61,6 +61,7 @@ if (isset($_GET['id'])) {
     
     $customerId = str_replace(' ', '', $customerId);
     ?>
+    <h3>Customer Profile</h3>
     <p>Customer ID: <?php echo $customerId; ?></p>
     <p>Customer Name: <?php echo $name; ?></p>
     <p>Business Title: <?php echo $businessTitle; ?></p>
