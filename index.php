@@ -31,12 +31,12 @@ else{
             <h4>Operator Dashboard</h4>
         </span>
         <span class="element">
-            <h4><?php echo $userLoggedIn; ?></h4>
+            <h4>Operator: <u><?php echo $userLoggedIn; ?></u></h4>
         </span>
     </nav>
     <div class="body">
         <a href="create_center.php">Create new Center</a>
-        <a href="create_gropu.php">Create new Group</a>
+        <a href="create_group.php">Create new Group</a>
     </div>
 </div>
 </body>

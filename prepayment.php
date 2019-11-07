@@ -83,7 +83,8 @@ if (isset($_POST['submit'])) {
         }else {
             $paymentsLeft = 29;
         }
-        $query = "INSERT INTO payments VALUES ('', '$customerName','$customerId', '$amountPaid', '$reciept', '$date', '$principle', '$interest', '0', '0', '0', '$userLoggedIn')";
+        $amount_left = $totalAmount - $amountPaid;
+        $query = "INSERT INTO payments VALUES ('', '$customerName','$customerId', '$amountPaid', '$reciept', '$date', '$principle', '$interest', '0', '$amount_left', '0', '$userLoggedIn')";
         
         if (mysqli_query($connect, $query)) {
             $removeActive = "UPDATE `active_loans` SET `amount_toPay` = '0' WHERE `active_loans`.`id` = $getId";

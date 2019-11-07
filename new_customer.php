@@ -36,8 +36,6 @@ $retrieve = mysqli_query($connect, $retrieve);
         <input class="form-control" required type="text" name="businessTitle" placeholder="Business Title"><br>
         <label for="phone">Phone Number:</label><br>
         <input class="form-control" required type="number" name="phone" placeholder="Phone Number"><br>
-        <label for="numberOfCycle">Number Of Cycle:</label><br>
-        <input class="form-control" required type="number" name="numberOfCycle" placeholder="Number Of Cycle"><br>
         <label for="age">Age:</label><br>
         <input class="form-control" required type="number" name="age" placeholder="Age"><br>
         Group Name:
@@ -53,10 +51,6 @@ $retrieve = mysqli_query($connect, $retrieve);
             <option value="<?php echo $centername.' '.$groupname.' '.$groupId; ?>"><?php echo $centername.'-'.$groupname; ?></option>
         <?php } ?>
         </select><br>
-        <label for="amount">Loan Amount:</label><br>
-        <input class="form-control" required type="number" name="amount" placeholder="Loan Amount"><br>
-        <label for="disbarsmentDate">Disembursment Date:</label><br>
-        <input class="form-control" required type="date" name="disbarsmentDate" placeholder=""><br>
         <button class="btn btn-success" type="submit" name="submit">Submit</button>
     </form>
 </div></body>

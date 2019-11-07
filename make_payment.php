@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
     header('Location: active_loans.php');
 }
 
-$retrieve = "SELECT * FROM active_loans WHERE id = '$getId' ORDER BY id DESC";
+$retrieve = "SELECT * FROM active_loans WHERE customer_id = '$getId' ORDER BY id DESC";
 $retrieve = mysqli_query($connect, $retrieve);
 
 if (isset($_POST['submit'])) {
@@ -85,6 +85,15 @@ if (isset($_POST['submit'])) {
         }
         $query = "INSERT INTO payments VALUES ('', '$customerName','$customerId', '$amountPaid', '$reciept', '$date', '$principle', '$interest', '$nextPayment', '$amountLeft', '$paymentsLeft', '$userLoggedIn')";
         
+    //     if ($amountPaid < $installAmount) {
+    //         $amountLeft = $installAmount - $amountPaid;
+    //         $q1 = "INSERT INTO deliquence VALUES ('', '$customerName', '$customerId', '$amountPaid', '$disbursementDate', '$maturityDate', '$amountLeft', '$phoneNumber')";
+    //         if (mysqli_query($connect, $q1)) {
+    //         }else {
+    //             echo mysqli_error($connect);
+    //             echo 'There was an error '.$error;
+    //     }
+    // }
         if (mysqli_query($connect, $query)) {
             header('Location: customer_profile.php?id='.$getId);
         }else {

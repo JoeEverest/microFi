@@ -26,11 +26,12 @@ $retrieve = mysqli_query($connect, $retrieve);
     <div class="container">
     <table class="table table-striped">
         <thead>
+            <th>Loan ID</th>
             <th>Customer Name</th>
             <th>Customer ID</th>
             <th>Business Title</th>
             <th>Loan Amount</th>
-            <th>Amount To Pay</th>
+            <th>Amount Left</th>
             <th>Installemnt Amount</th>
             <th>Disbursement Date</th>
             <th>Maturity Date</th>
@@ -38,18 +39,26 @@ $retrieve = mysqli_query($connect, $retrieve);
         <?php
         while ($row = mysqli_fetch_array($retrieve)) {
             $id = $row['id'];
+            $loanID = $row['loan_id'];
             $name = $row['customer_name'];
             $uniqueId = $row['customer_id'];
             $businessTitle = $row['business_title'];
             $loanAmount = $row['loan_amount'];
-            $totalAmount = $row['amount_toPay'];
             $installAmount = $row['installment_amount'];
             $disbursementDate = $row['disbursment_date'];
             $maturityDate = $row['maturity_date'];
+
+            $qr = "SELECT amount_left FROM `payments` WHERE customer_id = '$uniqueId' ORDER BY `id` DESC LIMIT 1";
+            $qr = mysqli_query($connect, $qr);
+            while ($row = mysqli_fetch_array($qr)) {
+                $totalAmount = $row['amount_left'];
+                $totalAmount = $totalAmount * 100/120;
+            }
         ?>
         <tr>
+            <td><?php echo $loanID; ?></td>
             <td><?php echo $name; ?></td>
-            <td><a href="customer_profile.php?id=<?php echo $id; ?>"><?php echo $uniqueId; ?></a></td>
+            <td><a href="customer_profile.php?id=<?php echo $uniqueId; ?>"><?php echo $uniqueId; ?></a></td>
             <td><?php echo $businessTitle; ?></td>
             <td><?php echo $loanAmount; ?></td>
             <td><?php echo $totalAmount; ?></td>

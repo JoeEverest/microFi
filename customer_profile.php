@@ -11,7 +11,7 @@ else{
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $retrieve = "SELECT * FROM customers WHERE id = '$id' ORDER BY id DESC";
+    $retrieve = "SELECT * FROM customers WHERE unique_id = '$id' ORDER BY id DESC";
     $retrieve = mysqli_query($connect, $retrieve);
 }else{
     header('Location: customers.php');

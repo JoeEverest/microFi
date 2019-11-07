@@ -39,7 +39,7 @@ if ($today != $sunday) {
         if (count($deliquenceIDs) == 0) {
         }else {
             $n = count($deliquenceIDs);
-            $n = $n + 1;
+            $n = $n;
             //theres a problem
             for ($i=0; $i < $n; $i++) { 
                 

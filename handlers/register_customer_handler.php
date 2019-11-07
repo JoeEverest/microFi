@@ -1,21 +1,14 @@
 <?php
 if (isset($_POST['submit'])) {
-    if (!$_POST['name'] | !$_POST['businessTitle'] | !$_POST['phone'] | !$_POST['numberOfCycle'] | !$_POST['age'] | !$_POST['amount'] | !$_POST['disbarsmentDate']) {
+    if (!$_POST['name'] | !$_POST['businessTitle'] | !$_POST['phone'] | !$_POST['age']) {
         echo 'Some fields are empty';
     }
     else{
         $customerName = $_POST['name'];
         $businessTitle = $_POST['businessTitle'];
         $phoneNumber = $_POST['phone'];
-        $cycleNumber = $_POST['numberOfCycle'];
         $age = $_POST['age'];
-        $amount = $_POST['amount'];
         $date = date('y-m-d');
-        $disbarsmentDate = $_POST['disbarsmentDate'];
-        $i = 2;
-        $amountToPay = $amount + ($amount * 0.2);
-        
-        $installmentAmount = $amountToPay/30;
 
         $center_values = $_POST['group_name'];
             $lastspace = strrpos($center_values, ' ');
@@ -57,7 +50,6 @@ if (isset($_POST['submit'])) {
         //define ID
         $id = $branchId.'/'.$centerid.'/'.$groupId.'/'.$customerId;
         //add to database
-        $due_date = date('Y-m-d', strtotime($disbarsmentDate.'+35 Days'));
 
         $phone_check = mysqli_query($connect, "SELECT phone_number FROM customers WHERE phone_number='$phoneNumber'");
         $num_rows = mysqli_num_rows($phone_check);
@@ -68,15 +60,8 @@ if (isset($_POST['submit'])) {
             $query = "INSERT INTO customers VALUES ('', '$customerName', '$businessTitle', '$group_name', '$id', '$age', '$date', '$phoneNumber')";
         
         if (mysqli_query($connect, $query)) {
-            echo "Customer Added Succesfully";
-        }else {
-            $error = mysqli_error($connect);
-            echo 'There was an error '.$error;
-        }
-        $query = "INSERT INTO active_loans VALUES ('', '$customerName','$id', '$businessTitle', '$amount', '$amountToPay', '$installmentAmount', '$disbarsmentDate', '$due_date', '$cycleNumber')";
-        
-        if (mysqli_query($connect, $query)) {
-            header('Location: customer_profile.php?id='.$customerId);
+            echo "<script> alert ('Customer Added Succesfully'); </script>";
+            header("Location: customer_profile.php?id=$customerId");
         }else {
             $error = mysqli_error($connect);
             echo 'There was an error '.$error;

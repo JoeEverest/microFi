@@ -70,7 +70,7 @@ $retrieve = mysqli_query($connect, $retrieve);
     $customerId = str_replace(' ', '', $customerId);
     ?>
     <tr>
-    <td><a href="customer_profile.php?id=<?php echo $id; ?>"><?php echo $customerId; ?></a></td>
+    <td><a href="customer_profile.php?id=<?php echo $row['unique_id']; ?>"><?php echo $row['unique_id']; ?></a></td>
     <td><?php echo $name; ?></td>
     <td><?php echo $businessTitle; ?></td>
     <td><?php echo '+255'.$phoneNumber; ?></td>

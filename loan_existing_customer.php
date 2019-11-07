@@ -10,7 +10,7 @@ else{
 }
 if (isset($_POST['submit'])) {
     if (!$_POST['customer_name'] | !$_POST['loan_amount'] | !$_POST['disbursement_date']) {
-        echo "All input fileds are required";
+        echo "<script> alert ('All input fileds are required'); </script>";
     }else {
         $customerName = $_POST['customer_name'];
             $last_space = strrpos($customerName, ' ');
@@ -19,26 +19,61 @@ if (isset($_POST['submit'])) {
             $customerId = $last_word;
             $customerName = $first_chunk;
         $loanAmount = $_POST['loan_amount'];
-        $disbursementDate = $_POST['disbursement_date'];
+        $interest = $loanAmount * 0.2;
+        $amountToPay = $loanAmount + $interest;
+        $installmentAmount = $amountToPay/30;
 
+        $disbarsmentDate = $_POST['disbursement_date'];
+        
+        $due_date = date('Y-m-d', strtotime('+35 days', strtotime($disbarsmentDate)));
+        $nextday = date('Y-m-d', strtotime('+1 day', strtotime($disbarsmentDate)));
+
+        $sunday = date('Y-m-d', strtotime('sunday', strtotime($disbarsmentDate)));
+
+        if ($nextday != $sunday) {
+            $nextPayment = date('Y-m-d', strtotime('+1 day', strtotime($disbarsmentDate)));
+        }else {
+            $nextPayment = date('Y-m-d', strtotime('+2 days', strtotime($disbarsmentDate)));
+        }
+        
         $maturityDate = date('y-m-d');
 
-        $customerDetails = "SELECT * FROM active_loans WHERE customer_name = '$customerName' ORDER BY id DESC";
+        $customerDetails = "SELECT * FROM customers WHERE id = '$customerId' ORDER BY id DESC";
         $customerDetails = mysqli_query($connect, $customerDetails);
 
         while ($row = mysqli_fetch_array($customerDetails)) {
             $id = $row['id'];
             $name = $row['customer_name'];
-            //$customerId = $row['customer_id'];
-            $loan_amount = $row['loan_amount'];
-            $disbursement_date = $row['disbursment_date'];
-            $maturity_date = $row['maturity_date'];
-            $cycleNumber = $row['number_ofcycle'];
+            $businessTitle = $row['business_title'];
+            $customerid = $row['unique_id'];
         }
-        //cycleNumber = existing+1;
+
+        $loanCount = "SELECT id FROM active_loans ORDER BY id DESC";
+        $loanCount = mysqli_query($connect, $loanCount);
+        $loanCount = mysqli_num_rows($loanCount);
+        
+        $year = date('Y');
+        $loanCurrentNumber = $loanCount + 1;
+        $loanID = "L-".$loanCurrentNumber."/".$year;
+
         // $updateLoan= "UPDATE loans SET loanstatus_id = '$loan_status', loan_issued = '1', loan_dateout = '$loan_dateout', loan_principalapproved = '$loan_princp_approved', loan_fee = '$loan_fee', loan_fee_receipt = '$loan_fee_receipt', loan_insurance = '$loan_insurance', loan_insurance_receipt = '$loan_fee_receipt' WHERE loan_id = '$_SESSION[loan_id]'";
 		// $query_issue = mysqli_query($connect, $updateLoan);
-		// checkSQL($connect, $query_issue);
+        // checkSQL($connect, $query_issue);
+
+        $query = "INSERT INTO active_loans VALUES ('', '$loanID', '$customerName','$customerid', '$businessTitle', '$loanAmount', '$amountToPay', '$installmentAmount', '$disbarsmentDate', '$due_date')";
+        
+        if (mysqli_query($connect, $query)) {
+            $qu = "INSERT INTO payments VALUES ('', '$customerName','$customerid', '0', 'NEW CUSTOMER', '$disbarsmentDate', '0', '0', '$nextPayment', '$amountToPay', '30', '$userLoggedIn')";
+            if (mysqli_query($connect, $qu)) {
+                header('Location: customer_profile.php?id='.$customerId);
+            }else {
+                $error = mysqli_error($connect);
+                echo 'There was an error '.$error;
+            }
+        }else {
+            $error = mysqli_error($connect);
+            echo 'There was an error '.$error;
+        }
             
     }
 }
