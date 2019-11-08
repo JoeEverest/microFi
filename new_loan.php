@@ -27,7 +27,17 @@ else{
     <?php include('sidebar.php'); ?>
     <div class="container">
     <p>New Loan</p>
-    <a href="new_customer.php">New Customer</a>
-    <a href="loan_existing_customer.php">Existing Customer</a>
+    <div class="cards">
+        <a href="new_customer.php"><div class="card">
+        <img src="https://img.icons8.com/dotty/150/000000/add-administrator.png">
+          <p>New Customer</p>
+        </div></a>
+        <a href="loan_existing_customer.php">
+            <div class="card">
+            <img src="https://img.icons8.com/wired/150/000000/add-property.png">
+                <p>New Loan</p>
+            </div>
+        </a>
+    </div>
 </div></body>
 </html>

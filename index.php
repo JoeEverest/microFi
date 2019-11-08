@@ -35,8 +35,18 @@ else{
         </span>
     </nav>
     <div class="body">
-        <a href="create_center.php">Create new Center</a>
-        <a href="create_group.php">Create new Group</a>
+    <div class="cards">
+        <a href="create_center.php"><div class="card">
+            <img src="https://img.icons8.com/wired/150/000000/add-property.png">
+            <p>Create new Center</p>
+        </div></a>
+        <a href="create_group.php">
+            <div class="card">
+            <img src="https://img.icons8.com/dotty/150/000000/add-user-group-man-man.png">            
+                <p>Create new Group</p>
+            </div>
+        </a>
+    </div>
     </div>
 </div>
 </body>
