@@ -147,7 +147,7 @@ if (isset($_POST['submit'])) {
     <button class="btn btn-success" type="submit" name="submit">Submit</button>
     </form>
     <br>
-    <a href="prepayment.php?id= <?php echo $getId; ?>"><button class="btn btn-dark">Prepayment</button></a>
+    <a href="prepayment.php?id=<?php echo $getId; ?>"><button class="btn btn-dark">Prepayment</button></a>
 
 </div></body>
 </html>

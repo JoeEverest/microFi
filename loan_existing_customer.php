@@ -13,7 +13,26 @@ if (isset($_POST['submit'])) {
         echo "<script> alert ('All input fileds are required'); </script>";
     }else {
         //Check if loans exist
-        if (1 == 1) {
+        $nm = $_POST['customer_name'];
+                $last_space = strrpos($nm, ' ');
+                $last_word = substr($nm, $last_space);
+                $first_chunk = substr($nm, 0, $last_space);
+                $customerId = $last_word;
+                $nm = $first_chunk;
+        $ret = "SELECT * FROM customers WHERE customer_name = '$nm' ORDER BY id DESC";
+        $ret = mysqli_query($connect, $ret);
+        while ($row = mysqli_fetch_array($ret)) {
+            $uid = $row['unique_id'];
+            $name = $row['customer_name'];
+        }
+        echo $uid;
+        $qr = "SELECT amount_left FROM payments WHERE customer_id = '$uid' ORDER BY id DESC LIMIT 1";
+        $qr = mysqli_query($connect, $qr);
+        while ($amount = mysqli_fetch_array($qr)) {
+            $amt = $amount['amount_left'];
+        }
+
+        if ($amt == 0) {
             $customerName = $_POST['customer_name'];
                 $last_space = strrpos($customerName, ' ');
                 $last_word = substr($customerName, $last_space);
@@ -67,7 +86,7 @@ if (isset($_POST['submit'])) {
             if (mysqli_query($connect, $query)) {
                 $qu = "INSERT INTO payments VALUES ('', '$customerName','$customerid', '0', 'NEW CUSTOMER', '$disbarsmentDate', '0', '0', '$nextPayment', '$amountToPay', '30', '$userLoggedIn')";
                 if (mysqli_query($connect, $qu)) {
-                    header('Location: customer_profile.php?id='.$customerId);
+                    header('Location: customer_profile.php?id='.$customerid);
                 }else {
                     $error = mysqli_error($connect);
                     echo 'There was an error '.$error;
@@ -78,7 +97,7 @@ if (isset($_POST['submit'])) {
             }
                 
         }else {
-            header("Location: prepayment.php?id=$customerId");
+            header("Location: prepayment.php?id=$uid");
         }
     }
 }
@@ -108,9 +127,9 @@ $retrieve = mysqli_query($connect, $retrieve);
         <select class="form-control" required name="customer_name">
             <?php
             while ($row = mysqli_fetch_array($retrieve)) {
-                $id = $row['id'];
+                $id = $row['unique_id'];
                 $name = $row['customer_name'];
-            
+                $id = str_replace(' ', '', $id);
             ?>
             <option value="<?php echo $name.' '.$id; ?>"><?php echo $name; ?></option>
             <?php } ?>

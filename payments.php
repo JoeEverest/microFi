@@ -60,7 +60,7 @@ $retrieve = mysqli_query($connect, $retrieve);
     ?>
     <tr>
         <td><?php echo $name; ?></td>
-        <td><a href="customer_profile.php?id=<?php echo $Id; ?>"><?php echo $customerId; ?></a></td>
+        <td><a href="customer_profile.php?id=<?php echo $customerId; ?>"><?php echo $customerId; ?></a></td>
         <td><?php echo $installmentAmount; ?></td>
         <td><?php echo $amountLeft; ?></td>
         <td><a href="make_payment.php?id=<?php echo $customerId; ?>"><button class="btn btn-success">Make Payment</button></a></td>
