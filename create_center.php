@@ -5,13 +5,19 @@ include('alt_session.php');
 include('config/config.php');
 
 if (isset($_POST['createCenter'])) {
-    if (!$_POST['branchName'] | !$_POST['centerName'] | !$_POST['centerId']) {
+    if (!$_POST['branchName'] | !$_POST['centerName']) {
         echo 'All input fields are Required';
     }
     else {
         $branchName = $_POST['branchName'];
         $centerName = $_POST['centerName'];
-        $centerId = $_POST['centerId'];
+
+        $crID = "SELECT * FROM centers  WHERE branch_name = '$branchName' ORDER BY id DESC";
+        $crID = mysqli_query($connect, $crID);
+
+        $centerId = mysqli_num_rows($crID);
+        $centerId = $centerId + 1;
+        $centerId = $centerId * 100;
 
         $createCenter = mysqli_query($connect, "INSERT INTO centers VALUES ('', '$branchName', '$centerName', '$centerId')");
 
@@ -55,7 +61,7 @@ $retrieve = mysqli_query($connect, $retrieve);
         <label for="centerName">Center Name</label>
         <input class="form-control" required type="text" name="centerName" placeholder="Center Name">
         <label for="centerId">Center ID</label>
-        <input class="form-control" required type="number" name="centerId" placeholder="Center ID"><br>
+        <!-- <input class="form-control" required type="number" name="centerId" placeholder="Center ID"><br> -->
         <button class="btn btn-success" type="submit" name="createCenter">Create Center</button>
     </form>
 </div></body>

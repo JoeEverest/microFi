@@ -5,13 +5,19 @@ include('alt_session.php');
 include('config/config.php');
 
 if (isset($_POST['createGroup'])) {
-    if (!$_POST['groupName'] | !$_POST['centerName'] | !$_POST['groupId']) {
+    if (!$_POST['groupName'] | !$_POST['centerName']) {
         echo 'All input fields are Required';
     }
     else {
         $groupName = $_POST['groupName'];
         $centerName = $_POST['centerName'];
-        $groupId = $_POST['groupId'];
+
+        $grpID = "SELECT * FROM groups WHERE center_name = '$centerName' ORDER BY id DESC";
+        $grpID = mysqli_query($connect, $grpID);
+
+        $groupId = mysqli_num_rows($grpID);
+        $groupId = $groupId + 1;
+        $groupId = $groupId * 10;
 
         $createCenter = mysqli_query($connect, "INSERT INTO groups VALUES ('', '$groupName', '$centerName', '$groupId')");
 
@@ -56,7 +62,7 @@ $retrieve = mysqli_query($connect, $retrieve);
             <?php } ?>
         </select>
         <label for="groupId">Group ID</label>
-        <input class="form-control" type="number" name="groupId" placeholder="Group ID"><br>
+        <!-- <input class="form-control" type="number" name="groupId" placeholder="Group ID"><br> -->
         <button class="btn btn-success" type="submit" name="createGroup">Create Group</button>
     </form>
 </div></body>

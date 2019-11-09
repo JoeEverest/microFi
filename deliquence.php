@@ -42,7 +42,12 @@ else{
             $customerId = $row['customer_id'];
             $amountLeft = $row['amount_left'];
             $paymentsSkipped = $row['payments_skipped'];
-            $phoneNumber = $row['phone_number'];
+            
+            $rt = "SELECT * FROM customers WHERE unique_id = '$customerId' ORDER BY id DESC";
+            $rt = mysqli_query($connect, $rt);
+            while ($rw = mysqli_fetch_array($rt)) {
+                $phoneNumber = $rw['phone_number'];
+            }
         ?>
         <tr>
             <td><?php echo $name; ?></td>

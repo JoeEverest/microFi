@@ -17,11 +17,18 @@ if (isset($_GET['id'])) {
 
 $retrieve = "SELECT * FROM active_loans WHERE customer_id = '$getId' ORDER BY id DESC";
 $retrieve = mysqli_query($connect, $retrieve);
+while ($row = mysqli_fetch_array($retrieve)) {
+    $installAmount = $row['installment_amount'];
+}
 
 if (isset($_POST['submit'])) {
     if (!$_POST['customer_name'] | !$_POST['customer_id'] | !$_POST['amount_paid'] | !$_POST['reciept']) {
         echo 'All input fields are required';
     }else {
+
+        $retrieve = "SELECT * FROM active_loans WHERE customer_id = '$getId' ORDER BY id DESC";
+        $retrieve = mysqli_query($connect, $retrieve);
+
         while ($row = mysqli_fetch_array($retrieve)) {
             $id = $row['id'];
             $name = $row['customer_name'];
@@ -33,6 +40,7 @@ if (isset($_POST['submit'])) {
             $disbursementDate = $row['disbursment_date'];
             $maturityDate = $row['maturity_date'];
         }
+        
         $customerName = $_POST['customer_name'];
         $customerId = $_POST['customer_id'];
         $amountPaid = $_POST['amount_paid'];
@@ -85,21 +93,29 @@ if (isset($_POST['submit'])) {
         }
         $query = "INSERT INTO payments VALUES ('', '$customerName','$customerId', '$amountPaid', '$reciept', '$date', '$principle', '$interest', '$nextPayment', '$amountLeft', '$paymentsLeft', '$userLoggedIn')";
         
-    //     if ($amountPaid < $installAmount) {
-    //         $amountLeft = $installAmount - $amountPaid;
-    //         $q1 = "INSERT INTO deliquence VALUES ('', '$customerName', '$customerId', '$amountPaid', '$disbursementDate', '$maturityDate', '$amountLeft', '$phoneNumber')";
-    //         if (mysqli_query($connect, $q1)) {
-    //         }else {
-    //             echo mysqli_error($connect);
-    //             echo 'There was an error '.$error;
-    //     }
-    // }
-        if (mysqli_query($connect, $query)) {
-            header('Location: customer_profile.php?id='.$getId);
+        if ($amountPaid < $installAmount) {
+            $amountLeft = $installAmount - $amountPaid;
+            $q1 = "INSERT INTO deliquence VALUES ('', '$customerName', '$customerId', '$amountPaid', '$disbursementDate', '$maturityDate', '$amountLeft', '$phoneNumber')";
+            if (mysqli_query($connect, $q1)) {
+            }else {
+                echo mysqli_error($connect);
+                echo 'There was an error '.$error;
+            }
+            if (mysqli_query($connect, $query)) {
+                header('Location: customer_profile.php?id='.$getId);
+            }else {
+                echo mysqli_error($connect);
+                echo 'There was an error '.$error;
+            }
         }else {
-            echo mysqli_error($connect);
-            echo 'There was an error '.$error;
+            if (mysqli_query($connect, $query)) {
+                header('Location: customer_profile.php?id='.$getId);
+            }else {
+                echo mysqli_error($connect);
+                echo 'There was an error '.$error;
+            }
         }
+        
     }
     }
 }
@@ -124,6 +140,8 @@ if (isset($_POST['submit'])) {
     <h3>Make a Payment</h3>
     <form method="post">
     <?php
+    $retrieve = "SELECT * FROM active_loans WHERE customer_id = '$getId' ORDER BY id DESC";
+    $retrieve = mysqli_query($connect, $retrieve);
         while ($row = mysqli_fetch_array($retrieve)) {
             $id = $row['id'];
             $name = $row['customer_name'];

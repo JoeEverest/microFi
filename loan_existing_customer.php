@@ -131,7 +131,7 @@ $retrieve = mysqli_query($connect, $retrieve);
                 $name = $row['customer_name'];
                 $id = str_replace(' ', '', $id);
             ?>
-            <option value="<?php echo $name.' '.$id; ?>"><?php echo $name; ?></option>
+            <option value="<?php echo $name.' '.$id; ?>"><?php echo $id.' - '.$name; ?></option>
             <?php } ?>
         </select><br>
         <input class="form-control" type="number" name="loan_amount" placeholder="Loan Amount"><br>

@@ -3,11 +3,17 @@ include('session.php');
 include('../config/config.php');
 
 if (isset($_POST['createBranch'])) {
-    if (!$_POST["branchName"] | !$_POST['branchId']) {
+    if (!$_POST["branchName"]) {
         $error = 'All input fields are required';
     }else{
         $branchName = $_POST["branchName"];
-        $branchId = $_POST['branchId'];
+
+        $brID = "SELECT * FROM branches ORDER BY id DESC";
+        $brID = mysqli_query($connect, $brID);
+
+        $branchId = mysqli_num_rows($brID);
+        $branchId = $branchId + 1;
+        $branchId = $branchId * 1000;
 
         $registerBranch = mysqli_query($connect, "INSERT INTO branches VALUES ('', '$branchName', '$branchId')");
     }
@@ -32,7 +38,7 @@ if (isset($_POST['createBranch'])) {
         <label for="branchName">Branch Name</label>
         <input class="form-control" required type="text" name="branchName" placeholder="Branch Name">
         <label for="branchid">Branch ID</label>
-        <input class="form-control" required type="number" name="branchId" placeholder="Branch ID"><br>
+        <!-- <input class="form-control" required type="number" name="branchId" placeholder="Branch ID"><br> -->
         <button class="btn btn-success" type="submit" name="createBranch">Create Branch</button>
     </form>
 </div></body>
