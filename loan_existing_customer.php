@@ -25,14 +25,13 @@ if (isset($_POST['submit'])) {
             $uid = $row['unique_id'];
             $name = $row['customer_name'];
         }
-        echo $uid;
+        
         $qr = "SELECT amount_left FROM payments WHERE customer_id = '$uid' ORDER BY id DESC LIMIT 1";
         $qr = mysqli_query($connect, $qr);
         while ($amount = mysqli_fetch_array($qr)) {
             $amt = $amount['amount_left'];
         }
 
-        if ($amt == 0) {
             $customerName = $_POST['customer_name'];
                 $last_space = strrpos($customerName, ' ');
                 $last_word = substr($customerName, $last_space);
@@ -80,24 +79,25 @@ if (isset($_POST['submit'])) {
             // $updateLoan= "UPDATE loans SET loanstatus_id = '$loan_status', loan_issued = '1', loan_dateout = '$loan_dateout', loan_principalapproved = '$loan_princp_approved', loan_fee = '$loan_fee', loan_fee_receipt = '$loan_fee_receipt', loan_insurance = '$loan_insurance', loan_insurance_receipt = '$loan_fee_receipt' WHERE loan_id = '$_SESSION[loan_id]'";
             // $query_issue = mysqli_query($connect, $updateLoan);
             // checkSQL($connect, $query_issue);
-    
-            $query = "INSERT INTO active_loans VALUES ('', '$loanID', '$customerName','$customerid', '$businessTitle', '$loanAmount', '$amountToPay', '$installmentAmount', '$disbarsmentDate', '$due_date')";
-            
-            if (mysqli_query($connect, $query)) {
-                $qu = "INSERT INTO payments VALUES ('', '$customerName','$customerid', '0', 'NEW CUSTOMER', '$disbarsmentDate', '0', '0', '$nextPayment', '$amountToPay', '30', '$userLoggedIn')";
-                if (mysqli_query($connect, $qu)) {
-                    header('Location: customer_profile.php?id='.$customerid);
+            if ($amt == 0) {
+
+                $query = "INSERT INTO active_loans VALUES ('', '$loanID', '$customerName','$uid', '$businessTitle', '$loanAmount', '$amountToPay', '$installmentAmount', '$disbarsmentDate', '$due_date')";
+                
+                if (mysqli_query($connect, $query)) {
+                    $qu = "INSERT INTO payments VALUES ('', '$customerName','$uid', '0', 'NEW CUSTOMER', '$disbarsmentDate', '0', '0', '$nextPayment', '$amountToPay', '30', '$userLoggedIn')";
+                    if (mysqli_query($connect, $qu)) {
+                        header('Location: customer_profile.php?id='.$uid);
+                    }else {
+                        $error = mysqli_error($connect);
+                        echo 'There was an error '.$error;
+                    }
                 }else {
                     $error = mysqli_error($connect);
                     echo 'There was an error '.$error;
                 }
-            }else {
-                $error = mysqli_error($connect);
-                echo 'There was an error '.$error;
-            }
                 
         }else {
-            header("Location: prepayment.php?id=$uid");
+            header("Location: prepayment.php?id=".$uid);
         }
     }
 }

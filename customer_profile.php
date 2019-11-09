@@ -34,6 +34,8 @@ if (isset($_GET['id'])) {
     <?php include('sidebar.php'); ?>
     <div class="container">
     <?php
+        echo "<script> alert ('Customer ID: ".$id."'); </script>";
+
         while ($row = mysqli_fetch_array($retrieve)) {
             $id = $row['id'];
             $name = $row['customer_name'];

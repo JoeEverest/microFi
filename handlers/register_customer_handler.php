@@ -60,8 +60,7 @@ if (isset($_POST['submit'])) {
             $query = "INSERT INTO customers VALUES ('', '$customerName', '$businessTitle', '$group_name', '$id', '$age', '$date', '$phoneNumber')";
         
         if (mysqli_query($connect, $query)) {
-            echo "<script> alert ('Customer Added Succesfully'); </script>";
-            header("Location: customer_profile.php?id=$customerId");
+            header("Location: customer_profile.php?id=$id");
         }else {
             $error = mysqli_error($connect);
             echo 'There was an error '.$error;

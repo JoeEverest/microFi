@@ -4,7 +4,7 @@ session_start();
 include('alt_session.php');
 include('config/config.php');
 
-$retrieve = 'SELECT * FROM active_loans WHERE amount_toPay != 0 ORDER BY id DESC';
+$retrieve = 'SELECT * FROM active_loans WHERE amount_toPay = 0 ORDER BY id DESC';
 $retrieve = mysqli_query($connect, $retrieve);
 
 ?>
@@ -24,16 +24,16 @@ $retrieve = mysqli_query($connect, $retrieve);
 <body>
     <?php include('sidebar.php'); ?>
     <div class="container">
-        
+
         <ul class="nav nav-tabs justify-content-end">
             <li class="nav-item">
-                <a class="nav-link active" href="active_loans.php">Active Loans</a>
+                <a class="nav-link" href="active_loans.php">Active Loans</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="inactive_loans.php">Inactive Loans</a>
+                <a class="nav-link active" href="inactive_loans.php">Inactive Loans</a>
             </li>
         </ul>
-    
+
     <table class="table table-striped">
         <thead>
             <th>Loan ID</th>

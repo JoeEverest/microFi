@@ -59,7 +59,7 @@ if (isset($_POST['submit'])) {
             $nextPayment = date('Y-m-d', strtotime('tomorrow'));
         }
         
-        $getAmountLeft = "SELECT amount_left FROM payments WHERE customer_id = '$customerid' ORDER BY id DESC LIMIT 1";
+        $getAmountLeft = "SELECT amount_left FROM payments WHERE customer_id = '$getId' ORDER BY id DESC LIMIT 1";
         $getAmountLeft = mysqli_query($connect, $getAmountLeft);
 
         $num_rows = mysqli_num_rows($getAmountLeft);
@@ -88,7 +88,7 @@ if (isset($_POST['submit'])) {
         $query = "INSERT INTO payments VALUES ('', '$customerName','$customerId', '$amountPaid', '$reciept', '$date', '$principle', '$interest', '0', '$amount_left', '0', '$userLoggedIn')";
         
         if (mysqli_query($connect, $query)) {
-            $removeActive = "UPDATE `active_loans` SET `amount_toPay` = '$amount_left' WHERE `active_loans`.`id` = $getId";
+            $removeActive = "UPDATE `active_loans` SET `amount_toPay` = '$amount_left' WHERE `active_loans`.`customer_id` = '$getId'";
             if (mysqli_query($connect, $removeActive)) {
                 header('Location: customer_profile.php?id='.$getId);
             }else{
