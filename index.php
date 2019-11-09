@@ -46,6 +46,12 @@ else{
                 <p>Create new Group</p>
             </div>
         </a>
+        <a href="">
+            <div class="card">
+            <img src="https://img.icons8.com/dotty/150/000000/data-pending.png">           
+                <p>Pending Customers</p>
+            </div>
+        </a>
     </div>
     </div>
 </div>

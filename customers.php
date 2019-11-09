@@ -28,6 +28,13 @@ $retrieve = mysqli_query($connect, $retrieve);
 <body>
     <?php include('sidebar.php'); ?>
     <div class="container">
+
+        <ul class="nav nav-tabs justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link active" href="active_loans.php">Active Customers</a>
+            </li>
+        </ul>
+
     <table class="table table-striped">
         <thead>
             <th>Customer ID</th>
