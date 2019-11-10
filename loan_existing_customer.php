@@ -115,6 +115,8 @@ $retrieve = mysqli_query($connect, $retrieve);
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/main.css">
     <title>New Loan: Existing Customer</title>
 </head>
@@ -124,7 +126,8 @@ $retrieve = mysqli_query($connect, $retrieve);
     <p>Loan for existing customer</p>
     <form method="post">
     Customer Name:
-        <select class="form-control" required name="customer_name">
+        <select class="form-control selectpicker" data-live-search="true" required name="customer_name">
+            <option value=""></option>
             <?php
             while ($row = mysqli_fetch_array($retrieve)) {
                 $id = $row['unique_id'];
@@ -133,7 +136,8 @@ $retrieve = mysqli_query($connect, $retrieve);
             ?>
             <option value="<?php echo $name.' '.$id; ?>"><?php echo $id.' - '.$name; ?></option>
             <?php } ?>
-        </select><br>
+        </select><br><br>
+        Loan Amount: 
         <input class="form-control" type="number" name="loan_amount" placeholder="Loan Amount"><br>
         Disbursement Date: <input class="form-control" type="date" name="disbursement_date"><br>
         <button class="btn btn-success" type="submit" name="submit">Submit</button>

@@ -23,6 +23,8 @@ $retrieve = mysqli_query($connect, $retrieve);
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css" rel="stylesheet" /> -->
     <link rel="stylesheet" href="assets/css/main.css">
     <title>New Customer</title>
 </head>
@@ -38,8 +40,8 @@ $retrieve = mysqli_query($connect, $retrieve);
         <input class="form-control" required type="number" name="phone" placeholder="Phone Number"><br>
         <label for="age">Age:</label><br>
         <input class="form-control" required type="date" name="age" placeholder="Age"><br>
-        Group Name:
-        <select class="form-control" name="group_name">
+        Group ID:
+        <select class="form-control selectpicker" data-live-search="true" name="group_name">
         <?php
             while ($row = mysqli_fetch_array($getGroup)) {
                 $id = $row['id'];
@@ -48,7 +50,7 @@ $retrieve = mysqli_query($connect, $retrieve);
                 $groupId = $row['group_id'];
                
         ?>
-            <option value="<?php echo $centername.' '.$groupname.' '.$groupId; ?>"><?php echo $centername.'-'.$groupname; ?></option>
+            <option value="<?php echo $centername.' '.$groupname.' '.$groupId; ?>"><?php echo $groupId.' - '.$groupname.' - '.$centername; ?></option>
         <?php } ?>
         </select><br>
         <button class="btn btn-success" type="submit" name="submit">Submit</button>
