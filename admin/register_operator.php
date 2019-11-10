@@ -63,23 +63,31 @@ $retrieve = mysqli_query($connect, $retrieve);
         echo $errors;
     }
     ?>
-    <form method="post">
-        <input class="form-control" placeholder='Username' type="text" name="loginId">
-        Center Name:
-        <select class="form-control" required name="centerName">
-            <?php
-            while ($row = mysqli_fetch_array($retrieve)) {
-                $id = $row['id'];
-                $branchname = $row['branch_name'];
-                $centername = $row['center_name'];
-                $centerId = $row['center_id'];
-            ?>
-            <option value="<?php echo $centername.'_'.$branchname; ?>"><?php echo $centername; ?></option>
-            <?php } ?>
-        </select>
-        <input class="form-control" placeholder='Password' type="password" name="password">
-        <input class="form-control" placeholder='Confirm Password' type="password" name="password2">
-        <button class="btn btn-success" type="submit" name="register">Register Operator</button>
-    </form>
+    <img src="../assets/images/yaniv_l.png">
+    <div class="formHolder">
+        <form method="post">
+        <h3>Register Operator</h3>
+            <label for="loginId">Username</label>
+            <input class="form-control" placeholder='Username' type="text" name="loginId">
+            <label for="centerName">Center Name:</label>
+            <select class="form-control" required name="centerName">
+                <?php
+                while ($row = mysqli_fetch_array($retrieve)) {
+                    $id = $row['id'];
+                    $branchname = $row['branch_name'];
+                    $centername = $row['center_name'];
+                    $centerId = $row['center_id'];
+                ?>
+                <option value="<?php echo $centername.'_'.$branchname; ?>"><?php echo $centername; ?></option>
+                <?php } ?>
+            </select>
+            <label for="password">Password</label>
+            <input class="form-control" placeholder='Password' type="password" name="password">
+            <label for="password2">Confirm Password</label>
+            <input class="form-control" placeholder='Confirm Password' type="password" name="password2">
+            <br>
+            <button class="btn btn-success" type="submit" name="register">Register Operator</button>
+        </form>
+    </div>
 </div></body>
 </html>
