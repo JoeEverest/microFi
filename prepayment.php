@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
             $uniqueId = $row['customer_id'];
             $businessTitle = $row['business_title'];
             $loanAmount = $row['loan_amount'];
-            $totalAmount = $row['amount_toPay'];
+            //$totalAmount = $row['amount_toPay'];
             $installAmount = $row['installment_amount'];
             $disbursementDate = $row['disbursment_date'];
             $maturityDate = $row['maturity_date'];
@@ -63,14 +63,19 @@ if (isset($_POST['submit'])) {
         $getAmountLeft = mysqli_query($connect, $getAmountLeft);
 
         $num_rows = mysqli_num_rows($getAmountLeft);
-        if ($num_rows > 0) {
-            while ($row = mysqli_fetch_array($getAmountLeft)) {
-                $amountLeft = $row['amount_left'];
-                $amountLeft = $amountLeft - $amountPaid;
-            }
-        }else {
-            $amountLeft = $totalAmount - $amountPaid;
+        $gal = "SELECT amount_left FROM payments WHERE customer_id = '$uniqueId' ORDER BY id DESC LIMIT 1";
+        $gal = mysqli_query($connect, $gal);
+        while ($rew = mysqli_fetch_array($gal)) {
+            $totalAmount = $rew['amount_left'];
         }
+        // if ($num_rows > 0) {
+        //     while ($row = mysqli_fetch_array($getAmountLeft)) {
+        //         $amountLeft = $row['amount_left'];
+        //         $amountLeft = $amountLeft - $amountPaid;
+        //     }
+        // }else {
+            $amountLeft = $totalAmount - $amountPaid;
+        // }
         $getPaymentsLeft = "SELECT payments_left FROM payments WHERE customer_id = '$customerId' ORDER BY id DESC LIMIT 1";
         $getPaymentsLeft = mysqli_query($connect, $getPaymentsLeft);
 
@@ -88,6 +93,7 @@ if (isset($_POST['submit'])) {
         $query = "INSERT INTO payments VALUES ('', '$customerName','$customerId', '$amountPaid', '$reciept', '$date', '$principle', '$interest', '0', '$amount_left', '0', '$userLoggedIn')";
         
         if (mysqli_query($connect, $query)) {
+            echo $amount_left;
             $removeActive = "UPDATE `active_loans` SET `amount_toPay` = '$amount_left' WHERE `active_loans`.`customer_id` = '$getId'";
             if (mysqli_query($connect, $removeActive)) {
                 header('Location: customer_profile.php?id='.$getId);

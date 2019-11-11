@@ -84,7 +84,7 @@ if (isset($_POST['submit'])) {
                 $query = "INSERT INTO active_loans VALUES ('', '$loanID', '$customerName','$uid', '$businessTitle', '$loanAmount', '$amountToPay', '$installmentAmount', '$disbarsmentDate', '$due_date')";
                 
                 if (mysqli_query($connect, $query)) {
-                    $qu = "INSERT INTO payments VALUES ('', '$customerName','$uid', '0', 'NEW CUSTOMER', '$disbarsmentDate', '0', '0', '$nextPayment', '$amountToPay', '30', '$userLoggedIn')";
+                    $qu = "INSERT INTO payments VALUES ('', '$customerName','$uid', '0', 'NEW LOAN', '$disbarsmentDate', '0', '0', '$nextPayment', '$amountToPay', '30', '$userLoggedIn')";
                     if (mysqli_query($connect, $qu)) {
                         header('Location: customer_profile.php?id='.$uid);
                     }else {
