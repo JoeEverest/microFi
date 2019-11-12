@@ -4,7 +4,7 @@ session_start();
 include('alt_session.php');
 include('config/config.php');
 
-$retrieve = 'SELECT * FROM active_loans WHERE amount_toPay = 0 ORDER BY id DESC';
+$retrieve = 'SELECT * FROM active_loans WHERE amount_toPay <= 0 ORDER BY id DESC';
 $retrieve = mysqli_query($connect, $retrieve);
 
 ?>
@@ -42,7 +42,6 @@ $retrieve = mysqli_query($connect, $retrieve);
             <th>Business Title</th>
             <th>Loan Amount</th>
             <th>Amount Left</th>
-            <th>Installemnt Amount</th>
             <th>Disbursement Date</th>
             <th>Maturity Date</th>
         </thead>
@@ -62,7 +61,6 @@ $retrieve = mysqli_query($connect, $retrieve);
             $qr = mysqli_query($connect, $qr);
             while ($row = mysqli_fetch_array($qr)) {
                 $totalAmount = $row['amount_left'];
-                $totalAmount = $totalAmount * 100/120;
             }
         ?>
         <tr>
@@ -72,7 +70,6 @@ $retrieve = mysqli_query($connect, $retrieve);
             <td><?php echo $businessTitle; ?></td>
             <td><?php echo $loanAmount; ?></td>
             <td><?php echo $totalAmount; ?></td>
-            <td><?php echo $installAmount; ?></td>
             <td><?php echo $disbursementDate; ?></td>
             <td><?php echo $maturityDate; ?></td>
         </tr>
