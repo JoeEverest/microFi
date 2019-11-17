@@ -30,7 +30,14 @@ if (isset($_POST['loan_fee'])) {
     <title>All Branches</title>
 </head>
 <body>
-    <?php include('../sidebar.php'); ?>
+    <?php
+        include('../sidebar.php');
+        $getInterest = 'SELECT value FROM settings WHERE id = 1';
+        $getInterest = mysqli_query($connect, $getInterest); 
+        while ($row = mysqli_fetch_array($getInterest)) {
+            $interestVar = $row['value'];
+        }
+    ?>
     <div class="container">
         <nav>
             <span class="element">
@@ -43,8 +50,8 @@ if (isset($_POST['loan_fee'])) {
 
         <form method="post">
             <label for="groupName">Loan Interest</label>
-            <input class="form-control" type="number" name="interest" placeholder="Loan Interest"><br>
-            <button class="btn btn-success" type="submit" name="loan_fee">Create Group</button>
+            <input class="form-control" type="number" name="interest" value="<?php echo $interestVar; ?>" placeholder="Loan Interest"><br>
+            <button class="btn btn-success" type="submit" name="loan_fee">Update Loan</button>
         </form>
     </div>
 </body>
