@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
                 $customerId = $last_word;
                 $customerName = $first_chunk;
             $loanAmount = $_POST['loan_amount'];
-            $interest = $loanAmount * 0.2;
+            $interest = $loanAmount * $intrest/100;
             $amountToPay = $loanAmount + $interest;
             $installmentAmount = $amountToPay/30;
     

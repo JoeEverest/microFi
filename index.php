@@ -4,7 +4,7 @@ include('config/config.php');
 include('deliquence_handler.php');
 
 if (isset($_SESSION['operator_name'])) {
-    $userLoggedIn = $_SESSION['operator_name'];   
+    $userLoggedIn = $_SESSION['operator_name'];
 }
 else{
 	header("Location: login.php");
@@ -33,6 +33,7 @@ else{
         <span class="element">
             <h4>Operator: <u><?php echo $userLoggedIn; ?></u></h4>
         </span>
+
     </nav>
     <div class="body">
     <div class="cards">

@@ -62,7 +62,8 @@ $retrieve = mysqli_query($connect, $retrieve);
             $qr = mysqli_query($connect, $qr);
             while ($row = mysqli_fetch_array($qr)) {
                 $totalAmount = $row['amount_left'];
-                $totalAmount = $totalAmount * 100/120;
+                $onetwenty = $intrest + 100;
+                $totalAmount = $totalAmount * 100/$onetwenty;
             }
         ?>
         <tr>

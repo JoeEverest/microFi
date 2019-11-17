@@ -46,9 +46,10 @@ if (isset($_POST['submit'])) {
         }else {
 
         $date = date('Y-m-d');
+        $onetwenty = $intrest + 100;
 
-        $principle = $amountPaid * 100/120;
-        $interest = $amountPaid * 20/120;
+        $principle = $amountPaid * 100/$onetwenty;
+        $interest = $amountPaid * $intrest/$onetwenty;
 
         $tomorrow = date('Y-m-d', strtotime('tomorrow'));
         $sunday = date('Y-m-d', strtotime('Sunday'));

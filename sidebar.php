@@ -24,7 +24,7 @@
         </div>
         <div class="section">
             <div class="item">
-                <a href="">Settings</a>
+                <a href="admin/settings.php">Settings</a>
             </div>
             <div class="item">
                 <a href="logout.php">Log Out</a>

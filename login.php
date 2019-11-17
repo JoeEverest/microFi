@@ -5,22 +5,22 @@ $errors = '';
 $id = '';
 $password = '';
 if (isset($_POST['logIn'])) {
-    if (!$_POST['loginId'] | !$_POST['password']) {
+    if (!$_POST['username'] | !$_POST['password']) {
         $errors = 'All inputs are required';
     }else {
-        $loginId = $_POST['loginId'];
+        $username = $_POST['username'];
         $password = sha1(md5($_POST['password']));
-        //save loginId to session
-        $_SESSION['loginId'] = $loginId;
+        //save username to session
+        $_SESSION['username'] = $username;
 
-        $check_database_query = mysqli_query($connect, "SELECT * FROM operators WHERE operator_name = '$loginId' AND password='$password'");
+        $check_database_query = mysqli_query($connect, "SELECT * FROM operators WHERE operator_name = '$username' AND password='$password'");
         $check_login_query = mysqli_num_rows($check_database_query);
         
         if ($check_login_query == 1) {
             $row = mysqli_fetch_array($check_database_query);
-            $loginId = $row['operator_name'];
+            $username = $row['operator_name'];
             
-            $_SESSION['operator_name'] = $loginId;
+            $_SESSION['operator_name'] = $username;
 
             header("Location: index.php");
             
@@ -57,8 +57,8 @@ if (isset($_POST['logIn'])) {
     <div class="formHolder">
         <form method="post">
             <h3>Operator Login</h3>
-            <label for="loginId">Username</label>
-            <input required class="form-control" placeholder='Username' type="text" name="loginId">
+            <label for="username">Username</label>
+            <input required class="form-control" placeholder='Username' type="text" name="username">
             <label for="password">Password</label>
             <input required class="form-control" placeholder='Enter Your Password' type="password" name="password">
             <br>
