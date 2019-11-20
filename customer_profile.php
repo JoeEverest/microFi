@@ -71,7 +71,7 @@ if (isset($_GET['id'])) {
     <p>Branch Name: <?php echo $branchName; ?></p>
     <p>Center Name: <?php echo $centerName; ?></p>
     <p>Group Name: <?php echo $groupName; ?></p>
-    <p>Age: <?php echo $age; ?></p>
+    <p>DoB: <?php echo $age; ?></p>
     <p>Registration Date: <?php echo $registrationDate; ?></p>
     <p><a href="payment_history.php?id=<?php echo $row['unique_id'];; ?>"><button class="btn btn-success">View Payment History</button></a></p>
     <?php } ?>

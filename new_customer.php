@@ -39,7 +39,7 @@ $retrieve = mysqli_query($connect, $retrieve);
         <input class="form-control" required type="text" name="businessTitle" placeholder="Business Title"><br>
         <label for="phone">Phone Number:</label><br>
         <input class="form-control" required type="number" name="phone" placeholder="Phone Number"><br>
-        <label for="age">Age:</label><br>
+        <label for="age">Date of Birth:</label><br>
         <input class="form-control" required type="date" name="age" placeholder="Age"><br>
         Group ID:
         <select class="form-control selectpicker" data-live-search="true" name="group_name">
