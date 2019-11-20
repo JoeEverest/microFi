@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('config/config.php');
+include('deliquence_handler.php');
 
 if (isset($_SESSION['operator_name'])) {
     $userLoggedIn = $_SESSION['operator_name'];   
@@ -86,7 +87,14 @@ if (isset($_POST['submit'])) {
                 if (mysqli_query($connect, $query)) {
                     $qu = "INSERT INTO payments VALUES ('', '$customerName','$uid', '0', 'NEW LOAN', '$disbarsmentDate', '0', '0', '$nextPayment', '$amountToPay', '30', '$userLoggedIn')";
                     if (mysqli_query($connect, $qu)) {
-                        header('Location: customer_profile.php?id='.$uid);
+                        $today = date("Y-m-d", strtotime('today'));
+                        $fee = "INSERT INTO incomes VALUES ('', 'NEW LOAN','$loanID', '$applicationFee', '$today')";
+                        if (mysqli_query($connect, $fee)) {
+                            header('Location: customer_profile.php?id='.$uid);
+                        }else {
+                            $error = mysqli_error($connect);
+                            echo 'There was an error '.$error;
+                        }
                     }else {
                         $error = mysqli_error($connect);
                         echo 'There was an error '.$error;

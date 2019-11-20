@@ -4,7 +4,7 @@ include('../config/config.php');
 
 $errors = '';
 if (isset($_POST['register'])) {
-    if (!$_POST['loginId'] | !$_POST['password'] | !$_POST['password2']) {
+    if (!$_POST['loginId'] | !$_POST['password'] | !$_POST['password2'] | !$_POST['rank']) {
         
         $errors = 'Some Fields are empty';
 
@@ -13,6 +13,7 @@ if (isset($_POST['register'])) {
         $password = $_POST['password'];
         $password2 = $_POST['password2'];
         $centerName = $_POST['centerName'];
+        $rank = $_POST['rank'];
 
         if ($password != $password2) {
             $errors = 'Passwords Do not match';
@@ -28,7 +29,7 @@ if (isset($_POST['register'])) {
                     $errors = 'Operator already exists';
                 }else {
                     #Insert data to database
-                    $register = mysqli_query($connect, "INSERT INTO operators VALUES ('', '$loginId', '$centerName', '$password')");
+                    $register = mysqli_query($connect, "INSERT INTO operators VALUES ('', '$loginId', '$centerName', '$rank', '$password')");
                     session_start();
                     $_SESSION['operatorId'] = $loginId;
                     header("Location: ../login.php");
@@ -80,6 +81,10 @@ $retrieve = mysqli_query($connect, $retrieve);
                 ?>
                 <option value="<?php echo $centername.'_'.$branchname; ?>"><?php echo $centername; ?></option>
                 <?php } ?>
+            </select>
+            <select name="rank" required class="form-control">
+                <option value="OPERATOR">OPERATOR</option>
+                <option value="AUTHORIZER">AUTHORIZER</option>
             </select>
             <label for="password">Password</label>
             <input class="form-control" placeholder='Password' type="password" name="password">

@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('config/config.php');
+include('deliquence_handler.php');
 
 if (isset($_SESSION['operator_name'])) {
     $userLoggedIn = $_SESSION['operator_name'];   
@@ -55,7 +56,7 @@ else{
             <td><?php echo $amountLeft; ?></td>
             <td><?php echo $paymentsSkipped; ?></td>
             <td><?php echo '+255'.$phoneNumber; ?></td>
-            <td><a href="payment_history.php?id=<?php echo $customerId; ?>"><button class="btn btn-success">View Payment History</button></a></td>
+            <td><a href="fine.php?id=<?php echo $customerId; ?>"><button class="btn btn-danger">Fine</button></a></td>
         </tr>
         <?php } ?>
     </table>

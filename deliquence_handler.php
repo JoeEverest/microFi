@@ -5,17 +5,14 @@ if (isset($_SESSION['operator_name'])) {
 else{
 	header("Location: login.php");
 }
-
 $today = date('Y-m-d');
 $sunday = date('Y-m-d', strtotime('Sunday'));
 $yesterday = date('Y-m-d', strtotime('Yesterday'));
 $tomorrow = date('Y-m-d', strtotime('Tomorrow'));
-
 $paymentsYesterday = array();
 $paymentsToday = array();
 // if today is not sunday or public holidays
 if ($today != $sunday) {
-
         $getPaymentsYesterday = "SELECT * FROM payments WHERE next_payment = '$yesterday'";
         $getPaymentsYesterday = mysqli_query($connect, $getPaymentsYesterday);
     

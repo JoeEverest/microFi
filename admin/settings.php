@@ -2,12 +2,25 @@
 include('session.php');
 include('../config/config.php');
 
-if (isset($_POST['loan_fee'])) {
+if (isset($_POST['loan_interest'])) {
     if (!$_POST['interest']) {
         echo '<script>alert("All input fields required")</script>';
     }else{
         $interest = $_POST['interest'];
         $query = "UPDATE `settings` SET `value` = '$interest' WHERE `settings`.`id` = '1'";
+        if (mysqli_query($connect, $query)) {
+        }else {
+            echo mysqli_error($connect);
+            echo 'There was an error '.$error;
+        } 
+    }
+}
+if (isset($_POST['loan_fee'])) {
+    if (!$_POST['application_fee']) {
+        echo '<script>alert("All input fields required")</script>';
+    }else{
+        $applFee = $_POST['application_fee'];
+        $query = "UPDATE `settings` SET `value` = '$applFee' WHERE `settings`.`id` = '2'";
         if (mysqli_query($connect, $query)) {
         }else {
             echo mysqli_error($connect);
@@ -51,7 +64,10 @@ if (isset($_POST['loan_fee'])) {
         <form method="post">
             <label for="groupName">Loan Interest</label>
             <input class="form-control" type="number" name="interest" value="<?php echo $interestVar; ?>" placeholder="Loan Interest"><br>
-            <button class="btn btn-success" type="submit" name="loan_fee">Update Loan</button>
+            <button class="btn btn-success" type="submit" name="loan_interest">Update Loan</button><br>
+            <label for="groupName">Loan Application Fee</label>
+            <input class="form-control" type="number" name="application_fee" value="<?php echo $applicationFee; ?>" placeholder="Loan Interest"><br>
+            <button class="btn btn-primary" type="submit" name="loan_fee">Update Loan Fee</button>
         </form>
     </div>
 </body>

@@ -16,4 +16,12 @@ if(mysqli_connect_errno())
 	}
 	$_SESSION['interest'] = $interestVar;
 	$intrest = $_SESSION['interest'];
+
+	$getLoanFee = 'SELECT value FROM settings WHERE id = 2';
+	$getLoanFee = mysqli_query($connect, $getLoanFee); 
+	while ($row = mysqli_fetch_array($getLoanFee)) {
+		$applicationFee = $row['value'];
+	}
+	$_SESSION['fee'] = $applicationFee;
+	$applicationFee = $_SESSION['fee'];
 ?>
