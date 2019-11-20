@@ -12,17 +12,34 @@ else{
 if (isset($_GET['id'])) {
     $cusID = $_GET['id'];
     if (isset($_POST['fine'])) {
-        $getDetails = "SELECT * FROM deliquence WHERE customer_id = '$cusID'";
-        $getDetails = mysqli_query($connect, $getDetails);
-        while ($details = mysqli_fetch_array($getDetails)) {
-            $name = $details['customer_name'];
-            $amountLeft = $details['amount_left'];
-            $paymentsSkipped = $details['payments_skipped'];
-            $phone = '+255'.$details['phone_number'];
-        }
-        $date = date("Y-m-d", strtotime('today'));
-        //insert to database
-        
+        if (!$_POST['fine_amount']) {
+            echo "<script>alert('Fine Amount Required');</script>";
+        }else{
+            $getDetails = "SELECT * FROM deliquence WHERE customer_id = '$cusID'";
+            $getDetails = mysqli_query($connect, $getDetails);
+            while ($details = mysqli_fetch_array($getDetails)) {
+                $name = $details['customer_name'];
+                $amountLeft = $details['amount_left'];
+                $paymentsSkipped = $details['payments_skipped'];
+                $phone = '+255'.$details['phone_number'];
+            }
+            $fineAmount = $_POST['fine_amount'];
+            $date = date("Y-m-d", strtotime('today'));
+            $insert = "INSERT INTO fines VALUES ('', '$name','$cusID', '$fineAmount', '$date')";
+            if (mysqli_query($connect, $insert)) {
+                //add the fine to loan amount in active loan then do what's below
+                $income = "INSERT INTO incomes VALUES ('', 'FINE','$cusID', '$fineAmount', '$date')";
+                if (mysqli_query($connect, $income)) {
+                    header('Location: customer_profile.php?id='.$cusID);
+                }else {
+                    $error = mysqli_error($connect);
+                    echo 'There was an error '.$error;
+                }
+            }else {
+                $error = mysqli_error($connect);
+                echo 'There was an error '.$error;
+            }
+        }        
     }
 }else {
     header("Location: deliquence.php");
