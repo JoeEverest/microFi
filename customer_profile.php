@@ -66,7 +66,7 @@ if (isset($_GET['id'])) {
     <h3>Customer Profile</h3>
     <p>Customer ID: <?php echo $customerId; ?></p>
     <p>Customer Name: <?php echo $name; ?></p>
-    <p>Business Title: <?php echo $businessTitle; ?></p>
+    <p>Business Title: <?php echo urldecode($businessTitle); ?></p>
     <p>Phone Number: <?php echo '+255'.$phoneNumber; ?></p>
     <p>Branch Name: <?php echo $branchName; ?></p>
     <p>Center Name: <?php echo $centerName; ?></p>

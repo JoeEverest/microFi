@@ -1,6 +1,6 @@
 <?php
-// session_start();
-// include('config/config.php');
+session_start();
+include('config/config.php');
 // include('deliquence_handler.php');
 
 // if (isset($_SESSION['operator_name'])) {
@@ -25,8 +25,8 @@
 //     while ($var = mysqli_fetch_array($payments)) {
         
 //         $payment = $var['next_payment'];
-//         $today = date("Y-m-d", strtotime('today'));
-//         if($payment == $today){
+//         $presentDay = date("Y-m-d", strtotime('today'));
+//         if($payment == $presentDay){
 //             echo $payment;
 //             $dates = array();
 
@@ -49,4 +49,31 @@
 //     }
     
 // }
+
+if (isset($_SESSION['operator_name'])) {
+    $userLoggedIn = $_SESSION['operator_name'];   
+}
+else{
+	header("Location: login.php");
+}
+
+$today = date('Y-m-d');
+$sunday = date('Y-m-d', strtotime('Sunday'));
+$yesterday = date('Y-m-d', strtotime('Yesterday'));
+$tomorrow = date('Y-m-d', strtotime('Tomorrow'));
+$paymentsYesterday = array();
+$paymentsToday = array();
+$lastDate = date('Y-m-d', strtotime('1st january'));
+
+//define initial day that will be equal to the day the last payment was made
+    //select date from payments
+    //for every date check if payment with same id and next payment as date exist
+        //if it does check the next day untill the next day is yesterday as long as yesterday is not sunday
+        //IF PAYMENT DOESNT EXIST add to deliquence
+
+    //IMPORTANT FOR EVERY customer_id, get only last payment then start from there
+for ($day=$lastDate; $day < $today; $day = date('Y-m-d', strtotime('+1 day', strtotime($day)))){   
+    // if today is not sunday or public holidays
+}
+
 ?>

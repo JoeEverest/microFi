@@ -1,11 +1,12 @@
 <?php
 if (isset($_POST['submit'])) {
-    if (!$_POST['name'] | !$_POST['businessTitle'] | !$_POST['phone'] | !$_POST['age']) {
+    if (!$_POST['first_name'] | !$_POST['middle_name'] | !$_POST['last_name'] | !$_POST['businessTitle'] | !$_POST['phone'] | !$_POST['age']) {
         echo 'Some fields are empty';
     }
     else{
-        $customerName = $_POST['name'];
+        $customerName = $_POST['first_name']." ".$_POST['middle_name']." ".$_POST['last_name'];
         $businessTitle = $_POST['businessTitle'];
+        $businessTitle = urlencode($businessTitle);
         $phoneNumber = $_POST['phone'];
         $age = $_POST['age'];
         $date = date('y-m-d');

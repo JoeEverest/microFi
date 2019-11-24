@@ -33,8 +33,15 @@ $retrieve = mysqli_query($connect, $retrieve);
     <?php include('sidebar.php'); ?>
     <div class="container">
     <form method="post">
-        <label for="name">Full Name:</label><br>
-        <input class="form-control" required type="text" name="name" placeholder="John Alex Doe"><br>
+    <label for="name">Full Name:</label><br>
+        <div class="input-group">
+            <div class="input-group-text">First Name:</div>
+            <input class="form-control" required type="text" name="first_name" placeholder="First Name">
+            <div class="input-group-text">Middle Name:</div>
+            <input class="form-control" required type="text" name="middle_name" placeholder="Middle Name">
+            <div class="input-group-text">Last Name:</div>
+            <input class="form-control" required type="text" name="last_name" placeholder="Last Name">
+        </div>
         <label for="businessTitle">Business Title:</label><br>
         <input class="form-control" required type="text" name="businessTitle" placeholder="Business Title"><br>
         <label for="phone">Phone Number:</label><br>
