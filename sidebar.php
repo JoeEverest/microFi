@@ -21,6 +21,9 @@
             <div class="item">
                 <a href="deliquence.php">Deliquence</a>
             </div>
+            <div class="item">
+                <a href="income.php">Income</a>
+            </div>
         </div>
         <div class="section">
             <div class="item">

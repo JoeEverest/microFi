@@ -93,6 +93,7 @@ if (isset($_POST['submit'])) {
             $paymentsLeft = 29;
         }
         $query = "INSERT INTO payments VALUES ('', '$customerName','$customerId', '$amountPaid', '$reciept', '$date', '$principle', '$interest', '$nextPayment', '$amountLeft', '$paymentsLeft', '$userLoggedIn')";
+        $incomes = "INSERT INTO incomes VALUES ('', 'INTEREST','$customerId', '$interest', '$date')";
         
         if ($amountPaid < $installAmount) {
             $amountLeft = $installAmount - $amountPaid;
@@ -103,14 +104,30 @@ if (isset($_POST['submit'])) {
                 echo 'There was an error '.$error;
             }
             if (mysqli_query($connect, $query)) {
-                header('Location: customer_profile.php?id='.$getId);
+                if (mysqli_query($connect, $incomes)) {
+                    header('Location: customer_profile.php?id='.$getId);
+                }else {
+                    echo mysqli_error($connect);
+                    echo 'There was an error '.$error;
+                }
             }else {
                 echo mysqli_error($connect);
                 echo 'There was an error '.$error;
             }
         }else {
             if (mysqli_query($connect, $query)) {
-                header('Location: customer_profile.php?id='.$getId);
+                if (mysqli_query($connect, $incomes)) {
+                    $updateActiveLoans = "UPDATE `active_loans` SET `amount_toPay` = '$amountLeft' WHERE `active_loans`.`customer_id` = '$getId'";
+                    if (mysqli_query($connect, $updateActiveLoans)) {
+                        header('Location: customer_profile.php?id='.$getId);
+                    }else{
+                        echo mysqli_error($connect);
+                        echo 'There was an error '.$error;
+                    }
+                }else {
+                    echo mysqli_error($connect);
+                    echo 'There was an error '.$error;
+                }
             }else {
                 echo mysqli_error($connect);
                 echo 'There was an error '.$error;
