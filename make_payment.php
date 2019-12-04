@@ -32,6 +32,7 @@ if (isset($_POST['submit'])) {
 
         while ($row = mysqli_fetch_array($retrieve)) {
             $id = $row['id'];
+            $loanID = $row['loan_id'];
             $name = $row['customer_name'];
             $uniqueId = $row['customer_id'];
             $businessTitle = $row['business_title'];
@@ -92,7 +93,7 @@ if (isset($_POST['submit'])) {
         }else {
             $paymentsLeft = 29;
         }
-        $query = "INSERT INTO payments VALUES ('', '$customerName','$customerId', '$amountPaid', '$reciept', '$date', '$principle', '$interest', '$nextPayment', '$amountLeft', '$paymentsLeft', '$userLoggedIn')";
+        $query = "INSERT INTO payments VALUES ('', '$loanID', '$customerName','$customerId', '$amountPaid', '$reciept', '$date', '$principle', '$interest', '$nextPayment', '$amountLeft', '$paymentsLeft', '$userLoggedIn')";
         $incomes = "INSERT INTO incomes VALUES ('', 'INTEREST','$customerId', '$interest', '$date')";
         
         if ($amountPaid < $installAmount) {
