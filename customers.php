@@ -56,7 +56,10 @@ $retrieve = mysqli_query($connect, $retrieve);
             $businessTitle = $row['business_title'];
             $groupName = $row['group_name'];
             $customerId = $row['unique_id'];
-            $age = $row['age'];
+            $age = $row['dob'];
+            $dob = date('Y', strtotime($age));
+            $today = date('Y', strtotime('Today'));
+            $age = $today - $dob;
             $registrationDate = $row['registration_date'];
             $phoneNumber = $row['phone_number'];
 

@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
             $uniqueId = $row['customer_id'];
             $businessTitle = $row['business_title'];
             $loanAmount = $row['loan_amount'];
-            //$totalAmount = $row['amount_toPay'];
+            $loanID = $row['loan_id'];
             $installAmount = $row['installment_amount'];
             $disbursementDate = $row['disbursment_date'];
             $maturityDate = $row['maturity_date'];
@@ -92,7 +92,7 @@ if (isset($_POST['submit'])) {
         }
         $amount_left = $totalAmount - $amountPaid;
 
-        $query = "INSERT INTO payments VALUES ('', '$customerName','$customerId', '$amountPaid', '$reciept', '$date', '$principle', '$interest', '0', '$amount_left', '0', '$userLoggedIn')";
+        $query = "INSERT INTO payments VALUES ('', '$loanID', '$customerName','$customerId', '$amountPaid', '$reciept', '$date', '$principle', '$interest', '0', '$amount_left', '0', '$userLoggedIn')";
         
         if (mysqli_query($connect, $query)) {
             echo $amount_left;

@@ -74,7 +74,7 @@ if (isset($_POST['submit'])) {
             $loanCount = mysqli_num_rows($loanCount);
             
             $year = date('Y');
-            $loanCurrentNumber = $loanCount + 1;
+            $loanCurrentNumber = $loanCount + rand(1, 23);
             $loanID = "L-".$loanCurrentNumber."/".$year;
     
             // $updateLoan= "UPDATE loans SET loanstatus_id = '$loan_status', loan_issued = '1', loan_dateout = '$loan_dateout', loan_principalapproved = '$loan_princp_approved', loan_fee = '$loan_fee', loan_fee_receipt = '$loan_fee_receipt', loan_insurance = '$loan_insurance', loan_insurance_receipt = '$loan_fee_receipt' WHERE loan_id = '$_SESSION[loan_id]'";

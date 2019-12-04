@@ -94,7 +94,7 @@ if (isset($_POST['submit'])) {
             $paymentsLeft = 29;
         }
         $query = "INSERT INTO payments VALUES ('', '$loanID', '$customerName','$customerId', '$amountPaid', '$reciept', '$date', '$principle', '$interest', '$nextPayment', '$amountLeft', '$paymentsLeft', '$userLoggedIn')";
-        $incomes = "INSERT INTO incomes VALUES ('', 'INTEREST','$customerId', '$interest', '$date')";
+        $incomes = "INSERT INTO incomes VALUES ('', 'INTEREST','$loanID', '$interest', '$date')";
         
         if ($amountPaid < $installAmount) {
             $amountLeft = $installAmount - $amountPaid;
@@ -118,7 +118,7 @@ if (isset($_POST['submit'])) {
         }else {
             if (mysqli_query($connect, $query)) {
                 if (mysqli_query($connect, $incomes)) {
-                    $updateActiveLoans = "UPDATE `active_loans` SET `amount_toPay` = '$amountLeft' WHERE `active_loans`.`customer_id` = '$getId'";
+                    $updateActiveLoans = "UPDATE `active_loans` SET `amount_toPay` = '$amountLeft' WHERE `active_loans`.`loan_id` = '$loanID'";
                     if (mysqli_query($connect, $updateActiveLoans)) {
                         header('Location: customer_profile.php?id='.$getId);
                     }else{

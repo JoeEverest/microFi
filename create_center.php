@@ -53,7 +53,7 @@ $retrieve = mysqli_query($connect, $retrieve);
                 $id = $row['id'];
                 $name = $row['branch_name'];
                 $uniqueId = $row['branch_id'];
-            
+            // add branch ID to centers
             ?>
             <option value="<?php echo $name; ?>"><?php echo $name; ?></option>
             <?php } ?>

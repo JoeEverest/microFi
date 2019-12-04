@@ -12,12 +12,17 @@ if (isset($_POST['createGroup'])) {
         $groupName = $_POST['groupName'];
         $centerName = $_POST['centerName'];
 
-        $grpID = "SELECT * FROM groups WHERE center_name = '$centerName' ORDER BY id DESC";
-        $grpID = mysqli_query($connect, $grpID);
-
-        $groupId = mysqli_num_rows($grpID);
-        $groupId = $groupId + 1;
-        $groupId = $groupId * 10;
+        $grpID = rand(01, 99);
+        
+        $groupData = "SELECT * FROM groups WHERE group_id = '$grpID' AND center_name = '$centerName' ORDER BY id DESC";
+        $groupData = mysqli_query($connect, $groupData);
+        $numRows = mysqli_num_rows($grpID);
+        if ($numRows > 0) {
+            $groupId = $grpID;
+        }else {
+            $grpID = rand(01, 99);
+            $grpID = $grpID + 1;
+        }
 
         $createCenter = mysqli_query($connect, "INSERT INTO groups VALUES ('', '$groupName', '$centerName', '$groupId')");
 

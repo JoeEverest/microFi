@@ -48,7 +48,7 @@ while ($row = mysqli_fetch_array($retrieve)) {
                     //add to deliquence
                     $sunday = date('Y-m-d', strtotime('Sunday', strtotime($day)));
                     $saturday = date('Y-m-d', strtotime('Saturday', strtotime($day)));
-                    echo $day.'<br>';
+
                     if ($day != $sunday) {
                     $q = "SELECT * FROM deliquence WHERE customer_id = '$customerId' ORDER BY id DESC LIMIT 1";
                     $q = mysqli_query($connect, $q);

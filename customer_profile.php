@@ -42,24 +42,27 @@ if (isset($_GET['id'])) {
             $businessTitle = $row['business_title'];
             $groupName = $row['group_name'];
             $customerId = $row['unique_id'];
-            $age = $row['age'];
+            $age = $row['dob'];
             $registrationDate = $row['registration_date'];
             $phoneNumber = $row['phone_number'];
+            $branchName = $row['branch_name'];
+            $centerName = $row['center_name'];
 
-    $branchID = substr($customerId, 0, strpos($customerId, '/'));
-        $getBranchName = "SELECT branch_name FROM branches WHERE branch_id = '$branchID'";
-        $getBranchName = mysqli_query($connect, $getBranchName);
-        $branchName = mysqli_fetch_array($getBranchName);
-        $branchName = implode(', ', $branchName);
-        $branchName = substr($branchName, 0, strpos($branchName, ','));
 
-    $centerId = substr($customerId, 5, strpos($customerId, '/'));
-    $centerId = str_replace('/', '', $centerId);
-        $getCenterName = "SELECT center_name FROM centers WHERE center_id = '$centerId'";
-        $getCenterName = mysqli_query($connect, $getCenterName);
-        $centerName = mysqli_fetch_array($getCenterName);
-        $centerName = implode(', ', $centerName);
-        $centerName = substr($centerName, 0, strpos($centerName, ','));    
+    // $branchID = substr($customerId, 0, strpos($customerId, '/'));
+    //     $getBranchName = "SELECT branch_name FROM branches WHERE branch_id = '$branchID'";
+    //     $getBranchName = mysqli_query($connect, $getBranchName);
+    //     $branchName = mysqli_fetch_array($getBranchName);
+    //     $branchName = implode(', ', $branchName);
+    //     $branchName = substr($branchName, 0, strpos($branchName, ','));
+
+    // $centerId = substr($customerId, 5, strpos($customerId, '/'));
+    // $centerId = str_replace('/', '', $centerId);
+    //     $getCenterName = "SELECT center_name FROM centers WHERE center_id = '$centerId'";
+    //     $getCenterName = mysqli_query($connect, $getCenterName);
+    //     $centerName = mysqli_fetch_array($getCenterName);
+    //     $centerName = implode(', ', $centerName);
+    //     $centerName = substr($centerName, 0, strpos($centerName, ','));    
     
     $customerId = str_replace(' ', '', $customerId);
     ?>
