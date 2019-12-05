@@ -11,8 +11,8 @@ else{
 }
 
 if (isset($_GET['id'])) {
-    $customerid = $_GET['id'];
-    $retrieve = "SELECT * FROM payments WHERE customer_id = '$customerid' ORDER BY id DESC";
+    $loanID = $_GET['id'];
+    $retrieve = "SELECT * FROM payments WHERE loan_id = '$loanID' ORDER BY id DESC";
     $retrieve = mysqli_query($connect, $retrieve);
 }else{
     header('Location: customers.php');
@@ -34,6 +34,7 @@ if (isset($_GET['id'])) {
 <body>
     <?php include('sidebar.php'); ?>
     <div class="container">
+    <h4>Loan ID: <u><?php echo $loanID; ?></u></h4><br>
 <table class="table table-striped">
     <thead>
         <th>Customer Name</th>

@@ -39,12 +39,12 @@ $retrieve = mysqli_query($connect, $retrieve);
             <th>Loan ID</th>
             <th>Customer Name</th>
             <th>Customer ID</th>
-            <th>Business Title</th>
             <th>Loan Amount</th>
             <th>Amount Left</th>
             <th>Installemnt Amount</th>
             <th>Disbursement Date</th>
             <th>Maturity Date</th>
+            <th>Action</th>
         </thead>
         <?php
         while ($row = mysqli_fetch_array($retrieve)) {
@@ -70,12 +70,12 @@ $retrieve = mysqli_query($connect, $retrieve);
             <td><?php echo $loanID; ?></td>
             <td><?php echo $name; ?></td>
             <td><a href="customer_profile.php?id=<?php echo $uniqueId; ?>"><?php echo $uniqueId; ?></a></td>
-            <td><?php echo $businessTitle; ?></td>
             <td><?php echo $loanAmount; ?></td>
-            <td><?php echo $totalAmount; ?></td>
+            <td><?php echo round($totalAmount, 2); ?></td>
             <td><?php echo $installAmount; ?></td>
             <td><?php echo $disbursementDate; ?></td>
             <td><?php echo $maturityDate; ?></td>
+            <td><a href="payment_history.php?id=<?php echo $loanID; ?>"><button class="btn btn-success">View Payment History</button></a></td>
         </tr>
         <?php } ?>
     </table>
