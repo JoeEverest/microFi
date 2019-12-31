@@ -30,7 +30,7 @@ else{
     }else{
         header('Location: index.php');
     }
-    $extract = "SELECT * FROM groups WHERE id = '$id' ORDER BY id DESC";
+    $extract = "SELECT * FROM groups WHERE group_id = '$id' ORDER BY id DESC";
             $execute = mysqli_query($connect, $extract);
             while ($dataRows = mysqli_fetch_array($execute)) {
                 $id = $dataRows["id"];
@@ -45,18 +45,16 @@ else{
     <?php include('sidebar.php'); ?>
     <div class="container">
     <p>Group Name: <?php echo $name; ?></p>
-    <table class="table table-striped">
+    <table class="table table-striped table-sm">
         <thead>
             <th>Customer Name</th>
             <th>Business Name</th>
             <th>Customer ID</th>
             <th>Registration Date</th>
             <th>Phone Number</th>
-            <th>Action</th>
         </thead>
         <tbody>
         <?php
-        $name = ' '.$name;
         $extract = "SELECT * FROM customers WHERE group_name = '$name' ORDER BY id DESC";
         $execute = mysqli_query($connect, $extract);
                 while ($dataRows = mysqli_fetch_array($execute)) {
@@ -65,7 +63,7 @@ else{
                     $businessTitle = $dataRows["business_title"];
                     $groupName = $dataRows["group_name"];
                     $customer_id = $dataRows["unique_id"];
-                    $age = $dataRows["age"];
+                    $age = $dataRows["dob"];
                     $date = $dataRows["registration_date"];
                     $phone = $dataRows["phone_number"];
         $check_database_query = mysqli_query($connect, "SELECT * FROM groups WHERE center_name = '$centername'");
@@ -75,10 +73,9 @@ else{
             <tr>
                 <td><?php echo $customerName; ?></td>
                 <td><?php echo $businessTitle; ?></td>
-                <td><a href="customer_profile.php?id=<?php echo $id; ?>"><?php echo $customer_id; ?></a></td>
+                <td><a href="customer_profile.php?id=<?php echo $customer_id; ?>"><?php echo $customer_id; ?></a></td>
                 <td><?php echo $date; ?></td>
                 <td><?php echo '+255'.$phone; ?></td>
-                <td><a href="payment_history.php?id=<?php echo $customer_id; ?>"><button class="btn btn-success">View Payment History</button></a></td>
             </tr>
             <?php } ?>
         </tbody>

@@ -44,7 +44,7 @@ else{
     <?php include('sidebar.php'); ?>
     <div class="container">
     <h3>Branch Name: <?php echo $name; ?></h3>
-    <table class="table table-striped">
+    <table class="table table-striped table-sm">
         <thead>
             <th>Center Name</th>
             <th>Center ID</th>
@@ -68,7 +68,7 @@ else{
                 <td><?php echo $centername; ?></td>
                 <td><?php echo $centerId; ?></td>
                 <td><?php echo $numberOfGroups; ?></td>
-                <td><a href="center.php?id=<?php echo $id; ?>"><button class="btn btn-success">View Center</button></a></td>
+                <td><a href="center.php?id=<?php echo $centerId; ?>"><button class="btn btn-sm btn btn-success">View Center</button></a></td>
             </tr>
             <?php } ?>
         </tbody>

@@ -91,7 +91,7 @@ body {
 	border-radius: 2px;
 }
 
-.btn-submit {
+.btn btn-submit {
 	background: #333;
 	border: #1d1d1d 1px solid;
     border-radius: 2px;
@@ -156,7 +156,7 @@ div#response.display-block {
                     File</label> <input type="file" name="file"
                     id="file" accept=".xls,.xlsx">
                 <button type="submit" id="submit" name="import"
-                    class="btn-submit">Import</button>
+                    class="btn btn-submit">Import</button>
         
             </div>
         

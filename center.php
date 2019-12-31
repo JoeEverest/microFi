@@ -24,7 +24,7 @@ else{
     <link rel="stylesheet" href="assets/css/main.css">
     <?php
     $id = $_GET['id'];
-    $extract = "SELECT * FROM centers WHERE id = '$id' ORDER BY id DESC";
+    $extract = "SELECT * FROM centers WHERE center_id = '$id' ORDER BY id DESC";
             $execute = mysqli_query($connect, $extract);
             while ($dataRows = mysqli_fetch_array($execute)) {
                 $id = $dataRows['id'];
@@ -40,7 +40,7 @@ else{
     <div class="container">
     
     <p><?php echo $centername; ?></p>
-    <table class="table table-striped">
+    <table class="table table-striped table-sm">
         <thead>
             <th>Group Name</th>
             <th>Group ID</th>
@@ -63,7 +63,7 @@ else{
             <tr>
                 <td><?php echo $groupname; ?></td>
                 <td><?php echo $groupId; ?></td>
-                <td><a href="group.php?id=<?php echo $id; ?>"><button class="btn btn-success">View Group</button></a></td>
+                <td><a href="group.php?id=<?php echo $groupId; ?>"><button class="btn btn-sm btn btn-success">View Group</button></a></td>
             </tr>
             <?php } ?>
         </tbody>

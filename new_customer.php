@@ -61,7 +61,7 @@ $retrieve = mysqli_query($connect, $retrieve);
             <option value="<?php echo $groupId; ?>"><?php echo $groupId.' - '.$groupname.' - '.$centername; ?></option>
         <?php } ?>
         </select><br>
-        <button class="btn btn-success" type="submit" name="submit">Submit</button>
+        <button class="btn btn-sm btn btn-success" type="submit" name="submit">Submit</button>
     </form>
 </div></body>
 </html>

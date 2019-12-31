@@ -4,7 +4,7 @@ session_start();
 include('alt_session.php');
 include('config/config.php');
 
-$retrieve = 'SELECT * FROM active_loans WHERE amount_toPay <= 0 ORDER BY id DESC';
+$retrieve = 'SELECT * FROM active_loans WHERE amount_toPay <= 0 ORDER BY id ASC';
 $retrieve = mysqli_query($connect, $retrieve);
 
 ?>
@@ -34,7 +34,7 @@ $retrieve = mysqli_query($connect, $retrieve);
             </li>
         </ul>
 
-    <table class="table table-striped">
+    <table class="table table-striped table-sm">
         <thead>
             <th>Loan ID</th>
             <th>Customer Name</th>
@@ -44,6 +44,7 @@ $retrieve = mysqli_query($connect, $retrieve);
             <th>Amount Left</th>
             <th>Disbursement Date</th>
             <th>Maturity Date</th>
+            <th>Action</th>
         </thead>
         <?php
         while ($row = mysqli_fetch_array($retrieve)) {
@@ -57,10 +58,10 @@ $retrieve = mysqli_query($connect, $retrieve);
             $disbursementDate = $row['disbursment_date'];
             $maturityDate = $row['maturity_date'];
 
-            $qr = "SELECT amount_left FROM `payments` WHERE customer_id = '$uniqueId' ORDER BY `id` DESC LIMIT 1";
+            $qr = "SELECT amount_left FROM `payments` WHERE loan_id = '$loanID' ORDER BY `id` DESC LIMIT 1";
             $qr = mysqli_query($connect, $qr);
             while ($row = mysqli_fetch_array($qr)) {
-                $totalAmount = $row['amount_left'];
+                $amountLeft = $row['amount_left'];
             }
         ?>
         <tr>
@@ -69,9 +70,10 @@ $retrieve = mysqli_query($connect, $retrieve);
             <td><a href="customer_profile.php?id=<?php echo $uniqueId; ?>"><?php echo $uniqueId; ?></a></td>
             <td><?php echo $businessTitle; ?></td>
             <td><?php echo $loanAmount; ?></td>
-            <td><?php echo $totalAmount; ?></td>
+            <td><?php echo $amountLeft; ?></td>
             <td><?php echo $disbursementDate; ?></td>
             <td><?php echo $maturityDate; ?></td>
+            <td><a href="payment_history.php?id=<?php echo $loanID; ?>"><button class="btn btn-sm btn btn-success">View Payment History</button></a></td>
         </tr>
         <?php } ?>
     </table>

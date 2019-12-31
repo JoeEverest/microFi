@@ -82,6 +82,7 @@ $retrieve = mysqli_query($connect, $retrieve);
                 <option value="<?php echo $centername.'_'.$branchname; ?>"><?php echo $centername; ?></option>
                 <?php } ?>
             </select>
+            <label for="rank">Rank:</label>
             <select name="rank" required class="form-control">
                 <option value="OPERATOR">OPERATOR</option>
                 <option value="AUTHORIZER">AUTHORIZER</option>
@@ -91,7 +92,7 @@ $retrieve = mysqli_query($connect, $retrieve);
             <label for="password2">Confirm Password</label>
             <input class="form-control" placeholder='Confirm Password' type="password" name="password2">
             <br>
-            <button class="btn btn-success" type="submit" name="register">Register Operator</button>
+            <button class="btn btn-sm btn btn-success" type="submit" name="register">Register Operator</button>
         </form>
     </div>
 </div></body>

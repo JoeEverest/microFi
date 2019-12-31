@@ -68,7 +68,7 @@ $retrieve = mysqli_query($connect, $retrieve);
         </select>
         <!-- <label for="groupId">Group ID</label> -->
         <!-- <input class="form-control" type="number" name="groupId" placeholder="Group ID"> --><br> 
-        <button class="btn btn-success" type="submit" name="createGroup">Create Group</button>
+        <button class="btn btn-sm btn btn-success" type="submit" name="createGroup">Create Group</button>
     </form>
 </div></body>
 </html>

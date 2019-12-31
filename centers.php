@@ -24,7 +24,7 @@ $retrieve = mysqli_query($connect, $retrieve);
 <body>
     <?php include('sidebar.php'); ?>
     <div class="container">
-    <table class="table table-striped">
+    <table class="table table-striped table-sm">
         <thead>
             <th>ID</th>
             <th>Center Name</th>
@@ -44,7 +44,7 @@ $retrieve = mysqli_query($connect, $retrieve);
             <td><?php echo $centername; ?></td>
             <td><?php echo $branchname; ?></td>
             <td><?php echo $centerId; ?></td>
-            <td><a href="center.php?id=<?php echo $id; ?>"><button class="btn btn-success">View</button></a></td>
+            <td><a href="center.php?id=<?php echo $id; ?>"><button class="btn btn-sm btn btn-success">View</button></a></td>
         </tr>
         <?php } ?>
     </table>

@@ -31,7 +31,7 @@ $retrieve = mysqli_query($connect, $retrieve);
 <body>
     <?php include('sidebar.php'); ?>
     <div class="container">
-    <table class="table table-striped">
+    <table class="table table-striped table-sm">
         <thead>
             <th>Branch Name</th>
             <th>Branch ID</th>
@@ -46,7 +46,7 @@ $retrieve = mysqli_query($connect, $retrieve);
         <tr>
             <td><?php echo $name; ?></td>
             <td><?php echo $uniqueId; ?></td>
-            <td><a href="branch.php?id=<?php echo $id; ?>"><button class="btn btn-success">View Branch</button></a></td>
+            <td><a href="branch.php?id=<?php echo $id; ?>"><button class="btn btn-sm btn btn-success">View Branch</button></a></td>
         </tr>
         <?php } ?>
     </table>

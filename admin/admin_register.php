@@ -66,7 +66,7 @@ if (isset($_POST['register'])) {
         <input class="form-control" placeholder='Username' type="text" name="loginId">
         <input class="form-control" placeholder='Password' type="password" name="password">
         <input class="form-control" placeholder='Confirm Password' type="password" name="password2">
-        <button class="btn btn-success" type="submit" name="register">Register Admin</button>
+        <button class="btn btn-sm btn btn-success" type="submit" name="register">Register Admin</button>
     </form>
 </div></body>
 </html>

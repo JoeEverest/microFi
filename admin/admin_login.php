@@ -61,7 +61,7 @@ if (isset($_POST['logIn'])) {
         <input class="form-control" placeholder='Username' type="text" name="loginId">
         <label for="password">Password</label>
         <input class="form-control" placeholder='Password' type="password" name="password"><br>
-        <button class="btn btn-success" type="submit" name="logIn">Login</button>
+        <button class="btn btn-sm btn btn-success" type="submit" name="logIn">Login</button>
     </form>
     </div>
 </div></body>

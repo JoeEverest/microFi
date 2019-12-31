@@ -39,7 +39,7 @@ if (isset($_POST['createBranch'])) {
         <input class="form-control" required type="text" name="branchName" placeholder="Branch Name">
         <!-- <label for="branchid">Branch ID</label> -->
         <!-- <input class="form-control" required type="number" name="branchId" placeholder="Branch ID">--><br> 
-        <button class="btn btn-success" type="submit" name="createBranch">Create Branch</button>
+        <button class="btn btn-sm btn btn-success" type="submit" name="createBranch">Create Branch</button>
     </form>
 </div></body>
 </html>

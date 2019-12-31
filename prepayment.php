@@ -16,7 +16,7 @@ if (isset($_GET['id'])) {
     header('Location: active_loans.php');
 }
 
-$retrieve = "SELECT * FROM active_loans WHERE customer_id = '$getId' ORDER BY id DESC";
+$retrieve = "SELECT * FROM active_loans WHERE loan_id = '$getId' ORDER BY id DESC";
 $retrieve = mysqli_query($connect, $retrieve);
 
 if (isset($_POST['submit'])) {
@@ -61,11 +61,11 @@ if (isset($_POST['submit'])) {
             $nextPayment = date('Y-m-d', strtotime('tomorrow'));
         }
         
-        $getAmountLeft = "SELECT amount_left FROM payments WHERE customer_id = '$getId' ORDER BY id DESC LIMIT 1";
+        $getAmountLeft = "SELECT amount_left FROM payments WHERE loan_id = '$loanID' ORDER BY id DESC LIMIT 1";
         $getAmountLeft = mysqli_query($connect, $getAmountLeft);
 
         $num_rows = mysqli_num_rows($getAmountLeft);
-        $gal = "SELECT amount_left FROM payments WHERE customer_id = '$uniqueId' ORDER BY id DESC LIMIT 1";
+        $gal = "SELECT amount_left FROM payments WHERE loan_id = '$loanID' ORDER BY id DESC LIMIT 1";
         $gal = mysqli_query($connect, $gal);
         while ($rew = mysqli_fetch_array($gal)) {
             $totalAmount = $rew['amount_left'];
@@ -78,7 +78,7 @@ if (isset($_POST['submit'])) {
         // }else {
             $amountLeft = $totalAmount - $amountPaid;
         // }
-        $getPaymentsLeft = "SELECT payments_left FROM payments WHERE customer_id = '$customerId' ORDER BY id DESC LIMIT 1";
+        $getPaymentsLeft = "SELECT payments_left FROM payments WHERE loan_id = '$loanID' ORDER BY id DESC LIMIT 1";
         $getPaymentsLeft = mysqli_query($connect, $getPaymentsLeft);
 
         $num_rows = mysqli_num_rows($getPaymentsLeft);
@@ -92,13 +92,19 @@ if (isset($_POST['submit'])) {
         }
         $amount_left = $totalAmount - $amountPaid;
 
-        $query = "INSERT INTO payments VALUES ('', '$loanID', '$customerName','$customerId', '$amountPaid', '$reciept', '$date', '$principle', '$interest', '0', '$amount_left', '0', '$userLoggedIn')";
+        $query = "INSERT INTO payments VALUES ('', '$loanID', '$customerName','$uniqueId', '$amountPaid', '$reciept', '$date', '$principle', '$interest', '0', '$amount_left', '0', '$userLoggedIn')";
         
         if (mysqli_query($connect, $query)) {
             echo $amount_left;
-            $removeActive = "UPDATE `active_loans` SET `amount_toPay` = '$amount_left' WHERE `active_loans`.`customer_id` = '$getId'";
+            $removeActive = "UPDATE `active_loans` SET `amount_toPay` = '$amount_left' WHERE `active_loans`.`loan_id` = '$getId'";
             if (mysqli_query($connect, $removeActive)) {
-                header('Location: customer_profile.php?id='.$getId);
+                $incomes = "INSERT INTO incomes VALUES ('', 'INTEREST','$loanID','$customerId', '$interest', '$date')";
+                if (mysqli_query($connect, $incomes)) {
+                    header('Location: customer_profile.php?id='.$uniqueId);
+                }else {
+                    echo mysqli_error($connect);
+                    echo 'There was an error '.$error;
+                }
             }else{
                 echo mysqli_error($connect);
                 echo 'There was an error '.$error;
@@ -134,14 +140,14 @@ if (isset($_POST['submit'])) {
         while ($row = mysqli_fetch_array($retrieve)) {
             $id = $row['id'];
             $name = $row['customer_name'];
-            $uniqueId = $row['customer_id'];
+            $uniqueId = $row['loan_id'];
             $businessTitle = $row['business_title'];
             $loanAmount = $row['loan_amount'];
             $installAmount = $row['installment_amount'];
             $disbursementDate = $row['disbursment_date'];
             $maturityDate = $row['maturity_date'];
 
-        $getAmountLeft = "SELECT amount_left FROM payments WHERE customer_id = '$uniqueId' ORDER BY id DESC LIMIT 1";
+        $getAmountLeft = "SELECT amount_left FROM payments WHERE loan_id = '$uniqueId' ORDER BY id DESC LIMIT 1";
         $getAmountLeft = mysqli_query($connect, $getAmountLeft);
         while ($row = mysqli_fetch_array($getAmountLeft)) {
             $totalAmount = $row['amount_left'];
@@ -156,7 +162,7 @@ if (isset($_POST['submit'])) {
     <label for="reciept">Reciept Number</label>
     <input required type="text" class="form-control" name="reciept" placeholder="Reciept Number">
     <?php } ?><br>
-    <button class="btn btn-success" type="submit" name="submit">Submit</button>
+    <button class="btn btn-sm btn btn-success" type="submit" name="submit">Submit</button>
     </form>
 </div></body>
 </html>

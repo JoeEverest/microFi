@@ -36,7 +36,7 @@ $retrieve = mysqli_query($connect, $retrieve);
             </li>
         </ul>
 
-    <table class="table table-striped">
+    <table class="table table-striped table-sm">
         <thead>
             <th>Customer ID</th>
             <th>Customer Name</th>

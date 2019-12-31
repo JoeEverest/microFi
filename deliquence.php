@@ -28,7 +28,7 @@ else{
 <body>
     <?php include('sidebar.php'); ?>
     <div class="container">
-    <table class="table table-striped">
+    <table class="table table-striped table-sm">
         <thead>
             <th>Customer Name</th>
             <th>Customer ID</th>
@@ -56,7 +56,7 @@ else{
             <td><?php echo $amountLeft; ?></td>
             <td><?php echo $paymentsSkipped; ?></td>
             <td><?php echo '+255'.$phoneNumber; ?></td>
-            <td><a href="fine.php?id=<?php echo $customerId; ?>"><button class="btn btn-danger">Fine</button></a></td>
+            <td><a href="fine.php?id=<?php echo $customerId; ?>"><button class="btn btn-sm btn btn-danger">Fine</button></a></td>
         </tr>
         <?php } ?>
     </table>

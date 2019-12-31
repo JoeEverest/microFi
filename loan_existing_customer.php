@@ -10,7 +10,7 @@ else{
 	header("Location: login.php");
 }
 if (isset($_POST['submit'])) {
-    if (!$_POST['customer_name'] | !$_POST['loan_amount'] | !$_POST['disbursement_date']) {
+    if (!$_POST['customer_name'] | !$_POST['loan_amount'] | !$_POST['recieptNumber']) {
         echo "<script> alert ('All input fileds are required'); </script>";
     }else {
         //Check if loans exist
@@ -44,20 +44,7 @@ if (isset($_POST['submit'])) {
             $amountToPay = $loanAmount + $interest;
             $installmentAmount = $amountToPay/30;
     
-            $disbarsmentDate = $_POST['disbursement_date'];
-            
-            $due_date = date('Y-m-d', strtotime('+35 days', strtotime($disbarsmentDate)));
-            $nextday = date('Y-m-d', strtotime('+1 day', strtotime($disbarsmentDate)));
-    
-            $sunday = date('Y-m-d', strtotime('sunday', strtotime($disbarsmentDate)));
-    
-            if ($nextday != $sunday) {
-                $nextPayment = date('Y-m-d', strtotime('+1 day', strtotime($disbarsmentDate)));
-            }else {
-                $nextPayment = date('Y-m-d', strtotime('+2 days', strtotime($disbarsmentDate)));
-            }
-            
-            $maturityDate = date('y-m-d');
+            $reciept = $_POST['recieptNumber'];
     
             $customerDetails = "SELECT * FROM customers WHERE id = '$customerId' ORDER BY id DESC";
             $customerDetails = mysqli_query($connect, $customerDetails);
@@ -65,7 +52,6 @@ if (isset($_POST['submit'])) {
             while ($row = mysqli_fetch_array($customerDetails)) {
                 $id = $row['id'];
                 $name = $row['customer_name'];
-                $businessTitle = $row['business_title'];
                 $customerid = $row['unique_id'];
             }
     
@@ -76,29 +62,21 @@ if (isset($_POST['submit'])) {
             $year = date('Y');
             $loanCurrentNumber = $loanCount + rand(1, 23);
             $loanID = "L-".$loanCurrentNumber."/".$year;
-    
-            // $updateLoan= "UPDATE loans SET loanstatus_id = '$loan_status', loan_issued = '1', loan_dateout = '$loan_dateout', loan_principalapproved = '$loan_princp_approved', loan_fee = '$loan_fee', loan_fee_receipt = '$loan_fee_receipt', loan_insurance = '$loan_insurance', loan_insurance_receipt = '$loan_fee_receipt' WHERE loan_id = '$_SESSION[loan_id]'";
-            // $query_issue = mysqli_query($connect, $updateLoan);
-            // checkSQL($connect, $query_issue);
+
             if ($amt == 0) {
 
-                $query = "INSERT INTO active_loans VALUES ('', '$loanID', '$customerName','$uid', '$businessTitle', '$loanAmount', '$amountToPay', '$installmentAmount', '$disbarsmentDate', '$due_date')";
+                $query = "INSERT INTO pending_loans VALUES ('', '$loanID', '$customerName','$uid', '$loanAmount', '$amountToPay', '$installmentAmount', '$reciept', 'PENDING')";
                 
                 if (mysqli_query($connect, $query)) {
-                    $qu = "INSERT INTO payments VALUES ('', '$loanID', '$customerName','$uid', '0', 'NEW LOAN', '$disbarsmentDate', '0', '0', '$nextPayment', '$amountToPay', '30', '$userLoggedIn')";
-                    if (mysqli_query($connect, $qu)) {
-                        $today = date("Y-m-d", strtotime('today'));
-                        $fee = "INSERT INTO incomes VALUES ('', 'NEW LOAN','$loanID', '$applicationFee', '$today')";
-                        if (mysqli_query($connect, $fee)) {
-                            header('Location: customer_profile.php?id='.$uid);
-                        }else {
-                            $error = mysqli_error($connect);
-                            echo 'There was an error '.$error;
-                        }
+                    $today = date("Y-m-d", strtotime('today'));
+                    $fee = "INSERT INTO incomes VALUES ('', 'NEW LOAN','$loanID', '$reciept', '$applicationFee', '$today')";
+                    if (mysqli_query($connect, $fee)) {
+                        header('Location: customer_profile.php?id='.$uid);
                     }else {
                         $error = mysqli_error($connect);
                         echo 'There was an error '.$error;
                     }
+                    
                 }else {
                     $error = mysqli_error($connect);
                     echo 'There was an error '.$error;
@@ -147,8 +125,11 @@ $retrieve = mysqli_query($connect, $retrieve);
         </select><br><br>
         Loan Amount: 
         <input class="form-control" type="number" name="loan_amount" placeholder="Loan Amount"><br>
-        Disbursement Date: <input class="form-control" type="date" name="disbursement_date"><br>
-        <button class="btn btn-success" type="submit" name="submit">Submit</button>
+        Loan Fee: 
+        <input class="form-control" type="number" name="loan_fee" readonly value="<?php echo $applicationFee; ?>"><br>
+        Disbursement Date:
+        <input class="form-control" type="text" name="recieptNumber" placeholder="Reciept Number"><br>
+        <button class="btn btn-sm btn btn-success" type="submit" name="submit">Submit</button>
     </form>
 </div></body>
 </html>

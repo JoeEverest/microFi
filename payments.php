@@ -32,7 +32,7 @@ $retrieve = mysqli_query($connect, $retrieve);
     <?php include('sidebar.php'); ?>
     <div class="container">
     <h3>Payments for <?php echo $today; ?></h3>
-<table class="table table-striped">
+<table class="table table-striped table-sm">
     <thead>
         <th>Customer Name</th>
         <th>Customer ID</th>
@@ -44,6 +44,7 @@ $retrieve = mysqli_query($connect, $retrieve);
     <?php
         while ($row = mysqli_fetch_array($retrieve)) {
             $name = $row['customer_name'];
+            $loanID = $row['loan_id'];
             $customerId = $row['customer_id'];
             $amountPaid = $row['amount_paid'];
             $recieptNumber = $row['reciept_number'];
@@ -54,7 +55,7 @@ $retrieve = mysqli_query($connect, $retrieve);
     $Id = substr($customerId, 12, strpos($customerId, '/'));
     $Id = str_replace('/', '', $Id);
 
-    $q = "SELECT installment_amount FROM active_loans WHERE customer_id = '$customerId' ORDER BY id DESC";
+    $q = "SELECT installment_amount FROM active_loans WHERE loan_id = '$loanID' ORDER BY id DESC";
     $q = mysqli_query($connect, $q);
     $installment = mysqli_fetch_array($q);
     $installmentAmount = $installment['installment_amount'];
@@ -64,7 +65,7 @@ $retrieve = mysqli_query($connect, $retrieve);
         <td><a href="customer_profile.php?id=<?php echo $customerId; ?>"><?php echo $customerId; ?></a></td>
         <td><?php echo $installmentAmount; ?></td>
         <td><?php echo $amountLeft; ?></td>
-        <td><a href="make_payment.php?id=<?php echo $customerId; ?>"><button class="btn btn-success">Make Payment</button></a></td>
+        <td><a href="make_payment.php?id=<?php echo $loanID; ?>"><button class="btn btn-sm btn btn-success">Make Payment</button></a></td>
     </tr>
     <?php } ?>
 </tbody>

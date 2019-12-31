@@ -62,7 +62,7 @@ $retrieve = mysqli_query($connect, $retrieve);
         <input class="form-control" required type="text" name="centerName" placeholder="Center Name">
         <!-- <label for="centerId">Center ID</label> -->
         <!-- <input class="form-control" required type="number" name="centerId" placeholder="Center ID"> --><br>
-        <button class="btn btn-success" type="submit" name="createCenter">Create Center</button>
+        <button class="btn btn-sm btn btn-success" type="submit" name="createCenter">Create Center</button>
     </form>
 </div></body>
 </html>

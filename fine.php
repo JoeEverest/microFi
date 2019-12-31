@@ -78,7 +78,7 @@ if (isset($_GET['id'])) {
         <h4>Payments Skipped: <?php echo $paymentsSkipped; ?></h4>
         <label for="fine_amount">Fine Amount</label>
         <input type="number" name="fine_amount" class="form-control" placeholder="Fine Amount"><br>
-        <button type="submit" name="fine" class="btn btn-success">Issue Fine</button>
+        <button type="submit" name="fine" class="btn btn-sm btn btn-success">Issue Fine</button>
     </form>
 
     </div>

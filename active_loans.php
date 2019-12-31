@@ -34,7 +34,7 @@ $retrieve = mysqli_query($connect, $retrieve);
             </li>
         </ul>
     
-    <table class="table table-striped">
+    <table class="table table-striped table-sm">
         <thead>
             <th>Loan ID</th>
             <th>Customer Name</th>
@@ -75,7 +75,7 @@ $retrieve = mysqli_query($connect, $retrieve);
             <td><?php echo $installAmount; ?></td>
             <td><?php echo $disbursementDate; ?></td>
             <td><?php echo $maturityDate; ?></td>
-            <td><a href="payment_history.php?id=<?php echo $loanID; ?>"><button class="btn btn-success">View Payment History</button></a></td>
+            <td><a href="payment_history.php?id=<?php echo $loanID; ?>"><button class="btn btn-sm btn btn-success">View Payment History</button></a></td>
         </tr>
         <?php } ?>
     </table>

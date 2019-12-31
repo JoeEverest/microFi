@@ -33,7 +33,7 @@ while ($row = mysqli_fetch_array($retrieve)) {
     $getLastPayment = mysqli_query($connect, $getLastPayment);
     while ($data = mysqli_fetch_array($getLastPayment)) {
         //$id = $data['id'];
-        //$loanID = $data['loan_id'];
+        $loanID = $data['loan_id'];
         $name = $data['customer_name'];
         $customerId = $data['customer_id'];
         $customerID = $customerId;
@@ -60,7 +60,7 @@ while ($row = mysqli_fetch_array($retrieve)) {
                     if ($num_rows > 0) {
                         $query = "UPDATE `deliquence` SET `payments_skipped` = '$numDel' WHERE `deliquence`.`customer_id` = '$customerId'"; 
                     }else{
-                        $query = "INSERT INTO deliquence VALUES ('', '$name', '$customerId', '$amountLeft', '$disbursementDate', '$maturityDate', '$numDel', '$phoneNumber')";
+                        $query = "INSERT INTO deliquence VALUES ('', '$loanID', '$name', '$customerId', '$amountLeft', '$disbursementDate', '$maturityDate', '$numDel', '$phoneNumber')";
                     }
                     if (mysqli_query($connect, $query)) {
                         if ($day == $saturday) {
@@ -68,7 +68,7 @@ while ($row = mysqli_fetch_array($retrieve)) {
                         }else{
                             $nextDay = date('Y-m-d', strtotime('+1 day', strtotime($day)));
                         }
-                        $updatePayments = "INSERT INTO payments VALUES ('', '', '$name','$customerId', 0, 'DELIQUENCE', '$day', '0', '0', '$nextDay', '$amountLeft', '$paymentsLeft', '$userLoggedIn')";
+                        $updatePayments = "INSERT INTO payments VALUES ('', '$loanID', '$name','$customerId', 0, 'DELIQUENCE', '$day', '0', '0', '$nextDay', '$amountLeft', '$paymentsLeft', '$userLoggedIn')";
                         if (mysqli_query($connect, $updatePayments)) {
                         }else {
                             $error = mysqli_error($connect);

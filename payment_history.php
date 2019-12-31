@@ -35,7 +35,7 @@ if (isset($_GET['id'])) {
     <?php include('sidebar.php'); ?>
     <div class="container">
     <h4>Loan ID: <u><?php echo $loanID; ?></u></h4><br>
-<table class="table table-striped">
+<table class="table table-striped table-sm">
     <thead>
         <th>Customer Name</th>
         <th>Customer ID</th>

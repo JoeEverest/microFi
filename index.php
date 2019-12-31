@@ -47,10 +47,10 @@ else{
                 <p>Create new Group</p>
             </div>
         </a>
-        <a href="">
+        <a href="pending_loans.php">
             <div class="card">
             <img src="https://img.icons8.com/dotty/200/000000/data-pending.png">           
-                <p>Pending Customers</p>
+                <p>Pending Loans</p>
             </div>
         </a>
     </div>

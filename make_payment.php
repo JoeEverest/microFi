@@ -15,8 +15,7 @@ if (isset($_GET['id'])) {
 }else {
     header('Location: active_loans.php');
 }
-
-$retrieve = "SELECT * FROM active_loans WHERE customer_id = '$getId' ORDER BY id DESC";
+$retrieve = "SELECT * FROM active_loans WHERE loan_id = '$getId' ORDER BY id DESC";
 $retrieve = mysqli_query($connect, $retrieve);
 while ($row = mysqli_fetch_array($retrieve)) {
     $installAmount = $row['installment_amount'];
@@ -27,7 +26,7 @@ if (isset($_POST['submit'])) {
         echo 'All input fields are required';
     }else {
 
-        $retrieve = "SELECT * FROM active_loans WHERE customer_id = '$getId' ORDER BY id DESC";
+        $retrieve = "SELECT * FROM active_loans WHERE loan_id = '$getId' ORDER BY id DESC";
         $retrieve = mysqli_query($connect, $retrieve);
 
         while ($row = mysqli_fetch_array($retrieve)) {
@@ -94,11 +93,16 @@ if (isset($_POST['submit'])) {
             $paymentsLeft = 29;
         }
         $query = "INSERT INTO payments VALUES ('', '$loanID', '$customerName','$customerId', '$amountPaid', '$reciept', '$date', '$principle', '$interest', '$nextPayment', '$amountLeft', '$paymentsLeft', '$userLoggedIn')";
-        $incomes = "INSERT INTO incomes VALUES ('', 'INTEREST','$loanID', '$interest', '$date')";
+        $incomes = "INSERT INTO incomes VALUES ('', 'INTEREST','$loanID','$customerId', '$interest', '$date')";
         
         if ($amountPaid < $installAmount) {
-            $amountLeft = $installAmount - $amountPaid;
-            $q1 = "INSERT INTO deliquence VALUES ('', '$customerName', '$customerId', '$amountPaid', '$disbursementDate', '$maturityDate', '$amountLeft', '$phoneNumber')";
+            //$amountLeft = $installAmount - $amountPaid;
+            $q = "SELECT * FROM deliquence WHERE customer_id = '$customerId' ORDER BY id DESC LIMIT 1";
+            $q = mysqli_query($connect, $q);
+            $numDel = mysqli_fetch_array($q);
+            $numDel = $numDel['payments_skipped'];
+            $numDel = $numDel + 1;
+            $q1 = "INSERT INTO deliquence VALUES ('', '$customerName', '$customerId', '$amountPaid', '$disbursementDate', '$maturityDate', '$numDel', '$phoneNumber')";
             if (mysqli_query($connect, $q1)) {
             }else {
                 echo mysqli_error($connect);
@@ -106,7 +110,7 @@ if (isset($_POST['submit'])) {
             }
             if (mysqli_query($connect, $query)) {
                 if (mysqli_query($connect, $incomes)) {
-                    header('Location: customer_profile.php?id='.$getId);
+                    header('Location: customer_profile.php?id='.$customerId);
                 }else {
                     echo mysqli_error($connect);
                     echo 'There was an error '.$error;
@@ -120,7 +124,7 @@ if (isset($_POST['submit'])) {
                 if (mysqli_query($connect, $incomes)) {
                     $updateActiveLoans = "UPDATE `active_loans` SET `amount_toPay` = '$amountLeft' WHERE `active_loans`.`loan_id` = '$loanID'";
                     if (mysqli_query($connect, $updateActiveLoans)) {
-                        header('Location: customer_profile.php?id='.$getId);
+                        header('Location: customer_profile.php?id='.$customerId);
                     }else{
                         echo mysqli_error($connect);
                         echo 'There was an error '.$error;
@@ -159,7 +163,7 @@ if (isset($_POST['submit'])) {
     <h3>Make a Payment</h3>
     <form method="post">
     <?php
-    $retrieve = "SELECT * FROM active_loans WHERE customer_id = '$getId' ORDER BY id DESC";
+    $retrieve = "SELECT * FROM active_loans WHERE loan_id = '$getId' ORDER BY id DESC";
     $retrieve = mysqli_query($connect, $retrieve);
         while ($row = mysqli_fetch_array($retrieve)) {
             $id = $row['id'];
@@ -181,10 +185,10 @@ if (isset($_POST['submit'])) {
     <label for="reciept">Reciept Number</label>
     <input required type="text" class="form-control" name="reciept" placeholder="Reciept Number">
     <?php } ?><br>
-    <button class="btn btn-success" type="submit" name="submit">Submit</button>
+    <button class="btn btn-sm btn btn-success" type="submit" name="submit">Submit</button>
     </form>
     <br>
-    <a href="prepayment.php?id=<?php echo $getId; ?>"><button class="btn btn-dark">Prepayment</button></a>
+    <a href="prepayment.php?id=<?php echo $getId; ?>"><button class="btn btn-sm btn btn-dark">Prepayment</button></a>
 
 </div></body>
 </html>

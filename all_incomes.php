@@ -33,7 +33,7 @@ $retrieve = mysqli_query($connect, $retrieve);
     <div class="container">
         <h4>All incomes</h4>
         <!-- <h5>Filter Dates</h5> -->
-    <table class="table table-striped">
+    <table class="table table-striped table-sm">
         <thead>
             <th>Description</th>
             <th>Reference</th>
