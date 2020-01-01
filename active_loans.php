@@ -52,7 +52,6 @@ $retrieve = mysqli_query($connect, $retrieve);
             $loanID = $row['loan_id'];
             $name = $row['customer_name'];
             $uniqueId = $row['customer_id'];
-            $businessTitle = $row['business_title'];
             $loanAmount = $row['loan_amount'];
             $installAmount = $row['installment_amount'];
             $disbursementDate = $row['disbursment_date'];

@@ -64,12 +64,12 @@ if (isset($_POST['submit'])) {
                 $customerid = $row['unique_id'];
             }
     
-            $loanCount = "SELECT id FROM active_loans ORDER BY id DESC";
+            $loanCount = "SELECT id FROM pending_loans ORDER BY id DESC";
             $loanCount = mysqli_query($connect, $loanCount);
             $loanCount = mysqli_num_rows($loanCount);
             
             $year = date('Y');
-            $loanCurrentNumber = $loanCount + rand(1, 23);
+            $loanCurrentNumber = $loanCount + 1;
             $loanID = "L-".$loanCurrentNumber."/".$year;
 
             if ($amt == 0) {
