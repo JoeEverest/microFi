@@ -3,7 +3,16 @@ include('config/config.php');
 // // include('deliquence_handler.php');
 
 if (isset($_SESSION['operator_name'])) {
-    $userLoggedIn = $_SESSION['operator_name'];   
+    $userLoggedIn = $_SESSION['operator_name'];
+    
+    $getCenter = "SELECT * FROM operators WHERE operator_name = '$userLoggedIn'";
+    $getCenter = mysqli_query($connect, $getCenter);
+    while ($centerName = mysqli_fetch_array($getCenter)){
+        $centerDetails = $centerName['center_name'];
+        $cname = explode("_", $centerDetails);
+        $centerName = $cname[0];
+        $branchName = $cname[1];
+    }
 }
 else{
 	header("Location: login.php");
