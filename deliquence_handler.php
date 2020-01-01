@@ -10,8 +10,8 @@ if (isset($_SESSION['operator_name'])) {
     while ($centerName = mysqli_fetch_array($getCenter)){
         $centerDetails = $centerName['center_name'];
         $cname = explode("_", $centerDetails);
-        $centerName = $cname[0];
-        $branchName = $cname[1];
+        $center__name = $cname[0];
+        $branch__name = $cname[1];
     }
 }
 else{

@@ -60,7 +60,7 @@ else{
                 <td><?php echo $customerID; ?></td>
                 <td><?php echo $loanAmount; ?></td>
                 <td>
-                    <a href="approve_loan.php?=<?php echo $id; ?>">
+                    <a href="approve_loan.php?reqID=<?php echo $id; ?>">
                         <button class="btn btn-sm btn btn-success">Approve Loan</button>
                     </a>
                 </td>
