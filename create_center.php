@@ -3,6 +3,7 @@ session_start();
 
 include('alt_session.php');
 include('config/config.php');
+include('date.php');
 
 if (isset($_POST['createCenter'])) {
     if (!$_POST['branchName'] | !$_POST['centerName']) {
