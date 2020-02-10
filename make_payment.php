@@ -178,7 +178,6 @@ if (isset($_POST['submit'])) {
             $id = $row['id'];
             $name = $row['customer_name'];
             $uniqueId = $row['customer_id'];
-            $businessTitle = $row['business_title'];
             $loanAmount = $row['loan_amount'];
             $totalAmount = $row['amount_toPay'];
             $installAmount = $row['installment_amount'];

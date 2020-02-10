@@ -13,6 +13,11 @@ if (isset($_SESSION['operator_name'])) {
         $cname = explode("_", $centerDetails);
         $center__name = $cname[0];
         $branch__name = $cname[1];
+
+        $getCenterID = "SELECT center_id FROM centers WHERE center_name = '$center__name'";
+        $getCenterID = mysqli_query($connect, $getCenterID);
+        $centerID = mysqli_fetch_array($getCenterID);
+        $centerID = $centerID["center_id"];
     }
 }
 else{
@@ -61,8 +66,12 @@ $retrieve = mysqli_query($connect, $retrieve);
             $nextPayment = $row['next_payment'];
             $amountLeft = $row['amount_left'];
 
-    $Id = substr($customerId, 12, strpos($customerId, '/'));
-    $Id = str_replace('/', '', $Id);
+            $customerData = explode("/", $customerId);
+
+            $customerCenter = $customerData[1];
+
+    if ($centerID == $customerCenter) {
+    
 
     $q = "SELECT installment_amount FROM active_loans WHERE loan_id = '$loanID' ORDER BY id DESC";
     $q = mysqli_query($connect, $q);
@@ -76,7 +85,10 @@ $retrieve = mysqli_query($connect, $retrieve);
         <td><?php echo $amountLeft; ?></td>
         <td><a href="make_payment.php?id=<?php echo $loanID; ?>"><button class="btn btn-sm btn btn-success">Make Payment</button></a></td>
     </tr>
-    <?php } ?>
+    <?php
+        }
+    }
+    ?>
 </tbody>
 </table>
 </div>

@@ -55,12 +55,12 @@ else{
                 <p>Incomes by Groups</p>
             </div>
         </a>
-        <a href="customer_incomes.php">
+        <!-- <a href="customer_incomes.php">
             <div class="card">
             <img src="https://img.icons8.com/dotty/200/000000/data-pending.png">           
                 <p>Incomes by Customers</p>
             </div>
-        </a>
+        </a> -->
     </div>
     </div>
     </div>

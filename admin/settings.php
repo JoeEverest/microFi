@@ -67,7 +67,7 @@ if (isset($_POST['loan_fee'])) {
             <button class="btn btn-sm btn btn-success" type="submit" name="loan_interest">Update Loan</button><br>
             <label for="groupName">Loan Application Fee</label>
             <input class="form-control" type="number" name="application_fee" value="<?php echo $applicationFee; ?>" placeholder="Loan Interest"><br>
-            <button class="btn btn-sm btn btnprimary" type="submit" name="loan_fee">Update Loan Fee</button>
+            <button class="btn btn-sm btn btn-primary" type="submit" name="loan_fee">Update Loan Fee</button>
         </form>
     </div>
 </body>

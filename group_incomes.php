@@ -14,6 +14,7 @@ if (isset($_SESSION['operator_name'])) {
         $cname = explode("_", $centerDetails);
         $center__name = $cname[0];
         $branch__name = $cname[1];
+        
     }
 }
 else{
@@ -21,10 +22,7 @@ else{
 }
 if (isset($_GET['group'])) {
     $groupID = $_GET['group'];
-    //select group name where group id = $groupID;
-    //use group name to get all customer id in active loan where group name is equal to this
-    //use that to filter incomes
-
+    
     $retrieve = 'SELECT * FROM incomes ORDER BY date DESC';
     $retrieve = mysqli_query($connect, $retrieve);
 
@@ -60,6 +58,22 @@ if (isset($_GET['group'])) {
             $reference = $row['reference'];
             $amount = $row['amount'];
             $date = $row['date'];
+
+            //get group id from loanID in active loans
+            $loanID = $reference;
+
+            $getGroup = "SELECT customer_id FROM active_loans WHERE loan_id = '$loanID' ORDER BY id DESC";
+            $getGroup = mysqli_query($connect, $getGroup);
+            $data = mysqli_fetch_array($getGroup);
+            $cusID = $data['customer_id'];
+            $cusData = explode('/', $cusID);
+            
+            $branchid = $cusData[0];
+            $centerid = $cusData[1];
+            $groupid = $cusData[2];
+
+            if($groupid == $groupID){
+            //then filter using $groupID
         ?>
         <tr>
             <td><?php echo $description; ?></td>
@@ -67,7 +81,7 @@ if (isset($_GET['group'])) {
             <td><?php echo $amount; ?></td>
             <td><?php echo $date; ?></td>
         </tr>
-        <?php } ?>
+        <?php }} ?>
     </table>
 </div></body>
 </html>
