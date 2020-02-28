@@ -16,4 +16,5 @@
 
 array_push($holidays, $ny, $revolutionZnz, $karume, $union, $workers, $sabasaba, $nanenane, $nyerere, $freedom, $christmas, $boxing);
 
+header("Location: index.php");
 ?>
