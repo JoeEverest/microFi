@@ -31,6 +31,7 @@ body{
     margin-left: 15vw;
     padding-top: 15px;
     color: black;
+    max-width: 80vw;
 }
 nav{
     display: flex;
@@ -41,7 +42,7 @@ nav{
 .card{
     width: 200px;
     height: 200px;
-    margin: 20px;
+    margin: 10px;
     display: flex;
     justify-content: center;
 }

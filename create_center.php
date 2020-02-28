@@ -1,8 +1,22 @@
 <?php
 session_start();
-
-include('alt_session.php');
 include('config/config.php');
+
+if (isset($_SESSION['operator_name'])) {
+    $userLoggedIn = $_SESSION['operator_name'];
+
+    $extract = "SELECT * FROM operators WHERE operator_name = '$userLoggedIn' ORDER BY id DESC";
+    $execute = mysqli_query($connect, $extract);
+    while ($dataRows = mysqli_fetch_array($execute)) {
+        $rank = $dataRows["rank"];
+        if ($rank != 'AUTHORIZER') {
+	        header("Location: index.php");
+        }
+    }
+}
+else{
+	header("Location: login.php");
+}
 
 if (isset($_POST['createCenter'])) {
     if (!$_POST['branchName'] | !$_POST['centerName']) {

@@ -50,6 +50,12 @@ if (isset($_SESSION['operator_name'])) {
                         <p>Create new Group</p>
                     </div>
                 </a>
+                <a href="loan_existing_customer.php">
+                    <div class="card">
+                        <img src="https://img.icons8.com/wired/150/000000/add-property.png">
+                        <p>New Loan</p>
+                    </div>
+                </a>
                 <a href="new_customer.php">
                     <div class="card">
                         <img src="https://img.icons8.com/dotty/150/000000/add-administrator.png">
