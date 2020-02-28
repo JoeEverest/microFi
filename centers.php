@@ -3,7 +3,6 @@ session_start();
 
 include('alt_session.php');
 include('config/config.php');
-include('date.php');
 
 $retrieve = 'SELECT * FROM centers ORDER BY id ASC';
 $retrieve = mysqli_query($connect, $retrieve);

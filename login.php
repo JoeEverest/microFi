@@ -1,6 +1,5 @@
 <?php
 include('config/config.php');
-include('date.php');
 session_start();
 $errors = '';
 $id = '';

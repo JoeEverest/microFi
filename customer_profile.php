@@ -1,7 +1,6 @@
 <?php
 session_start();
 include('config/config.php');
-include('date.php');
 
 if (isset($_SESSION['operator_name'])) {
     $userLoggedIn = $_SESSION['operator_name'];

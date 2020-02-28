@@ -3,7 +3,6 @@ session_start();
 
 include('alt_session.php');
 include('config/config.php');
-include('date.php');
 
 if (isset($_POST['createGroup'])) {
     if (!$_POST['groupName'] | !$_POST['centerName']) {

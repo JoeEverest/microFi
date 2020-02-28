@@ -1,15 +1,14 @@
 <?php
 session_start();
 include('config/config.php');
-include('date.php');
 include('deliquence_handler.php');
 
 if (isset($_SESSION['operator_name'])) {
     $userLoggedIn = $_SESSION['operator_name'];
-    
+
     $getCenter = "SELECT * FROM operators WHERE operator_name = '$userLoggedIn'";
     $getCenter = mysqli_query($connect, $getCenter);
-    while ($centerName = mysqli_fetch_array($getCenter)){
+    while ($centerName = mysqli_fetch_array($getCenter)) {
         $centerDetails = $centerName['center_name'];
         $cname = explode("_", $centerDetails);
         $center__name = $cname[0];
@@ -20,9 +19,8 @@ if (isset($_SESSION['operator_name'])) {
         $centerID = mysqli_fetch_array($getCenterID);
         $centerID = $centerID["center_id"];
     }
-}
-else{
-	header("Location: login.php");
+} else {
+    header("Location: login.php");
 }
 
 $today = date('Y-m-d', strtotime('Today'));
@@ -32,6 +30,7 @@ $retrieve = mysqli_query($connect, $retrieve);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,55 +42,57 @@ $retrieve = mysqli_query($connect, $retrieve);
     <link rel="stylesheet" href="assets/css/main.css">
     <title>All Payments</title>
 </head>
+
 <body>
     <?php include('sidebar.php'); ?>
     <div class="container">
-    <h3>Payments for <?php echo $today; ?></h3>
-<table class="table table-striped table-sm">
-    <thead>
-        <th>Customer Name</th>
-        <th>Customer ID</th>
-        <th>Amount To Pay</th>
-        <th>Amount Left</th>
-        <th>Action</th>
-    </thead>
-    <tbody>
-    <?php
-        while ($row = mysqli_fetch_array($retrieve)) {
-            $name = $row['customer_name'];
-            $loanID = $row['loan_id'];
-            $customerId = $row['customer_id'];
-            $amountPaid = $row['amount_paid'];
-            $recieptNumber = $row['reciept_number'];
-            $date = $row['date'];
-            $nextPayment = $row['next_payment'];
-            $amountLeft = $row['amount_left'];
+        <h3>Payments for <?php echo $today; ?></h3>
+        <table class="table table-striped table-sm">
+            <thead>
+                <th>Customer Name</th>
+                <th>Customer ID</th>
+                <th>Amount To Pay</th>
+                <th>Amount Left</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                <?php
+                while ($row = mysqli_fetch_array($retrieve)) {
+                    $name = $row['customer_name'];
+                    $loanID = $row['loan_id'];
+                    $customerId = $row['customer_id'];
+                    $amountPaid = $row['amount_paid'];
+                    $recieptNumber = $row['reciept_number'];
+                    $date = $row['date'];
+                    $nextPayment = $row['next_payment'];
+                    $amountLeft = $row['amount_left'];
 
-            $customerData = explode("/", $customerId);
+                    $customerData = explode("/", $customerId);
 
-            $customerCenter = $customerData[1];
+                    $customerCenter = $customerData[1];
 
-    if ($centerID == $customerCenter) {
-    
+                    if ($centerID == $customerCenter) {
 
-    $q = "SELECT installment_amount FROM active_loans WHERE loan_id = '$loanID' ORDER BY id DESC";
-    $q = mysqli_query($connect, $q);
-    $installment = mysqli_fetch_array($q);
-    $installmentAmount = $installment['installment_amount'];
-    ?>
-    <tr>
-        <td><?php echo $name; ?></td>
-        <td><a href="customer_profile.php?id=<?php echo $customerId; ?>"><?php echo $customerId; ?></a></td>
-        <td><?php echo $installmentAmount; ?></td>
-        <td><?php echo $amountLeft; ?></td>
-        <td><a href="make_payment.php?id=<?php echo $loanID; ?>"><button class="btn btn-sm btn btn-success">Make Payment</button></a></td>
-    </tr>
-    <?php
-        }
-    }
-    ?>
-</tbody>
-</table>
-</div>
+
+                        $q = "SELECT installment_amount FROM active_loans WHERE loan_id = '$loanID' ORDER BY id DESC";
+                        $q = mysqli_query($connect, $q);
+                        $installment = mysqli_fetch_array($q);
+                        $installmentAmount = $installment['installment_amount'];
+                ?>
+                        <tr>
+                            <td><?php echo $name; ?></td>
+                            <td><a href="customer_profile.php?id=<?php echo $customerId; ?>"><?php echo $customerId; ?></a></td>
+                            <td><?php echo $installmentAmount; ?></td>
+                            <td><?php echo $amountLeft; ?></td>
+                            <td><a href="make_payment.php?id=<?php echo $loanID; ?>"><button class="btn btn-sm btn btn-success">Make Payment</button></a></td>
+                        </tr>
+                <?php
+                    }
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
 </body>
+
 </html>
