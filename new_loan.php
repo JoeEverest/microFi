@@ -38,10 +38,6 @@ else{
     <div class="container">
     <p>New Loan</p>
     <div class="cards">
-        <a href="new_customer.php"><div class="card">
-        <img src="https://img.icons8.com/dotty/150/000000/add-administrator.png">
-          <p>New Customer</p>
-        </div></a>
         <a href="loan_existing_customer.php">
             <div class="card">
             <img src="https://img.icons8.com/wired/150/000000/add-property.png">
