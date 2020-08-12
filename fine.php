@@ -62,16 +62,13 @@ if (isset($_GET['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="assets/js/jquery-3.3.1.slim.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <?php include('css.php'); ?>
     <title>Fine</title>
 </head>
 
 <body>
     <?php include('sidebar.php'); ?>
-    <div class="container">
+    <div class="main-content">
         <?php
         $getDetails = "SELECT * FROM deliquence WHERE customer_id = '$cusID'";
         $getDetails = mysqli_query($connect, $getDetails);
@@ -88,7 +85,7 @@ if (isset($_GET['id'])) {
             <h4>Payments Skipped: <?php echo $paymentsSkipped; ?></h4>
             <label for="fine_amount">Fine Amount</label>
             <input type="number" name="fine_amount" class="form-control" placeholder="Fine Amount"><br>
-            <button type="submit" name="fine" class="btn btn-sm btn btn-success">Issue Fine</button>
+            <button type="submit" name="fine" class="btn btn btn-success">Issue Fine</button>
         </form>
 
     </div>

@@ -13,30 +13,30 @@
         <div class="collapse navbar-collapse" id="sidebarCollapse">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php">Home</a>
+                    <a class="nav-link" href="index.php">Admin Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="branches.php">Branches</a>
+                    <a class="nav-link" href="../branches.php">Branches</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="active_loans.php">Active Loans</a>
+                    <a class="nav-link" href="../active_loans.php">Active Loans</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="payments.php">Today's Payments</a>
+                    <a class="nav-link" href="../payments.php">Today's Payments</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="customers.php">Customers</a>
+                    <a class="nav-link" href="../customers.php">Customers</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="deliquence.php">Deliquence</a>
+                    <a class="nav-link" href="../deliquence.php">Deliquence</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="income.php">Income</a>
+                    <a class="nav-link" href="../income.php">Income</a>
                 </li>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="admin/settings.php">Settings</a>
+                    <a class="nav-link" href="settings.php">Settings</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="logout.php">Log Out</a>
